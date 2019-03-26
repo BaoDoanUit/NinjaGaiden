@@ -1,0 +1,4 @@
+﻿  Sweet_AABB.cpp
+c:\users\bao\documents\visual studio 2017\projects\ninjagaiden\ninjagaiden\sweet_aabb.h(20): warning C4091: 'extern ': ignored on left of 'Box' when no variable is declared
+  NinjaGaiden.vcxproj -> C:\Users\bao\Documents\Visual Studio 2017\Projects\NinjaGaiden\Debug\NinjaGaiden.exe
+  NinjaGaiden.vcxproj -> C:\Users\bao\Documents\Visual Studio 2017\Projects\NinjaGaiden\Debug\NinjaGaiden.pdb (Partial PDB)
