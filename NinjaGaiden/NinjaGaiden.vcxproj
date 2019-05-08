@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{2CCF72DC-472E-43CC-B9C8-56E2C3E61442}</ProjectGuid>
     <RootNamespace>NinjaGaiden</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.10586.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -117,9 +117,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Global.cpp" />
+    <ClCompile Include="NinjaGaiden.cpp" />
     <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Sweet_AABB.cpp" />
@@ -127,9 +129,11 @@
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseObject.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Global.h" />
+    <ClInclude Include="NinjaGaiden.h" />
     <ClInclude Include="SceneMain.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Sweet_AABB.h" />

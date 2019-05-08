@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="WinMain">
       <UniqueIdentifier>{9572a57e-b81a-4719-b586-98958cfc9776}</UniqueIdentifier>
     </Filter>
@@ -28,6 +24,15 @@
     </Filter>
     <Filter Include="Framework\Collision">
       <UniqueIdentifier>{cf614ec9-1998-42e9-b77d-ba72e7059848}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{29ee6727-c03a-474e-8d02-b1814c27bf9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\NinjaGaiden">
+      <UniqueIdentifier>{92b34687-de07-4c8e-8074-66b92876672e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\BaseObject">
+      <UniqueIdentifier>{ccd0c00c-744f-41a5-9121-f9c59fa71f4f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +60,12 @@
     <ClCompile Include="Sweet_AABB.cpp">
       <Filter>Framework\Collision</Filter>
     </ClCompile>
+    <ClCompile Include="NinjaGaiden.cpp">
+      <Filter>Object\NinjaGaiden</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseObject.cpp">
+      <Filter>Object\BaseObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SceneMain.h">
@@ -77,6 +88,12 @@
     </ClInclude>
     <ClInclude Include="Sweet_AABB.h">
       <Filter>Framework\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="NinjaGaiden.h">
+      <Filter>Object\NinjaGaiden</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseObject.h">
+      <Filter>Object\BaseObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

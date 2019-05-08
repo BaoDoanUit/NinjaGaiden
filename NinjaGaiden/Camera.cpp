@@ -42,7 +42,7 @@ D3DXVECTOR3 Camera::CenterSprite(int x, int y)
 void Camera::UpdateCamerax(int x)
 {
 	viewport.x = viewport.x + x;
-	//Cái này chỉ dùng để test thử khi sang trái phải camera khi nào gắn simon thì bỏ hàm này sử dụng hàm UpdateCamera bên dưới(Tiền update)
+	//Cái này chỉ dùng để test thử khi sang trái phải camera khi nào gắn ninjaGaiden thì bỏ hàm này sử dụng hàm UpdateCamera bên dưới(Tiền update)
 	if (viewport.x + G_ScreenWidth > _maxSize)
 		viewport.x = _maxSize - G_ScreenWidth;
 	if (viewport.x < _minSize)
