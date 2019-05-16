@@ -7,7 +7,7 @@ NinjaGaiden::NinjaGaiden(float x1, float y1, int trend)
 	Trend = trend;
 	Vx = NINJAGAIDEN_VX_GO;
 	NinjaGaiden_vx = NINJAGAIDEN_VX_GO;
-	GTObject = new Texture("./Resources/simon.png", 8, 3, 24);
+	GTObject = new Texture("./Resources/ninjaGaiden.png", 8, 3, 24);
 	GSObject = new Sprite(GTObject, NINJAGAIDEN_FRAME);
 	GTObject2 = new Texture("./Resources/simondeath.png", 1, 1, 1);
 	GSObject2 = new Sprite(GTObject2, 10);
@@ -50,7 +50,7 @@ void NinjaGaiden::Draw(Camera * cam)
 	}
 }
 ///////////////////////////
-//Thêm vào hàm khi simon di chuyển thì đổi frame
+//Thêm vào hàm khi ninja di chuyển thì đổi frame
 
 void NinjaGaiden::Update(Camera *camera, int t)
 {

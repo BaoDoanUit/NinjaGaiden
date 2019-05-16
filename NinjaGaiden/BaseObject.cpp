@@ -40,15 +40,15 @@ Box BaseObject::GetBox(Camera *camera)
 
 void BaseObject::MoveLeft()
 {
-	//if (IsFalling || IsJumping) return;
-	//if (IsAttacking == 1) return;
+	if (IsFalling || IsJumping) return;
+	if (IsAttacking == 1) return;
 	Trend = -1;
 }
 
 void BaseObject::MoveRight()
 {
-	//if (IsFalling || IsJumping) return;
-	//if (IsAttacking == 1) return;
+	if (IsFalling || IsJumping) return;
+	if (IsAttacking == 1) return;
 	Trend = 1;
 }
 

@@ -34,6 +34,9 @@
     <Filter Include="Object\BaseObject">
       <UniqueIdentifier>{ccd0c00c-744f-41a5-9121-f9c59fa71f4f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\EnemyObject">
+      <UniqueIdentifier>{29273850-b203-457c-aa57-268673eca47a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -66,6 +69,24 @@
     <ClCompile Include="BaseObject.cpp">
       <Filter>Object\BaseObject</Filter>
     </ClCompile>
+    <ClCompile Include="Bee.cpp">
+      <Filter>Object\EnemyObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Bird.cpp">
+      <Filter>Object\EnemyObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Dog.cpp">
+      <Filter>Object\EnemyObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Eagle.cpp">
+      <Filter>Object\EnemyObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy1.cpp">
+      <Filter>Object\EnemyObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy2.cpp">
+      <Filter>Object\EnemyObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SceneMain.h">
@@ -94,6 +115,24 @@
     </ClInclude>
     <ClInclude Include="BaseObject.h">
       <Filter>Object\BaseObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Bee.h">
+      <Filter>Object\EnemyObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Bird.h">
+      <Filter>Object\EnemyObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Dog.h">
+      <Filter>Object\EnemyObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Eagle.h">
+      <Filter>Object\EnemyObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy1.h">
+      <Filter>Object\EnemyObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy2.h">
+      <Filter>Object\EnemyObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

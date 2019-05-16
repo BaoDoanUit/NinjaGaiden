@@ -3,11 +3,18 @@
 
 #include "Game.h"
 #include "NinjaGaiden.h"
+#include "Eagle.h"
+#include "Dog.h"
 class SceneMain : public Game
 {
 public:
 	NinjaGaiden *ninjaGaiden;
-	Camera *cam;
+	Camera *cam, *camDog;
+	Eagle *eager;
+	Dog *dog;
+
+
+
 
 	int CollectMorningStar = 0;
 

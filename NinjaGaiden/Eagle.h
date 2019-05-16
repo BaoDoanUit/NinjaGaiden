@@ -7,8 +7,8 @@ public:
 	Eagle(int x1, int y1, int w1, int h1);
 	virtual void Update(int t);
 	virtual void Draw(Camera * cam);
-	virtual void StopFall(float y);
-	virtual void Fly();
+	// virtual void StopFall(float y);
+	// virtual void Fly();
 	~Eagle();
 };
 

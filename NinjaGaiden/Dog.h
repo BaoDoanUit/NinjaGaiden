@@ -14,7 +14,7 @@ public:
 	virtual void Fall();
 	virtual void Go();
 	virtual void Jump();
-	virtual void StopFall(float y);
+	//virtual void StopFall(float y);
 	virtual void Update(int t);
 	void Draw(Camera * cam);
 	int timeFall;

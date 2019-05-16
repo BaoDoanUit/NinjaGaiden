@@ -79,6 +79,9 @@ void SceneMain::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t)
 void SceneMain::RenderStage(LPDIRECT3DDEVICE9 d3ddv, int t)
 {
 	ninjaGaiden->Draw(cam);
+	ninjaGaiden->GSObject->SetARGB();
+	dog->Draw(camDog);
+	dog->GSObject->SetARGB();
 	G_SpriteHandler->End();
 }
 
@@ -109,8 +112,13 @@ void SceneMain::LoadMap1() {
 	AutoFit = 0; //Sử dụng biến này khi viewport.y của màn 2 khác với width của màn hình nên tọa độ item cộng thêm AutoFit
 	ninjaGaiden = new NinjaGaiden(G_ScreenWidth, 76, 1);
 	ninjaGaiden->setx(20);
-	ninjaGaiden->sety(100);
+	ninjaGaiden->sety(120);
+	dog = new Dog(30, 20, 32, 32);
+	dog->setx(30);
+	dog->sety(100);
 	cam = new Camera(ninjaGaiden->getx(), 1);
+	camDog = new Camera(ninjaGaiden->getx(), 1);
+	camDog->SetSizeMap(0, 1536);
 	cam->SetSizeMap(0, 1536);
 	ninjaGaiden->Go();
 }

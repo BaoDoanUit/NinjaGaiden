@@ -118,7 +118,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BaseObject.cpp" />
+    <ClCompile Include="Bee.cpp" />
+    <ClCompile Include="Bird.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Dog.cpp" />
+    <ClCompile Include="Eagle.cpp" />
+    <ClCompile Include="Enemy1.cpp" />
+    <ClCompile Include="Enemy2.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="NinjaGaiden.cpp" />
@@ -130,7 +136,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseObject.h" />
+    <ClInclude Include="Bee.h" />
+    <ClInclude Include="Bird.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Dog.h" />
+    <ClInclude Include="Eagle.h" />
+    <ClInclude Include="Enemy1.h" />
+    <ClInclude Include="Enemy2.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="NinjaGaiden.h" />

@@ -87,6 +87,7 @@ void Dog::Update(int t)
 void Dog::Draw(Camera * cam)
 {
 	D3DXVECTOR2 pos = cam->Transform(x, y);
-	if (Trend == -1)GSObject->DrawFromCenter(pos.x, pos.y);
+	if (Trend == -1)
+		GSObject->DrawFromCenter(pos.x, pos.y);
 	else GSObject->DrawFlipX(pos.x, pos.y);
 }

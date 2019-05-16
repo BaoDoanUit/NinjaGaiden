@@ -65,7 +65,7 @@ void Texture::Load()
 		D3DPOOL_DEFAULT,
 		D3DX_DEFAULT,
 		D3DX_DEFAULT,
-		D3DCOLOR_XRGB(255, 0, 255), //color
+		D3DCOLOR_XRGB(255, 163, 177), //color
 		&info,
 		NULL,
 		&texture
