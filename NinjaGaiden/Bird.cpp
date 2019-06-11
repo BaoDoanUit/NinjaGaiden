@@ -9,6 +9,7 @@ Bird::Bird(int x1, int y1, int h1, int w1)
 	GTObject = TextureManager::GetInstance()->GetTexture(eType::BIRD);
 	GSObject = new Sprite(GTObject, 120);
 	Health = 1;
+	type = eType::BIRD;
 }
 
 

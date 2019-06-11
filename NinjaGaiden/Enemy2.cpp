@@ -14,6 +14,7 @@ Enemy2::Enemy2(int x1, int y1, int w1, int h1)
 	GSObject = new Sprite(GTObject, 120);
 	/*IsFalling = 1;*/
 	Trend = -1;
+	type = eType::ENEMY2;
 }
 
 Box Enemy2::GetBox(Camera * camera)

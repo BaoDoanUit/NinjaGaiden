@@ -19,6 +19,7 @@ Eagle::Eagle(int x1, int y1, int w1, int h1)
 	Vy = EAGLE_SPEED_Y;
 	Vx = EAGLE_SPEED_X * Trend;
 	Health = 1;
+	type = eType::EAGLE;
 }
 
 void Eagle::Update(int t)

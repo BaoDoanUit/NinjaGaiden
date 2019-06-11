@@ -198,7 +198,18 @@ eType BaseObject::GetType()
 	return type;
 }
 
+bool BaseObject::getDropItem()
+{
+	return dropItem;
+}
+
+void BaseObject::setDropItem(bool dropItem)
+{
+	this->dropItem = dropItem;
+}
+
 void BaseObject::SetTrend(int Trend)
 {
+
 	this->Trend = Trend;
 }
