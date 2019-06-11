@@ -2,7 +2,7 @@
 
 Camera::Camera(int x, int State)
 {
-	viewport.x = x - 15;
+	viewport.x = x;
 	if (State == 2)
 		viewport.y = G_ScreenHeight + 416;
 	else
@@ -66,7 +66,6 @@ void Camera::UpdateCamera() {
 	{
 		viewport.x += _VCameraX;
 	}
-
 	if (viewport.x + G_ScreenWidth > _maxSize)
 		viewport.x = _maxSize - G_ScreenWidth;
 	if (viewport.x < _minSize) viewport.x = _minSize;
@@ -76,4 +75,19 @@ void Camera::SetFolowPos(float x, float y)
 {
 	_FolowPosX = x;
 	_FolowPosY = y;
+}
+
+float Camera::GetXCam()
+{
+	return viewport.x;
+}
+
+float Camera::GetYCam()
+{
+	return viewport.y;
+}
+
+D3DXVECTOR2 Camera::TransformObject(int xWorld, int yWorld)
+{
+	return D3DXVECTOR2(xWorld - viewport.x, yWorld - 0);
 }

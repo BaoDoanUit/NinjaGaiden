@@ -1,12 +1,31 @@
 #include "Texture.h"
+int Texture::GetFrameWidth(){
+	return FrameWidth ;
+}
 
-Texture::Texture(char* _fileName, int cols, int rows, int count)
+int Texture::GetFrameHeight()
+{
+	return FrameHeight - 2;
+}
+
+int Texture::GetColumn()
+{
+	return Cols;
+}
+
+int Texture::GetRow()
+{
+	return Rows;
+}
+
+
+Texture::Texture(char* _fileName, int cols, int rows, int count, int R, int B, int G)
 {
 	Cols = cols;
 	Rows = rows;
 	Count = count;
 	FileName = _fileName;
-	this->Load();
+	this->Load(R,B,G);
 }
 
 Texture::Texture(const Texture &ctexture)
@@ -33,7 +52,7 @@ void Texture::Draw(int x, int y)
 	G_SpriteHandler->Draw(texture, &Size, NULL, &position, 0xFFFFFFFF);
 }
 
-void Texture::Load()
+void Texture::Load(int R, int B, int G)
 {
 	D3DXIMAGE_INFO info;
 	HRESULT result;
@@ -65,7 +84,8 @@ void Texture::Load()
 		D3DPOOL_DEFAULT,
 		D3DX_DEFAULT,
 		D3DX_DEFAULT,
-		D3DCOLOR_XRGB(255, 163, 177), //color
+		D3DCOLOR_XRGB(R, B, G), //color
+		//D3DCOLOR_XRGB(255, 163, 177), //color
 		&info,
 		NULL,
 		&texture

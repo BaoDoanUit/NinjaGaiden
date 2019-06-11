@@ -4,7 +4,6 @@
 #include "Global.h"
 #include "Sprite.h"
 
-
 class Camera
 {
 public:
@@ -30,6 +29,9 @@ public:
 	void UpdateCamera(int &w, int &h);
 	void SetSizeMap(int _max, int _min);
 	D3DXVECTOR2 Transform(int x, int y);		//Hàm transform, chuyển tọa độ viewport về tọa độ world
+	float GetXCam();
+	float GetYCam();
+	D3DXVECTOR2 TransformObject(int xWorld, int yWorld);
 };
 
 #endif

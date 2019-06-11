@@ -16,15 +16,29 @@ BaseObject::~BaseObject()
 
 }
 
-void BaseObject::Draw(Camera * cam)
+void BaseObject::Draw(Camera * camera)
 {
-	D3DXVECTOR2 pos = cam->Transform(x, y);
-	GSObject->DrawFromCenter(pos.x, pos.y);
+	//D3DXVECTOR2 pos = cam->Transform(x, y);
+	//GSObject->DrawFromCenter(pos.x, pos.y);
+
+	//if (Health <= 0)
+	//	return;
+
+	D3DXVECTOR2 pos = camera->Transform(x, y);
+	if (Trend == -1)
+		GSObject->DrawFlipX(pos.x, pos.y);
+	else
+		GSObject->DrawFromCenter(pos.x, pos.y);
+
+	//if (IS_DEBUG_RENDER_BBOX)
+	//	RenderBoundingBox(camera);
 }
 
 
 void BaseObject::Update(int t)
 {
+	dx = Vx * t;
+	dy = Vy * t;
 	GSObject->Update(t);
 }
 
@@ -123,7 +137,7 @@ int BaseObject::GetHurt()
 
 void BaseObject::SetAnimation(float Vx, float Vy, int Frame)
 {
-	this->Vx = Vx*Trend;
+	this->Vx = Vx * Trend;
 	this->Vy = Vy;
 	this->GSObject->_timeAni = Frame;
 }
@@ -136,4 +150,44 @@ int BaseObject::CreateWeapon() {
 }
 void BaseObject::GetSMPositionForBoss(float x, float y, int Trend)
 {
+}
+
+void BaseObject::Attack(Weapon *weapon)
+{
+	IsAttacking = 1;
+	//if (weapon) weapon->Create(x, y, Trend);
+}
+
+int BaseObject::GetHealth()
+{
+	return Health;
+}
+
+void BaseObject::SetHealth(int h)
+{
+	this->Health = h;
+}
+
+int BaseObject::GetTrend()
+{
+	return Trend;
+}
+
+void BaseObject::SetId(int ID)
+{
+	this->id = ID;
+}
+int BaseObject::GetId()
+{
+	return id;
+}
+
+eType BaseObject::GetType()
+{
+	return type;
+}
+
+void BaseObject::SetTrend(int Trend)
+{
+	this->Trend = Trend;
 }

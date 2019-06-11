@@ -1,8 +1,33 @@
 ﻿#include "Camera.h"
 #include "Sprite.h"
 #include "Sweet_AABB.h"
-//#include "Weapon.h"
+#include "Weapon.h"
+#include "Global.h"
+#include "TextureManager.h"
 #pragma once
+
+class BaseObject;
+typedef BaseObject * LPGAMEOBJECT;
+struct CollisionEvent;
+typedef CollisionEvent * LPCOLLISIONEVENT;
+
+struct CollisionEvent
+{
+	LPGAMEOBJECT obj;
+	float t, nx, ny;
+	CollisionEvent(float t, float nx, float ny, LPGAMEOBJECT obj = NULL)
+	{
+		this->t = t;
+		this->nx = nx;
+		this->ny = ny;
+		this->obj = obj;
+	}
+
+	static bool compare(const LPCOLLISIONEVENT &a, LPCOLLISIONEVENT &b)
+	{
+		return a->t < b->t;
+	}
+};
 class BaseObject
 {
 protected:
@@ -23,11 +48,18 @@ protected:
 	int IsHurting;
 	int EndHurt;
 	bool IsDie = 0;
+	int Health;
+	int id;
+	eType type;
+
 public:
 	Texture *GTObject;
 	Sprite *GSObject;
 	float Vx;	// Vận tốc theo trục X
 	float Vy;	// Vận tốc theo trục Y
+
+	float dx;
+	float dy;
 
 	float GetVx();
 	float GetVy();
@@ -48,7 +80,8 @@ public:
 	void		setVX(int x1) { this->Vx = x1; }
 
 	int			getIsHurrting() { return this->IsHurting; }
-
+	int GetHealth();
+	void SetHealth(int h);
 	//danh cho 
 	int getHeight() { return GTObject->FrameHeight; }
 	int getWidth() { return GTObject->FrameWidth; }
@@ -82,11 +115,17 @@ public:
 	virtual void MoveLeft();
 	virtual void MoveRight();
 	///////////////////
-	//virtual void Attack(Weapon * weapon);
+	virtual void Attack(Weapon * weapon);
+
 	virtual int CreateWeapon();
 	int GetHurt();
 	void SetHurt(int i = 30);
 	int water;
 	void BaseObject::SetAnimation(float Vx, float Vy, int Frame);
 	virtual void GetSMPositionForBoss(float x, float y, int Trend);
+	void SetTrend(int d);
+	int GetTrend();
+	void SetId(int ID);
+	int GetId();
+	eType GetType();
 };

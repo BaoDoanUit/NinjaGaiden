@@ -1,14 +1,16 @@
 ﻿#include "BaseObject.h"
 #include "Sweet_AABB.h"
+#include "Weapon.h"
+#include "TextureManager.h"
 #pragma once
 
 #define NINJAGAIDEN_TREND 1
-#define NINJAGAIDEN_FRAME 70
-#define NINJAGAIDEN_STOP_IMAGE 0
-#define NINJAGAIDEN_SIT_IMAGE 4
-#define NINJAGAIDEN_ATK_IMAGE 5
-#define NINJAGAIDEN_SITATK_IMAGE 15
-#define NINJAGAIDEN_HURT_IMAGE 8
+#define NINJAGAIDEN_FRAME 60
+#define NINJAGAIDEN_STOP_IMAGE 7
+#define NINJAGAIDEN_SIT_IMAGE 15
+#define NINJAGAIDEN_SITATK_IMAGE 12
+#define NINJAGAIDEN_ATK_IMAGE 4
+#define NINJAGAIDEN_HURT_IMAGE 11
 
 #define NINJAGAIDEN_VX_STAIR 0.13
 #define NINJAGAIDEN_VY_STAIR 0.13
@@ -30,22 +32,22 @@ private:
 	Sprite *GSObject2;
 	bool isNinjaGaidenDie = false;
 	int trend = -1;
+	int flag = 0;
 	//float Vx, Vy;
 public:
 	//Stair
 	int IsOnStair;
 	int Auto;
 	int stairTrend;
-	int xStairUp;
 	int yStairUp;
-	int xStairDown;
 	int yStairDown;
 	int isUpStair;
 	int isDownStair;
 	void UpStair();
 	int GetOnStair();
-	void OutStair();
 	void DownStair();
+
+
 	//stair
 	//Tiền updated
 	float Vx_Hurt;
@@ -68,7 +70,11 @@ public:
 	virtual void Jump();
 	virtual void Go();
 	/////////////////(Tiền updated)
-	// void Attack(Weapon * weapon);
+	//void Attack(Weapon * weapon);
+	void Attack();
+
+	void CollisionWithBrick(const vector<LPGAMEOBJECT> *coObjects = NULL);
+
 	void Hurt(int HTrend);
 	void setNinjaGaidenDie(bool isdie) { isNinjaGaidenDie = isdie; };
 };

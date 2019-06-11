@@ -32,12 +32,12 @@ int         AutoFit = 0;
 int			G_MaxSize;
 int			G_MinSize;
 RECT		G_WindowSize;
-int			G_ScreenWidth = 512;
+int			G_ScreenWidth = 640;
 //640;
 //640
 //1024
 //1366;
-int			G_ScreenHeight = 448;
+int			G_ScreenHeight = 352;
 int         Floor = 1;
 int         State = -1;
 bool        isBoss = false;

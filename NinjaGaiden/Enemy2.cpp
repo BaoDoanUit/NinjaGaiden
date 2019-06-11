@@ -9,9 +9,10 @@ Enemy2::Enemy2(int x1, int y1, int w1, int h1)
 	y = y1;
 	h = h1;
 	w = w1;
-	GTObject = new Texture("./Resources/enemy/enemy2.png", 3, 1, 3);
+	Health = 1;
+	GTObject = TextureManager::GetInstance()->GetTexture(eType::ENEMY2);
 	GSObject = new Sprite(GTObject, 120);
-	IsFalling = 1;
+	/*IsFalling = 1;*/
 	Trend = -1;
 }
 
@@ -30,11 +31,11 @@ void Enemy2::Update(int t)
 	}
 	else
 	{
-		BaseObject::Update(t);
+		/*BaseObject::Update(t);
 		this->Vx = 0.18 * Trend;
 		x += Vx * t;
 		if (x < 0 || x > 3072 && x < 4112)
-			Trend = 1;
+			Trend = 1;*/
 	}
 }
 

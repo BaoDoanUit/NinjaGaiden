@@ -18,13 +18,16 @@ public:
 	int FrameHeight;	//height of 1 frame
 
 	Texture(const Texture &ctexture);
-	Texture(char* _fileName, int cols = 1, int rows = 1, int count = 1);
+	Texture(char* _fileName, int cols = 1, int rows = 1, int count = 1, int R = 255, int B = 163, int G = 177);
 	~Texture();
 	//vẽ texture tại vị trí (x, y) trên màn hình
 	void Draw(int x, int y);
-
+	int GetFrameWidth();
+	int GetFrameHeight();
+	int GetColumn();
+	int GetRow();
 protected:
-	void Load();
+	void Load(int R = 255, int B = 163, int G = 177);
 };
 
 #endif

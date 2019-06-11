@@ -1,5 +1,6 @@
 ﻿#include "NinjaGaiden.h"
 
+
 NinjaGaiden::NinjaGaiden(float x1, float y1, int trend)
 {
 	x = x1;
@@ -7,10 +8,10 @@ NinjaGaiden::NinjaGaiden(float x1, float y1, int trend)
 	Trend = trend;
 	Vx = NINJAGAIDEN_VX_GO;
 	NinjaGaiden_vx = NINJAGAIDEN_VX_GO;
-	GTObject = new Texture("./Resources/ninjaGaiden.png", 8, 3, 24);
+	GTObject = TextureManager::GetInstance()->GetTexture(eType::NINJAGAIDEN);
 	GSObject = new Sprite(GTObject, NINJAGAIDEN_FRAME);
-	GTObject2 = new Texture("./Resources/simondeath.png", 1, 1, 1);
-	GSObject2 = new Sprite(GTObject2, 10);
+	GTObject2 = TextureManager::GetInstance()->GetTexture(eType::NINJAGAIDEN_DEADTH);
+	GSObject2 = new Sprite(GTObject2, NINJAGAIDEN_FRAME);
 	EndHurt = 1;
 }
 
@@ -50,13 +51,13 @@ void NinjaGaiden::Draw(Camera * cam)
 	}
 }
 ///////////////////////////
-//Thêm vào hàm khi ninja di chuyển thì đổi frame
+//Thêm vào hàm khi simon di chuyển thì đổi frame
 
 void NinjaGaiden::Update(Camera *camera, int t)
 {
 	if (IsOnStair == 1)
 	{
-		if (IsAttacking == 1)
+		if (IsJumping == 1)
 		{
 			GSObject->Update(t);
 			if (Trend*stairTrend == -1)
@@ -75,50 +76,17 @@ void NinjaGaiden::Update(Camera *camera, int t)
 				}
 		}
 		else
-			if (IsGoing == 1)
-			{
-				x += Vx * t;
-				y += Vy * t;
-				GSObject->Update(t);
-
-				if (Trend*stairTrend == -1)
-				{
-					GSObject->_index = GSObject->_index % 2 + 12;
-				}
-				else
-				{
-					GSObject->_index = GSObject->_index % 2 + 10;
-				}
-
-				if ((Trend*stairTrend == -1))
-				{
-					if (y - yStairUp >= 26 && Auto == 1) // leo lên 1 bậc thì dừng.
-					{
-						this->Stop();
-						Auto = 0;
-					}
-				}
-				else
-				{
-					if (yStairDown - y >= 0 && Auto == 1)
-					{
-						this->Stop();
-						Auto = 0;
-					}
-				}
-			}
-			else
-			{
-				if (Trend*stairTrend == -1) GSObject->SelectIndex(12);
-				else GSObject->SelectIndex(10);
-			}
+		{
+			if (Trend*stairTrend == -1) GSObject->SelectIndex(12);
+			else GSObject->SelectIndex(10);
+		}
 		return;
 	}
 	if (IsAttacking == 1) {
 		GSObject->Update(t);
 		if (IsSitting == 1)					//Tấn công khi đang ngồi
 		{
-			if (GSObject->_index > 17)
+			if (GSObject->_index > 14)
 			{
 				IsAttacking = 0;
 				this->Sit();
@@ -130,14 +98,14 @@ void NinjaGaiden::Update(Camera *camera, int t)
 			x += Vx * t;
 			y += Vy;
 			Vy = Vy - NINJAGAIDEN_GRAVITY;
-			if (GSObject->_index > 7)
+			if (GSObject->_index > 6)
 			{
 				IsAttacking = 0;
 				this->Fall();
 			}
 		}
 		else
-			if (GSObject->_index > 7)
+			if (GSObject->_index > 6)
 			{
 				GSObject->SelectIndex(NINJAGAIDEN_STOP_IMAGE);
 				IsAttacking = 0;
@@ -146,11 +114,15 @@ void NinjaGaiden::Update(Camera *camera, int t)
 	else {
 		if (IsJumping == 1)
 		{
-			if (EndHurt) Vx *= IsGoing; else Vx = Vx_Hurt*HTrend*(Prevent == 0);
+			if (EndHurt) Vx *= IsGoing; 
+			else Vx = Vx_Hurt*HTrend*(Prevent == 0);
 			y += Vy;
 			x += Vx * t;
 			Vy = Vy - NINJAGAIDEN_GRAVITY;
 			GSObject->SelectIndex(NINJAGAIDEN_SIT_IMAGE);
+			GSObject->_index = 8;
+			GSObject->_end = 9;
+			GSObject->Update(t);
 			if (!EndHurt) GSObject->SelectIndex(NINJAGAIDEN_HURT_IMAGE);
 			if (Vy == 0)
 			{
@@ -168,9 +140,11 @@ void NinjaGaiden::Update(Camera *camera, int t)
 		else if (IsGoing == 1)
 		{
 			x += Vx * t;
-			GSObject->_end = 3;
+			GSObject->_index = 21;
+			GSObject->_end = 23;
 			GSObject->Update(t);
-			if (IsFalling == 0 && IsJumping == 0) GSObject->_index = GSObject->_index % 4;
+			//if (IsFalling == 0 && IsJumping == 0) 
+				//GSObject->_index = GSObject->_index % 4;
 		}
 		else if (IsSitting == 1)
 		{
@@ -288,8 +262,8 @@ void NinjaGaiden::Stop()
 {
 	if (IsOnStair == 1 && IsAttacking == 0)
 	{
-	BaseObject::Stop();
-	return;
+		BaseObject::Stop();
+		return;
 	}
 	if (IsAttacking == 0)
 	{
@@ -320,6 +294,157 @@ void NinjaGaiden::Hurt(int HTrend)
 	}
 }
 
+void NinjaGaiden::Attack() {
+	//if (IsAttacking == 1) return;
+	
+	if (IsFalling == 1) return;
+
+	if (IsSitting == 1)
+	{
+		GSObject->SelectIndex(NINJAGAIDEN_SITATK_IMAGE);
+	}
+	else
+		GSObject->SelectIndex(NINJAGAIDEN_ATK_IMAGE);
+	//BaseObject::Attack(weapon);
+	IsAttacking = 1;
+
+}
+
+void NinjaGaiden::CollisionWithBrick(const vector<LPGAMEOBJECT>* coObjects)
+{
+	flag = 1;
+	if (this->y > 380)
+	{
+		isFall = true;
+		timeWait = GetTickCount();
+		return;
+	}
+
+	vector<LPCOLLISIONEVENT> coEvents;
+	vector<LPCOLLISIONEVENT> coEventsResult;
+
+	coEvents.clear();
+
+	vector<LPGAMEOBJECT> listEnemy;
+
+	listEnemy.clear();
+
+	for (UINT i = 0; i < coObjects->size(); i++)
+	{
+		if (coObjects->at(i)->GetType() == eType::BRICK || coObjects->at(i)->GetType() == eType::OBJECT_CLIMB || coObjects->at(i)->GetType() == eType::OBJECT_CLIMBUP || coObjects->at(i)->GetType() == eType::DOOR)
+		{
+
+			listEnemy.push_back(coObjects->at(i));
+		}
+	}
+
+	CalcPotentialCollisions(&listEnemy, coEvents, flag);
+
+	if (coEvents.size() == 0)
+	{
+		x += dx;
+		y += dy;
+		isCollisionAxisYWithBrick = false;
+
+		isClimbing = false;
+		isClimbUp = false;
+	}
+	else
+	{
+		float min_tx, min_ty, nx = 0, ny = 0;
+		min_tx = min_ty = 0;
+
+		FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
+		x += min_tx * dx + nx * 0.1f;
+
+
+		for (UINT i = 0; i < coEventsResult.size(); i++)
+		{
+			if (dynamic_cast<Brick*>(coEventsResult[i]->obj))
+			{
+				if (ny == -1)
+				{
+
+					vy = 0;
+					if (isJumping)
+					{
+						isJumping = false;
+						y = y - PULL_UP_NINJA_AFTER_JUMPING;
+					}
+					isCollisionAxisYWithBrick = true;
+				}
+				else
+				{
+					y += dy;
+					isCollisionAxisYWithBrick = true;
+				}
+
+				if (nx != 0 || ny != 0)
+				{
+					isHurting = false;
+				}
+			}
+
+			if (dynamic_cast<ObjectHidden*>(coEventsResult[i]->obj))
+			{
+				if (ny == -1)
+					isHurting = false;
+				if (coEventsResult[i]->obj->GetType() == eType::OBJECT_CLIMB)
+				{
+					if (ny == -1)
+					{
+
+						vy = 0;
+						if (isJumping)
+						{
+							isJumping = false;
+							y = y - PULL_UP_NINJA_AFTER_JUMPING;
+						}
+					}
+					else
+						y += dy;
+
+					if (nx != 0)
+					{
+						if (isJumping)
+						{
+							isClimbing = true;
+							vx = 0;
+							vy = 0;
+							sound->Play(eSound::jump);
+						}
+					}
+				}
+				else if (coEventsResult[i]->obj->GetType() == eType::OBJECT_CLIMBUP)
+				{
+					isClimbing = true;
+					vx = 0;
+					vy = 0;
+					isClimbUp = true;
+					sound->Play(eSound::jump);
+				}
+				else if (coEventsResult[i]->obj->GetType() == eType::DOOR)
+				{
+					//if(nx!=0)
+					isGetNewStage = true;
+				}
+
+			}
+			else
+			{
+				isClimbing = false;
+				isClimbUp = false;
+			}
+		}
+
+	}
+
+
+	for (UINT i = 0; i < coEvents.size(); i++)
+		delete coEvents[i];
+
+}
+
 void NinjaGaiden::UpStair()
 {
 	IsSitting = 0;
@@ -336,16 +461,7 @@ void NinjaGaiden::DownStair()
 	IsFalling = 0;
 	IsOnStair = 1;
 }
-void NinjaGaiden::OutStair()
-{
-	Vy = 0;
-	Vx = NinjaGaiden_vx;
-	IsOnStair = 0;
-	/*if (IsGoing == 1)
-	this->Go();
-	else this->StandUp();*/
-	this->GSObject->_timeAni = 70;
-}
+
 int NinjaGaiden::GetOnStair() {
 	return IsOnStair;
 }

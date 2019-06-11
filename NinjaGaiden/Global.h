@@ -1,4 +1,4 @@
-
+﻿
 #ifndef _GLOBAL_H_
 #define _GLOBAL_H_
 
@@ -10,10 +10,18 @@
 #include <time.h>
 #include <stdlib.h>
 #include <windows.h>
-
+#include <vector>
 #include <d3d9.h>
 #include <d3dx9.h>
 #include <dinput.h>
+#include <map>
+#include <unordered_map>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <algorithm>
+
+using namespace std;
 
 //GLOBAL CONSTANT
 
@@ -25,10 +33,14 @@
 #define GL_RESOLUTION_640_480_32	10
 #define GL_RESOLUTION_800_600_32	11
 #define GL_RESOLUTION_1024_768_32	12
+
+
 //
 //size of key buffer(used in game class to save key state
 #define GL_KEY_BUFFER_SIZE	1024
 
+
+#define IS_DEBUG_RENDER_BBOX isDebug_RenderBBox
 //
 //GLOBAL VARIANT
 //
@@ -83,5 +95,152 @@ void GLMessage(char* text);
 void GLTitle(char* text);
 
 
+// ID của Sprite, object
+enum eType
+{
+	NINJAGAIDEN = 01,
+	SIMON_TRANS = 02,
+	NINJAGAIDEN_DEADTH = 03,
+
+	// object nền
+	GROUND = 21,
+	TEX_BRICK_MODEL_1 = 22,
+	TEX_BRICK_MODEL_2 = 23,
+	TEX_BRICK_MODEL_3 = 24,
+	TEX_BRICK_TRANSPARENT = 25,
+	GATE = 26,
+	TEX_BRICK_MODEL_3_3_32 = 27,
+	TEX_BRICK_MODEL_3_4_32 = 28,
+
+	// object
+	TORCH = 41,
+	OBJECT_HIDDEN = 42,
+	BEE = 43,
+	BIRD = 44,
+	DOG = 45,
+	EAGLE = 46,
+	ENEMY1 = 47,
+	ENEMY2 = 48,
+	SITGUN = 49,
+	STANDSOLIDER = 50,
+	
+
+	/*	STAIR_UP = 45,
+	STAIR_EXIT = 46,*/
+	/*STAIR_BOTTOM = 47,
+	STAIR_TOP = 48,*/
+
+
+
+	// weapon
+	MORNINGSTAR = 61,
+	DAGGER = 62,
+	HOLYWATER = 63,
+	STOPWATCH = 64,
+	FIREBALL = 65,
+	THROWINGAXE = 66,
+	NON_WEAPON_COLLECT = 67,
+	BOOMERANG = 68,
+	WEAPON_DOUBLE_SHOT = 69,
+
+
+	// item
+	LARGEHEART = 81,
+	UPGRADEMORNINGSTAR = 82,
+	ITEMDAGGER = 83,
+	BONUS = 84,
+	SMALLHEART = 85,
+	ITEMHOLYWATER = 86,
+	POTROAST = 87,
+	CRYSTALBALL = 88,
+	ITEMTHROWINGAXE = 89,
+	INVISIBILITYPOTION = 90,
+	CROSS = 91,
+	ITEMBOOMERANG = 92,
+	ITEMDOUBLESHOT = 93,
+	MONEY_BAG_RED = 94,
+	MONEY_BAG_WHITE = 95,
+	MONEY_BAG_PURPLE = 96,
+
+	// other
+	FONT = 101,
+	BOARD = 102,
+	BOARDHEALTH = 103,
+	MAP3 = 104,
+	RENDERBBOX = 105,
+	MAP4 = 106,
+	BOARD_TRANS = 107,
+
+	// Effect
+	FIRE = 121,
+	HIT = 122,
+	BROKENBRICK = 123,
+	STEAM = 124,
+	EFFECT_MONEY_700 = 125,
+	EFFECT_MONEY_100 = 126,
+	EFFECT_MONEY_400 = 127,
+	EFFECT_MONEY_1000 = 128,
+
+	// Enemy
+	GHOST = 141,
+	PANTHER = 142,
+	BAT = 143,
+	FISHMEN = 144,
+
+	//BOSS
+	PHANTOMBAT = 161,
+
+	// Intro
+	MAINMENU = 181,
+	INTRO_GO_SCENE1 = 182,
+	INTRO_BAT_MENU = 183, // bat ở menu
+	HELICOPTER = 184,
+	INTRO_BAT = 185 // ở intro
+
+};
+
+#ifndef SAFE_DELETE
+#define SAFE_DELETE(ptr) \
+if(ptr) \
+{\
+	delete (ptr); \
+	ptr = nullptr; \
+} \
+
+#endif
+
+#pragma once
+
+#include <d3d9.h>
+#include <d3dx9.h>
+
+#pragma region Window
+
+#define WINDOW_CLASS_NAME L"Game Window"
+#define WINDOW_TITLE L"Demo"
+
+#define GAME_WIDTH 4096
+#define GAME_HEIGHT 352
+
+#pragma endregion
+
+#define MAX_FRAME_RATE 60
+
+#define WHITE_COLOR D3DCOLOR_XRGB(255, 255, 255)
+#define BLUE_COLOR D3DCOLOR_XRGB(0, 0, 255)
+
+#define TILE_WIDTH 32	
+#define TILE_HEIGHT 32
+
+#define SAFE_DELETE(p)                                                         \
+  if (p != nullptr) {                                                          \
+    delete p;                                                                  \
+    p = nullptr;                                                               \
+  }
+#define SAFE_DELETE_ARRAY(p)                                                   \
+  if (p != nullptr) {                                                          \
+    delete[] p;                                                                \
+    p = nullptr;                                                               \
+  }
 
 #endif

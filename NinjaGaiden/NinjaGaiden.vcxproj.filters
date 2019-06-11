@@ -13,17 +13,11 @@
     <Filter Include="Framework\Global">
       <UniqueIdentifier>{489084d8-35a1-44d3-bd43-89e276c5e9bd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Sprite">
-      <UniqueIdentifier>{4bc34b17-733e-4a9f-935b-e11f8f1cf885}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\Texture">
       <UniqueIdentifier>{3ecd18ee-c3fa-488e-899d-e5909704db5b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Framework\Camera">
       <UniqueIdentifier>{dc17175a-c23d-4f70-9348-b962b6a237b5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Collision">
-      <UniqueIdentifier>{cf614ec9-1998-42e9-b77d-ba72e7059848}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object">
       <UniqueIdentifier>{29ee6727-c03a-474e-8d02-b1814c27bf9e}</UniqueIdentifier>
@@ -36,6 +30,36 @@
     </Filter>
     <Filter Include="Object\EnemyObject">
       <UniqueIdentifier>{29273850-b203-457c-aa57-268673eca47a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\rapidjson">
+      <UniqueIdentifier>{f62048cb-03ba-4fab-95fb-81734217e449}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Objects">
+      <UniqueIdentifier>{60106e8f-c9e5-4379-94df-b54c3c6e4687}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Helpers">
+      <UniqueIdentifier>{2187dd94-bc5d-4dab-8857-fae1cdcee5f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Core">
+      <UniqueIdentifier>{cd4e17d2-dc2b-4f59-a4f8-19ed1c7dc17a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Weapon">
+      <UniqueIdentifier>{ff501ee0-4dec-4dab-848f-5f096da7d730}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Sprite">
+      <UniqueIdentifier>{4bc34b17-733e-4a9f-935b-e11f8f1cf885}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Grid">
+      <UniqueIdentifier>{0ea4fc11-dde3-45d9-895e-da38d0ba6349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Item">
+      <UniqueIdentifier>{b8ea8887-c34b-4bb1-9b7a-9920f57abca0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Core\Collision">
+      <UniqueIdentifier>{cf614ec9-1998-42e9-b77d-ba72e7059848}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Ground">
+      <UniqueIdentifier>{52b6c46d-f20f-4454-9c15-44e160f1272c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -61,7 +85,7 @@
       <Filter>Framework\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Sweet_AABB.cpp">
-      <Filter>Framework\Collision</Filter>
+      <Filter>Framework\Core\Collision</Filter>
     </ClCompile>
     <ClCompile Include="NinjaGaiden.cpp">
       <Filter>Object\NinjaGaiden</Filter>
@@ -87,6 +111,45 @@
     <ClCompile Include="Enemy2.cpp">
       <Filter>Object\EnemyObject</Filter>
     </ClCompile>
+    <ClCompile Include="src\Objects\Map\Map\Map.cpp">
+      <Filter>Framework\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\QuadTree\BoundingBox.cpp">
+      <Filter>Framework\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\QuadTree\QuadTree.cpp">
+      <Filter>Framework\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\QuadTree\QuadTreeObject.cpp">
+      <Filter>Framework\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Helpers\FileHelper.cpp">
+      <Filter>Framework\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Framework\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Framework\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="SitGun.cpp">
+      <Filter>Object\EnemyObject</Filter>
+    </ClCompile>
+    <ClCompile Include="StandSolider.cpp">
+      <Filter>Object\EnemyObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectHidden.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Ground.cpp">
+      <Filter>Object\Ground</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SceneMain.h">
@@ -98,9 +161,6 @@
     <ClInclude Include="Global.h">
       <Filter>Framework\Global</Filter>
     </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Framework\Sprite</Filter>
-    </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Framework\Texture</Filter>
     </ClInclude>
@@ -108,7 +168,7 @@
       <Filter>Framework\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Sweet_AABB.h">
-      <Filter>Framework\Collision</Filter>
+      <Filter>Framework\Core\Collision</Filter>
     </ClInclude>
     <ClInclude Include="NinjaGaiden.h">
       <Filter>Object\NinjaGaiden</Filter>
@@ -133,6 +193,156 @@
     </ClInclude>
     <ClInclude Include="Enemy2.h">
       <Filter>Object\EnemyObject</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\allocators.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\document.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\encodedstream.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\encodings.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\error\en.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\error\error.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\filereadstream.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\filewritestream.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\fwd.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\biginteger.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\diyfp.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\dtoa.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\ieee754.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\itoa.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\meta.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\pow10.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\regex.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\stack.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\strfunc.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\strtod.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\swap.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\istreamwrapper.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\memorybuffer.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\memorystream.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\msinttypes\inttypes.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\msinttypes\stdint.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\ostreamwrapper.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\pointer.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\prettywriter.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\rapidjson.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\reader.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\schema.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\stream.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\stringbuffer.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\writer.h">
+      <Filter>Framework\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Objects\Map\Map.h">
+      <Filter>Framework\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\GameObject.h">
+      <Filter>Framework\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\QuadTree\BoundingBox.h">
+      <Filter>Framework\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\QuadTree\QuadTree.h">
+      <Filter>Framework\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Helpers\FileHelper.h">
+      <Filter>Framework\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Framework\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Config.h">
+      <Filter>Framework\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Framework\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Framework\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="SitGun.h">
+      <Filter>Object\EnemyObject</Filter>
+    </ClInclude>
+    <ClInclude Include="StandSolider.h">
+      <Filter>Object\EnemyObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectHidden.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Ground.h">
+      <Filter>Object\Ground</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

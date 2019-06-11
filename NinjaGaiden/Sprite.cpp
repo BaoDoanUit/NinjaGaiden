@@ -202,9 +202,9 @@ void Sprite::DrawFromTL(int X, int Y)
 	RECT srect;
 
 	srect.left = (_index % _texture->Cols)*(_texture->FrameWidth);// + 1;
-	srect.top = (_index / _texture->Cols)*(_texture->FrameHeight);// + 1;
+	srect.top = (_index / _texture->Cols)*(_texture->FrameWidth);// + 1;
 	srect.right = srect.left + _texture->FrameWidth;
-	srect.bottom = srect.top + _texture->FrameHeight;// + 1;
+	srect.bottom = srect.top + _texture->FrameWidth;// + 1;
 
 													 //D3DXVECTOR3 position((float)X, (float)Y, 0);
 	D3DXVECTOR3 position(0, 0, 0);
@@ -219,3 +219,5 @@ void Sprite::DrawFromTL(int X, int Y)
 		D3DCOLOR_XRGB(R, G, B) //color
 	);
 }
+
+
