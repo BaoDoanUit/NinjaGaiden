@@ -30,7 +30,20 @@ void SceneMain::RenderStage(LPDIRECT3DDEVICE9 d3ddv, int t) {
 	gridGame->GetListObject(listObj, cam);
 	//TODO Draw ListObj GridGame
 	for (UINT i = 0; i < listObj.size(); i++)
+	{
+		switch (listObj[i]->GetType())
+		{
+		case eType::GROUND:
+			listGround.push_back(listObj[i]);
+			break;
+		default:
+			listEnemy.push_back(listObj[i]);
+			break;
+		}
+
 		listObj[i]->Draw(cam);
+	}
+
 
 	ninjaGaiden->Draw(cam);
 	ninjaGaiden->GSObject->SetARGB();
@@ -165,9 +178,9 @@ void SceneMain::UpdateObject(Camera *cam, int t) {
 			{
 				listObj[i]->Update(t);
 			}
-							
+
 		}
-			
+
 	}
 
 	CheckCollision();
@@ -178,21 +191,56 @@ void SceneMain::ResetResource() {
 }
 
 void SceneMain::CheckCollision() {
-	float CollisionTime, nx, ny;
-	int IsCollision;
-	for (UINT i = 0; i < listObj.size(); i++)
-	{
-		if (listObj[i]->GetType() == eType::GROUND)
-		{
-			IsCollision = Collide(ninjaGaiden->GetBox(cam), listObj[i]->GetBox(cam), CollisionTime, nx, ny);
-			if (IsCollision == 5)
-			{
-				float k = listObj[i]->gety() + listObj[i]->geth() / 2 + ninjaGaiden->getHeight() / 2 + 5;
-				ninjaGaiden->StopFall(k);
-				//sound->PlaySoundChoose(5);
-				//simon->setisOnBrick9(true);
-			}
-		}
-	}
+	CheckCollisionGround();
+	CheckCollisionEnemy();
+	CheckCollisionItem();
+}
+
+void SceneMain::CheckCollisionEnemy() {
 
 }
+void SceneMain::CheckCollisionGround() {
+	float CollisionTime, nx, ny;
+	int IsCollisionNinja, IsCollisionEnemy, IsCollisionItem;
+
+	for (UINT indexGround = 0; indexGround < listGround.size(); indexGround++)
+	{
+#pragma region Check Ground with Ninja
+		IsCollisionNinja = Collide(ninjaGaiden->GetBox(cam), listGround[indexGround]->GetBox(cam), CollisionTime, nx, ny);
+		if (IsCollisionNinja == 5)
+		{
+			float k = listGround[indexGround]->gety() + listGround[indexGround]->geth() / 2 + ninjaGaiden->getHeight() / 2 + 5;
+			ninjaGaiden->StopFall(k);	
+		}
+#pragma endregion
+#pragma region Check Ground with Enemy
+		for (UINT indexEnemy = 0; indexEnemy < listEnemy.size(); indexEnemy++) {
+			IsCollisionEnemy = Collide(listEnemy[indexEnemy]->GetBox(cam), listGround[indexGround]->GetBox(cam), CollisionTime, nx, ny);
+			float k = listGround[indexGround]->gety() + listGround[indexGround]->geth() / 2 + listEnemy[indexEnemy]->getHeight() / 2 + 5;
+			if (IsCollisionNinja = !0)
+			{
+				listEnemy[indexEnemy]->StopFall(k);
+			}
+		}
+#pragma endregion
+
+#pragma region Check Ground with Item
+		for (UINT indexItem = 0; indexItem < listItem.size(); indexItem++)
+		{
+			IsCollisionItem = Collide(listItem[indexItem]->GetBox(cam), listGround[indexGround]->GetBox(cam), CollisionTime, nx, ny);
+			if (IsCollisionItem !=0)
+			{
+				float k = listGround[indexGround]->gety() + listGround[indexGround]->geth() / 2 + listItem[indexItem]->getHeight() / 2 + 5;
+				listItem[indexItem]->StopFall(k);
+			}
+		}
+#pragma region 
+	}
+
+
+}
+
+void SceneMain::CheckCollisionItem() {
+
+}
+

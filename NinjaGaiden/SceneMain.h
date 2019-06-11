@@ -15,7 +15,9 @@ public:
   Dog *dog;
   Grid* gridGame;
   vector<BaseObject*> listObj;
+  vector<BaseObject*> listEnemy;
   vector<BaseObject*> listGround;
+  vector<BaseObject*> listItem;
   int CollectMorningStar = 0;
   vector<Weapon*> weapons;
   int PreUpStair;
@@ -54,6 +56,9 @@ protected:
   void ResetResource();
   void LoadComponent();
   void CheckCollision();
+  void CheckCollisionEnemy();
+  void CheckCollisionGround();
+  void CheckCollisionItem();
 };
 
 #endif
