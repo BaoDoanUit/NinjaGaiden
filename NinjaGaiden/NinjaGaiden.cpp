@@ -312,136 +312,136 @@ void NinjaGaiden::Attack() {
 
 void NinjaGaiden::CollisionWithBrick(const vector<LPGAMEOBJECT>* coObjects)
 {
-	flag = 1;
-	if (this->y > 380)
-	{
-		isFall = true;
-		timeWait = GetTickCount();
-		return;
-	}
+	//flag = 1;
+	//if (this->y > 380)
+	//{
+	//	isFall = true;
+	//	timeWait = GetTickCount();
+	//	return;
+	//}
 
-	vector<LPCOLLISIONEVENT> coEvents;
-	vector<LPCOLLISIONEVENT> coEventsResult;
+	//vector<LPCOLLISIONEVENT> coEvents;
+	//vector<LPCOLLISIONEVENT> coEventsResult;
 
-	coEvents.clear();
+	//coEvents.clear();
 
-	vector<LPGAMEOBJECT> listEnemy;
+	//vector<LPGAMEOBJECT> listEnemy;
 
-	listEnemy.clear();
+	//listEnemy.clear();
 
-	for (UINT i = 0; i < coObjects->size(); i++)
-	{
-		if (coObjects->at(i)->GetType() == eType::BRICK || coObjects->at(i)->GetType() == eType::OBJECT_CLIMB || coObjects->at(i)->GetType() == eType::OBJECT_CLIMBUP || coObjects->at(i)->GetType() == eType::DOOR)
-		{
+	//for (UINT i = 0; i < coObjects->size(); i++)
+	//{
+	//	if (coObjects->at(i)->GetType() == eType::BRICK || coObjects->at(i)->GetType() == eType::OBJECT_CLIMB || coObjects->at(i)->GetType() == eType::OBJECT_CLIMBUP || coObjects->at(i)->GetType() == eType::DOOR)
+	//	{
 
-			listEnemy.push_back(coObjects->at(i));
-		}
-	}
+	//		listEnemy.push_back(coObjects->at(i));
+	//	}
+	//}
 
-	CalcPotentialCollisions(&listEnemy, coEvents, flag);
+	//CalcPotentialCollisions(&listEnemy, coEvents, flag);
 
-	if (coEvents.size() == 0)
-	{
-		x += dx;
-		y += dy;
-		isCollisionAxisYWithBrick = false;
+	//if (coEvents.size() == 0)
+	//{
+	//	x += dx;
+	//	y += dy;
+	//	isCollisionAxisYWithBrick = false;
 
-		isClimbing = false;
-		isClimbUp = false;
-	}
-	else
-	{
-		float min_tx, min_ty, nx = 0, ny = 0;
-		min_tx = min_ty = 0;
+	//	isClimbing = false;
+	//	isClimbUp = false;
+	//}
+	//else
+	//{
+	//	float min_tx, min_ty, nx = 0, ny = 0;
+	//	min_tx = min_ty = 0;
 
-		FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
-		x += min_tx * dx + nx * 0.1f;
-
-
-		for (UINT i = 0; i < coEventsResult.size(); i++)
-		{
-			if (dynamic_cast<Brick*>(coEventsResult[i]->obj))
-			{
-				if (ny == -1)
-				{
-
-					vy = 0;
-					if (isJumping)
-					{
-						isJumping = false;
-						y = y - PULL_UP_NINJA_AFTER_JUMPING;
-					}
-					isCollisionAxisYWithBrick = true;
-				}
-				else
-				{
-					y += dy;
-					isCollisionAxisYWithBrick = true;
-				}
-
-				if (nx != 0 || ny != 0)
-				{
-					isHurting = false;
-				}
-			}
-
-			if (dynamic_cast<ObjectHidden*>(coEventsResult[i]->obj))
-			{
-				if (ny == -1)
-					isHurting = false;
-				if (coEventsResult[i]->obj->GetType() == eType::OBJECT_CLIMB)
-				{
-					if (ny == -1)
-					{
-
-						vy = 0;
-						if (isJumping)
-						{
-							isJumping = false;
-							y = y - PULL_UP_NINJA_AFTER_JUMPING;
-						}
-					}
-					else
-						y += dy;
-
-					if (nx != 0)
-					{
-						if (isJumping)
-						{
-							isClimbing = true;
-							vx = 0;
-							vy = 0;
-							sound->Play(eSound::jump);
-						}
-					}
-				}
-				else if (coEventsResult[i]->obj->GetType() == eType::OBJECT_CLIMBUP)
-				{
-					isClimbing = true;
-					vx = 0;
-					vy = 0;
-					isClimbUp = true;
-					sound->Play(eSound::jump);
-				}
-				else if (coEventsResult[i]->obj->GetType() == eType::DOOR)
-				{
-					//if(nx!=0)
-					isGetNewStage = true;
-				}
-
-			}
-			else
-			{
-				isClimbing = false;
-				isClimbUp = false;
-			}
-		}
-
-	}
+	//	FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
+	//	x += min_tx * dx + nx * 0.1f;
 
 
-	for (UINT i = 0; i < coEvents.size(); i++)
-		delete coEvents[i];
+	//	for (UINT i = 0; i < coEventsResult.size(); i++)
+	//	{
+	//		if (dynamic_cast<Brick*>(coEventsResult[i]->obj))
+	//		{
+	//			if (ny == -1)
+	//			{
+
+	//				vy = 0;
+	//				if (isJumping)
+	//				{
+	//					isJumping = false;
+	//					y = y - PULL_UP_NINJA_AFTER_JUMPING;
+	//				}
+	//				isCollisionAxisYWithBrick = true;
+	//			}
+	//			else
+	//			{
+	//				y += dy;
+	//				isCollisionAxisYWithBrick = true;
+	//			}
+
+	//			if (nx != 0 || ny != 0)
+	//			{
+	//				isHurting = false;
+	//			}
+	//		}
+
+	//		if (dynamic_cast<ObjectHidden*>(coEventsResult[i]->obj))
+	//		{
+	//			if (ny == -1)
+	//				isHurting = false;
+	//			if (coEventsResult[i]->obj->GetType() == eType::OBJECT_CLIMB)
+	//			{
+	//				if (ny == -1)
+	//				{
+
+	//					vy = 0;
+	//					if (isJumping)
+	//					{
+	//						isJumping = false;
+	//						y = y - PULL_UP_NINJA_AFTER_JUMPING;
+	//					}
+	//				}
+	//				else
+	//					y += dy;
+
+	//				if (nx != 0)
+	//				{
+	//					if (isJumping)
+	//					{
+	//						isClimbing = true;
+	//						vx = 0;
+	//						vy = 0;
+	//						sound->Play(eSound::jump);
+	//					}
+	//				}
+	//			}
+	//			else if (coEventsResult[i]->obj->GetType() == eType::OBJECT_CLIMBUP)
+	//			{
+	//				isClimbing = true;
+	//				vx = 0;
+	//				vy = 0;
+	//				isClimbUp = true;
+	//				sound->Play(eSound::jump);
+	//			}
+	//			else if (coEventsResult[i]->obj->GetType() == eType::DOOR)
+	//			{
+	//				//if(nx!=0)
+	//				isGetNewStage = true;
+	//			}
+
+	//		}
+	//		else
+	//		{
+	//			isClimbing = false;
+	//			isClimbUp = false;
+	//		}
+	//	}
+
+	//}
+
+
+	//for (UINT i = 0; i < coEvents.size(); i++)
+	//	delete coEvents[i];
 
 }
 
