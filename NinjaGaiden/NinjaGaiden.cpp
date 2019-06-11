@@ -13,6 +13,7 @@ NinjaGaiden::NinjaGaiden(float x1, float y1, int trend)
 	GTObject2 = TextureManager::GetInstance()->GetTexture(eType::NINJAGAIDEN_DEADTH);
 	GSObject2 = new Sprite(GTObject2, NINJAGAIDEN_FRAME);
 	EndHurt = 1;
+	IsFalling = 1;
 }
 
 NinjaGaiden::~NinjaGaiden()
@@ -274,10 +275,7 @@ void NinjaGaiden::Stop()
 		return;
 	}
 }
-// TODO: NinjaGaiden Attack
-/*
 
-*/
 
 
 void NinjaGaiden::Hurt(int HTrend)
@@ -293,6 +291,7 @@ void NinjaGaiden::Hurt(int HTrend)
 			this->Jump();
 	}
 }
+
 
 void NinjaGaiden::Attack() {
 	//if (IsAttacking == 1) return;

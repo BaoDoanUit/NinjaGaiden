@@ -11,7 +11,7 @@ class SceneMain : public Game {
 public:
   NinjaGaiden *ninjaGaiden;
   Camera *cam, *camDog;
-  Eagle *eager;
+  Eagle *eagle;
   Dog *dog;
   Grid* gridGame;
   vector<BaseObject*> listObj;

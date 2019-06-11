@@ -41,7 +41,9 @@ void BaseObject::Update(int t)
 	dy = Vy * t;
 	GSObject->Update(t);
 }
-
+void BaseObject::UpdateFollowNinja(int t, D3DXVECTOR2 * ryupos) {
+	GSObject->Update(t);
+}
 void BaseObject::StopFall(float y)
 {
 	IsFalling = 0;
@@ -161,6 +163,7 @@ int BaseObject::CreateWeapon() {
 }
 void BaseObject::GetSMPositionForBoss(float x, float y, int Trend)
 {
+	
 }
 
 void BaseObject::Attack(Weapon *weapon)
@@ -206,6 +209,10 @@ bool BaseObject::getDropItem()
 void BaseObject::setDropItem(bool dropItem)
 {
 	this->dropItem = dropItem;
+}
+
+void BaseObject::setPositionNinja(D3DXVECTOR2 * pos)
+{
 }
 
 void BaseObject::SetTrend(int Trend)

@@ -58,6 +58,7 @@ public:
 	Sprite *GSObject;
 	float Vx;	// Vận tốc theo trục X
 	float Vy;	// Vận tốc theo trục Y
+	float ax;
 
 	float dx;
 	float dy;
@@ -99,6 +100,7 @@ public:
 	int getIsGoing() { return IsGoing; };
 
 	virtual void Update(int t);
+	virtual void UpdateFollowNinja(int t, D3DXVECTOR2 * ryupos);
 	virtual void Draw(Camera * cam);
 
 	BaseObject();
@@ -131,4 +133,5 @@ public:
 	eType GetType();
 	bool getDropItem();
 	void setDropItem(bool dropItem);
+	virtual void setPositionNinja(D3DXVECTOR2* pos);
 };

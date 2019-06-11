@@ -16,38 +16,57 @@ Eagle::Eagle(int x1, int y1, int w1, int h1)
 	Trend = -1;
 
 	this->yBackup = y;
-	Vy = EAGLE_SPEED_Y;
-	Vx = EAGLE_SPEED_X * Trend;
+	Vx = SPEED_X;
+	Vy = SPEED_Y;
+	ax = ACCELERATION_X;
 	Health = 1;
 	type = eType::EAGLE;
 }
 
 void Eagle::Update(int t)
 {
-	if (y - yBackup >= DeltaY)
-	{
-		Vy = -EAGLE_SPEED_Y;
-	}
-	else
-		if (y - yBackup <= -DeltaY)
-		{
-			Vy = EAGLE_SPEED_Y;
-		}
-	BaseObject::Update(t); // Update dt, dx, dy
-	y += dy;
-	x += dx;
-
-	GSObject->Update(t);
-	if (GSObject->GetIndex() == 0)
+	if (Health)
 		GSObject->Update(t);
+
+	if (GSObject == NULL || !Health)
+		return;
+
+	if (x < ninja->x - 80 && y < ninja->y + 20) {
+		Vx = 0;
+		Vy = SPEED_Y;
+		
+	}
+	else if (x < ninja->x - 80 && y > ninja->y + 20) {
+		Vx = SPEED_X;
+		Trend = 1;
+		Vy = -SPEED_Y;
+
+	}
+	else if (x >= ninja->x + 80 && y > ninja->y + 20) {
+		Vx = -SPEED_X;
+		Trend = -1;
+		Vy = -SPEED_Y;
+	}
+	else if (x >= ninja->x + 80 && y < ninja->y + 20) {
+		Vx = 0;
+		Vy = SPEED_Y;
+	}
+
+
+	x += Vx * t + 1 / 2 * ax*t*t;
+	y += Vy * t;
 }
 
-//void Eagle::Draw(Camera * cam)
-//{
-//	D3DXVECTOR2 pos = cam->Transform(x, y);
-//	if (Trend == 1) GSObject->DrawFromCenter(pos.x, pos.y);
-//	if (Trend == -1) GSObject->DrawFlipX(pos.x, pos.y);
-//}
+void Eagle::setPositionNinja(D3DXVECTOR2 * ninja)
+{
+	this->ninja = ninja;
+}
+
+void Eagle::SetActive()
+{
+}
+
+
 
 Eagle::~Eagle()
 {

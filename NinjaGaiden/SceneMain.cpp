@@ -179,15 +179,19 @@ void SceneMain::UpdateObject(Camera *cam, int t) {
 		// Updated weaponsEnemy
 		for (UINT i = 0; i < listObj.size(); i++)
 		{
-			if (listObj[i]->GetType() != eType::GROUND)
+			switch (listObj[i]->GetType())
 			{
+			case eType::GROUND:
+				break;
+			
+			default:
 				listObj[i]->Update(t);
+				break;
 			}
-
+			
 		}
 
 	}
-
 	CheckCollision();
 }
 
