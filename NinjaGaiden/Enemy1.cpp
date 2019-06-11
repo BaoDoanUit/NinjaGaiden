@@ -50,7 +50,7 @@ void Enemy1::Draw(Camera * cam)
 
 void Enemy1::StopFall(float y)
 {
-	IsFalling = 0;
+	BaseObject::StopFall(y);
 	this->Go();
 	Vy = -1;
 }

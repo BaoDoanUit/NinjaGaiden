@@ -27,6 +27,11 @@ void SceneMain::RenderStage(LPDIRECT3DDEVICE9 d3ddv, int t) {
 	if (pMap) {
 		pMap->Render2(cam);
 	}
+	listObj.clear();
+	listEnemy.clear();
+	listGround.clear();
+	listItem.clear();
+
 	gridGame->GetListObject(listObj, cam);
 	//TODO Draw ListObj GridGame
 	for (UINT i = 0; i < listObj.size(); i++)
@@ -197,12 +202,12 @@ void SceneMain::CheckCollision() {
 }
 
 void SceneMain::CheckCollisionEnemy() {
+	
 
 }
 void SceneMain::CheckCollisionGround() {
-	float CollisionTime, nx, ny;
 	int IsCollisionNinja, IsCollisionEnemy, IsCollisionItem;
-
+	float CollisionTime, nx, ny;
 	for (UINT indexGround = 0; indexGround < listGround.size(); indexGround++)
 	{
 #pragma region Check Ground with Ninja
@@ -215,11 +220,13 @@ void SceneMain::CheckCollisionGround() {
 #pragma endregion
 #pragma region Check Ground with Enemy
 		for (UINT indexEnemy = 0; indexEnemy < listEnemy.size(); indexEnemy++) {
-			IsCollisionEnemy = Collide(listEnemy[indexEnemy]->GetBox(cam), listGround[indexGround]->GetBox(cam), CollisionTime, nx, ny);
+			BaseObject* enemy = dynamic_cast<BaseObject*> (listEnemy[indexEnemy]);
+			IsCollisionEnemy = 1;
+			IsCollisionEnemy = Collide(enemy->GetBox(cam), listGround[indexGround]->GetBox(cam), CollisionTime, nx, ny);
 			float k = listGround[indexGround]->gety() + listGround[indexGround]->geth() / 2 + listEnemy[indexEnemy]->getHeight() / 2 + 5;
-			if (IsCollisionNinja = !0)
+			if (IsCollisionEnemy == 5)
 			{
-				listEnemy[indexEnemy]->StopFall(k);
+				listEnemy[indexEnemy]->Stop();
 			}
 		}
 #pragma endregion
@@ -227,11 +234,12 @@ void SceneMain::CheckCollisionGround() {
 #pragma region Check Ground with Item
 		for (UINT indexItem = 0; indexItem < listItem.size(); indexItem++)
 		{
+
 			IsCollisionItem = Collide(listItem[indexItem]->GetBox(cam), listGround[indexGround]->GetBox(cam), CollisionTime, nx, ny);
-			if (IsCollisionItem !=0)
+			if (IsCollisionItem == 5)
 			{
 				float k = listGround[indexGround]->gety() + listGround[indexGround]->geth() / 2 + listItem[indexItem]->getHeight() / 2 + 5;
-				listItem[indexItem]->StopFall(k);
+				listItem[indexItem]->Stop();
 			}
 		}
 #pragma region 

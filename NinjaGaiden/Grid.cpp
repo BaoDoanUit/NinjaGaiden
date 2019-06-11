@@ -81,7 +81,7 @@ BaseObject * Grid::GetNewObject(int type, float x, float y, int w, int h, int Mo
 
 void Grid::GetListObject(vector<BaseObject*>& ListObj, Camera * camera)
 {
-	ListObj.clear();
+
 
 	unordered_map<int, BaseObject*> mapObject;
 

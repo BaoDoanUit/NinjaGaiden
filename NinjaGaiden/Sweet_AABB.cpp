@@ -173,4 +173,3 @@ int Collide(Box &box, Box &block, float &collisiontime, float &x, float &y)
 	}
 	return 0;
 }
-
