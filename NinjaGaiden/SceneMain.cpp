@@ -5,73 +5,36 @@ SceneMain::SceneMain(int nCmdShow) : Game(nCmdShow) {}
 SceneMain::~SceneMain(void) {}
 
 void SceneMain::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
-  // sound->PlayMusicChoose(soundNow);
-  minT++;
-  if (minT > 30) {
-    // score->Calculator1Sec();
-    minT = -1;
-  }
-  /*
-  if (eatOrb) {// xu ly an trứng simon delay 1 khoan thoi gian tinh diem chuan
-  bi chuyen sang man khac minC++; if (minC > 60) { minS++; if (minS > 0) {
-                          score->CalculatorOrb();
-                          minS = -1;
-                          simon->Stop();
-                          stopsimon = true;
-                  }
-                  minC = 61;
-          }
-  }
-  if (simondied) {// simon chết nằm 1 lát sau reset lại màn khác
-          stopsimon = true;
-          simon->Stop();
-          minD++;
-          if (minD > 100) {
-                  countSimondied = true;// biến reset simon màn khác
-                  minD = 0;
-          }
-  }*/
-  d3ddv->ColorFill(G_BackBuffer, NULL, D3DCOLOR_XRGB(0, 0, 0));
-  G_SpriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
-  // maps->DrawMap(cam, State);
-  if (State == -1) {
-    // RenderMenu(t);
-  } else if (State == 0) {
-    // RenderIntro(t);
-  } else {
-    // Simon va chạm với cục đung đưa cho nó auto
 
-    // if (simon->getisOnbrick9() && simon->getIsGoing() == 0)
-    //	simon->AutoGoOnBrick9(); //^^^
-    // if (EndingScene == 1 || stepOpenTheGate == 2)//Kiểm tra khi va chạm cổng
-    // màn 1 thì tự động di chuyển vào cổng không cần nhấn nút 	simon->Go();
-    // Kiểm tra khi simon va chạm item là IWhip thì vẽ màu sắc mới cho simon
-    if (CollectMorningStar == 0)
-      ninjaGaiden->Update(cam, t);
-    else {
-      CollectMorningStar++;
-      if (CollectMorningStar == 21)
-        CollectMorningStar = 0;
-    }
+	d3ddv->ColorFill(G_BackBuffer, NULL, D3DCOLOR_XRGB(0, 0, 0));
+	G_SpriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 
-    RenderStage(d3ddv, State);
-    UpdateObject(cam, t);
-  }
-  G_SpriteHandler->End();
+	if (State == -1) {
+		// RenderMenu(t);
+	}
+	else if (State == 0) {
+		// RenderIntro(t);
+	}
+	else {
+		ninjaGaiden->Update(cam, t);
+		RenderStage(d3ddv, State);
+		UpdateObject(cam, t);
+	}
+	G_SpriteHandler->End();
 }
 
 void SceneMain::RenderStage(LPDIRECT3DDEVICE9 d3ddv, int t) {
-  if (pMap) {
-    pMap->Render2(cam);
-  }
-  gridGame->GetListObject(listObj, cam);
-  //TODO Draw ListObj GridGame
-  for (UINT i = 0; i < listObj.size(); i++)
-	  listObj[i]->Draw(cam);
+	if (pMap) {
+		pMap->Render2(cam);
+	}
+	gridGame->GetListObject(listObj, cam);
+	//TODO Draw ListObj GridGame
+	for (UINT i = 0; i < listObj.size(); i++)
+		listObj[i]->Draw(cam);
 
-  ninjaGaiden->Draw(cam);
-  ninjaGaiden->GSObject->SetARGB();
-  G_SpriteHandler->End();
+	ninjaGaiden->Draw(cam);
+	ninjaGaiden->GSObject->SetARGB();
+	G_SpriteHandler->End();
 }
 void SceneMain::LoadComponent()
 {
@@ -80,133 +43,156 @@ void SceneMain::LoadComponent()
 
 
 void SceneMain::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
-  LoadComponent();
-  switch (State) {
-  case -1:
-    // maps = new Map(State);
-    ninjaGaiden = new NinjaGaiden(G_ScreenWidth, 76, -1);
-    break;
-  case 1:
-    LoadMap1();
-    break;
-  case 2:
-    LoadMap2();
-    break;
-  case 3:
-    LoadMap3();
-    break;
-  default:
-    break;
-  }
+	LoadComponent();
+	switch (State) {
+	case -1:
+		// maps = new Map(State);
+		ninjaGaiden = new NinjaGaiden(G_ScreenWidth, 76, -1);
+		break;
+	case 1:
+		LoadMap1();
+		break;
+	case 2:
+		LoadMap2();
+		break;
+	case 3:
+		LoadMap3();
+		break;
+	default:
+		break;
+	}
 }
 
 void SceneMain::LoadMap1() {
-  AutoFit = 0; // Sử dụng biến này khi viewport.y của màn 2 khác với width của
-               // màn hình nên tọa độ item cộng thêm AutoFit
-  ninjaGaiden = new NinjaGaiden(300, 120, 1);
-  cam = new Camera(ninjaGaiden->getx(), 1);
-  cam->SetSizeMap(0, 4096);
-  ninjaGaiden->Go();
-  gridGame->SetFile("./Resources/maps/map2.txt");
-  SAFE_DELETE(pMap);
+	AutoFit = 0; // Sử dụng biến này khi viewport.y của màn 2 khác với width của
+				 // màn hình nên tọa độ item cộng thêm AutoFit
+	ninjaGaiden = new NinjaGaiden(300, 120, 1);
+	cam = new Camera(ninjaGaiden->getx(), 1);
+	cam->SetSizeMap(0, 4096);
+	ninjaGaiden->Go();
+	gridGame->SetFile("./Resources/maps/map2.txt");
+	SAFE_DELETE(pMap);
 
-  pMap = new Map("./Resources/maps/3-1.json");
-  ResetResource();
+	pMap = new Map("./Resources/maps/3-1.json");
+	ResetResource();
 
-  
+
 }
 
 void SceneMain::LoadMap2() {}
 
 void SceneMain::LoadMap3() {}
 void SceneMain::OnKeyDown(int KeyCode) {
-  if (lockKeyboard == 0) {
-    if (IsKeyDown(DIK_UP)) {
-      isPlay_Exit = true;
-    }
-    if (IsKeyDown(DIK_DOWN)) {
-      isPlay_Exit = false;
-    }
-    if (IsKeyDown(DIK_RETURN)) {
-      if (isPlay_Exit) {
-        State = 0;
-        // maps = new Map(State);
-        ninjaGaiden = new NinjaGaiden(G_ScreenWidth - 10, 370, -1);
-      } else
-        PostMessage(G_hWnd, WM_QUIT, 0, 0);
-    }
-  }
+	if (lockKeyboard == 0) {
+		if (IsKeyDown(DIK_UP)) {
+			isPlay_Exit = true;
+		}
+		if (IsKeyDown(DIK_DOWN)) {
+			isPlay_Exit = false;
+		}
+		if (IsKeyDown(DIK_RETURN)) {
+			if (isPlay_Exit) {
+				State = 0;
+				// maps = new Map(State);
+				ninjaGaiden = new NinjaGaiden(G_ScreenWidth - 10, 370, -1);
+			}
+			else
+				PostMessage(G_hWnd, WM_QUIT, 0, 0);
+		}
+	}
 }
 
 void SceneMain::ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int Delta) {
-  if (IsKeyDown(DIK_1)) {
-    State = 1;
-    LoadMap1();
-  }
-  if (IsKeyDown(DIK_2)) {
-    State = 2;
-    LoadMap2();
-  }
+	if (IsKeyDown(DIK_1)) {
+		State = 1;
+		LoadMap1();
+	}
+	if (IsKeyDown(DIK_2)) {
+		State = 2;
+		LoadMap2();
+	}
 
-  if (stopNinjaGaiden == false) {
-    if (IsKeyDown(DIK_RIGHT)) {
-      ninjaGaiden->MoveRight();
-      ninjaGaiden->Go();
-    }
-    if (IsKeyDown(DIK_LEFT)) {
-      ninjaGaiden->MoveLeft();
-      ninjaGaiden->Go();
-    }
-    if (!IsKeyDown(DIK_LEFT) && !IsKeyDown(DIK_RIGHT) &&
-        !(ninjaGaiden->Auto)) // ninjaGaiden->autu == 0
-    {
-      ninjaGaiden->Stop();
-    }
-    if (IsKeyDown(DIK_SPACE) && !IsKeyDown(DIK_DOWN)) {
-      ninjaGaiden->Jump();
-    }
-    if (!IsKeyDown(DIK_SPACE) && IsKeyDown(DIK_DOWN)) {
-      ninjaGaiden->Sit();
-    }  
+	if (stopNinjaGaiden == false) {
+		if (IsKeyDown(DIK_RIGHT)) {
+			ninjaGaiden->MoveRight();
+			ninjaGaiden->Go();
+		}
+		if (IsKeyDown(DIK_LEFT)) {
+			ninjaGaiden->MoveLeft();
+			ninjaGaiden->Go();
+		}
+		if (!IsKeyDown(DIK_LEFT) && !IsKeyDown(DIK_RIGHT) &&
+			!(ninjaGaiden->Auto)) // ninjaGaiden->autu == 0
+		{
+			ninjaGaiden->Stop();
+		}
+		if (IsKeyDown(DIK_SPACE) && !IsKeyDown(DIK_DOWN)) {
+			ninjaGaiden->Jump();
+		}
+		if (!IsKeyDown(DIK_SPACE) && IsKeyDown(DIK_DOWN)) {
+			ninjaGaiden->Sit();
+		}
 
-	if (IsKeyDown(DIK_T)) {
-		if (ninjaGaiden->getAttacking() == 0) {
-			//ninjaGaiden->Attack(weapons.at(0));
-			ninjaGaiden->Attack();
+		if (IsKeyDown(DIK_T)) {
+			if (ninjaGaiden->getAttacking() == 0) {
+				//ninjaGaiden->Attack(weapons.at(0));
+				ninjaGaiden->Attack();
 
-			//ninjaGaiden->PlaySoundChoose(18);
+				//ninjaGaiden->PlaySoundChoose(18);
+			}
 		}
 	}
-  }
 }
 
 void SceneMain::UpdateObject(Camera *cam, int t) {
-  if (State != 0 && !isOpenTheGate) {
-    cam->SetFolowPos(ninjaGaiden->getx(), ninjaGaiden->gety());
-    if (PreUpStair)
-      cam->SetVCam(ninjaGaiden->getTrend() * 0.13 * t,
-                   ninjaGaiden->GetVy()); // Xét khi mà va chạm cầu thang để
-                                          // chuẩn bị lên cầu thang
-    else {
-      cam->SetVCam(ninjaGaiden->getVx() * t, ninjaGaiden->GetVy());
-    }
-    cam->UpdateCamera();
+	if (State != 0 && !isOpenTheGate) {
+		cam->SetFolowPos(ninjaGaiden->getx(), ninjaGaiden->gety());
+		if (PreUpStair)
+			cam->SetVCam(ninjaGaiden->getTrend() * 0.13 * t,
+				ninjaGaiden->GetVy()); // Xét khi mà va chạm cầu thang để
+									   // chuẩn bị lên cầu thang
+		else {
+			cam->SetVCam(ninjaGaiden->getVx() * t, ninjaGaiden->GetVy());
+		}
+		cam->UpdateCamera();
 
-    // Updated weapons of ninjaGaiden
+		// Updated weapons of ninjaGaiden
 
-    // Updated weaponsEnemy
-	for (UINT i = 0; i < listObj.size(); i++)
-		listObj[i]->Update(t);
-  }
+		// Updated weaponsEnemy
+		for (UINT i = 0; i < listObj.size(); i++)
+		{
+			if (listObj[i]->GetType() != eType::GROUND)
+			{
+				listObj[i]->Update(t);
+			}
+							
+		}
+			
+	}
 
-  CheckCollision();
+	CheckCollision();
 }
 
-void SceneMain :: ResetResource() {
+void SceneMain::ResetResource() {
 	gridGame->ReloadGrid();
 }
 
 void SceneMain::CheckCollision() {
-	
-	
+	float CollisionTime, nx, ny;
+	int IsCollision;
+	for (UINT i = 0; i < listObj.size(); i++)
+	{
+		if (listObj[i]->GetType() == eType::GROUND)
+		{
+			IsCollision = Collide(ninjaGaiden->GetBox(cam), listObj[i]->GetBox(cam), CollisionTime, nx, ny);
+			if (IsCollision == 5)
+			{
+				float k = listObj[i]->gety() + listObj[i]->geth() / 2 + ninjaGaiden->getHeight() / 2 + 5;
+				ninjaGaiden->StopFall(k);
+				//sound->PlaySoundChoose(5);
+				//simon->setisOnBrick9(true);
+			}
+		}
+	}
+
 }

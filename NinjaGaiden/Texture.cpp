@@ -5,7 +5,7 @@ int Texture::GetFrameWidth(){
 
 int Texture::GetFrameHeight()
 {
-	return FrameHeight - 2;
+	return FrameHeight;
 }
 
 int Texture::GetColumn()

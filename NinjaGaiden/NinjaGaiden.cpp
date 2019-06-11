@@ -119,9 +119,9 @@ void NinjaGaiden::Update(Camera *camera, int t)
 			y += Vy;
 			x += Vx * t;
 			Vy = Vy - NINJAGAIDEN_GRAVITY;
-			GSObject->SelectIndex(NINJAGAIDEN_SIT_IMAGE);
+			GSObject->SelectIndex(NINJAGAIDEN_START_JUMP);
 			GSObject->_index = 8;
-			GSObject->_end = 9;
+			GSObject->_end = 11;
 			GSObject->Update(t);
 			if (!EndHurt) GSObject->SelectIndex(NINJAGAIDEN_HURT_IMAGE);
 			if (Vy == 0)
@@ -182,7 +182,7 @@ void NinjaGaiden::StopFall(float y) {
 	IsAttacking = 0;
 	IsFalling = 0;
 	if (IsSitting == 0) {
-		this->y = y - NINJAGAIDEN_Y_STOP_FALL;//Thay y = y - 8 bằng SIMON_STOP_FALL
+		this->y = y - NINJAGAIDEN_Y_STOP_FALL;//Thay y = y - 8
 	}
 	if (NinjaGaidenFall) this->Sit();
 	else

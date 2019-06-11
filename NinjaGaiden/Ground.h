@@ -8,5 +8,6 @@ class Ground : public BaseObject
 public:
 	Ground(int x, int y, int width, int height);
 	~Ground();
+	virtual void Draw(Camera * camera);
 };
 

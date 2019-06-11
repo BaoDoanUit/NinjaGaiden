@@ -9,9 +9,15 @@ Ground::Ground(int x, int y, int width, int height)
 	this->w = width;
 	this->h = height;
 	Health = 1;
+	type = eType::GROUND;
 }
 
 
 Ground::~Ground()
 {
+}
+
+void Ground::Draw(Camera* cam)
+{
+	return;
 }

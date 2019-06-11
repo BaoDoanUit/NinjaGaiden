@@ -15,6 +15,7 @@ public:
   Dog *dog;
   Grid* gridGame;
   vector<BaseObject*> listObj;
+  vector<BaseObject*> listGround;
   int CollectMorningStar = 0;
   vector<Weapon*> weapons;
   int PreUpStair;

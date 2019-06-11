@@ -46,8 +46,8 @@ protected:
 	int Trend;		// Phương hướng, trái = -1, phải = 1;
 	int PreAtk;
 	int IsHurting;
-	int EndHurt;
-	bool IsDie = 0;
+	int EndHurt; //  0 bị thương, 1 kết thúc bị thương
+	bool IsDie = 0; 
 	int Health;
 	int id;
 	eType type;

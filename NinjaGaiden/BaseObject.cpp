@@ -48,8 +48,19 @@ void BaseObject::StopFall(float y)
 }
 Box BaseObject::GetBox(Camera *camera)
 {
-	D3DXVECTOR2 pos = camera->Transform(x - GTObject->FrameWidth / 2, y + GTObject->FrameHeight / 2);
-	return Box(pos.x, pos.y, GTObject->FrameWidth, GTObject->FrameHeight, Vx, -Vy);
+	D3DXVECTOR2 pos;
+	switch (type)
+	{
+	case eType ::GROUND:
+		pos = camera->Transform(getx() - getw() / 2, gety() + geth() / 2);
+		return Box(pos.x, pos.y, getw(), geth(), Vx, -Vy);
+		break;
+	default:
+		pos = camera->Transform(x - GTObject->FrameWidth / 2, y + GTObject->FrameHeight / 2);
+		return Box(pos.x, pos.y, GTObject->FrameWidth, GTObject->FrameHeight, Vx, -Vy);
+	}
+	
+	
 }
 
 void BaseObject::MoveLeft()

@@ -102,7 +102,7 @@ void Grid::GetListObject(vector<BaseObject*>& ListObj, Camera * camera)
 				}
 				else
 				{
-						cells[i][j].erase(cells[i][j].begin() + k); // xóa luôn
+						//cells[i][j].erase(cells[i][j].begin() + k); // xóa luôn
 				}
 
 			}
