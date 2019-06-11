@@ -25,20 +25,19 @@ Box Enemy1::GetBox(Camera * camera)
 
 void Enemy1::Update(int t)
 {
-	if (IsFalling == 1)
+	if (Health == 1)
 	{
-		y += Vy;
-		Vy = Vy - ENEMY_GRAVITY;
-	}
-	else
-	{
-		/*BaseObject::Update(t);
+		BaseObject::Update(t);
 		this->Vx = 0.18 * Trend;
 		x += Vx * t;
 		if (x < 0 || x > 3072 && x < 4112)
 			Trend = 1;
 		else if (x > 900 && x <1000)
-			Trend = -1;*/
+			Trend = -1;
+	}
+	else
+	{
+		
 	}
 }
 

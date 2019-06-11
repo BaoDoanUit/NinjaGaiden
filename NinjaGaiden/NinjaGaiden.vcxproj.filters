@@ -61,6 +61,9 @@
     <Filter Include="Object\Ground">
       <UniqueIdentifier>{52b6c46d-f20f-4454-9c15-44e160f1272c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Effect">
+      <UniqueIdentifier>{18268929-f06a-4a51-8a52-fb047eed4584}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -149,6 +152,9 @@
     </ClCompile>
     <ClCompile Include="Ground.cpp">
       <Filter>Object\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>Object\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -343,6 +349,9 @@
     </ClInclude>
     <ClInclude Include="Ground.h">
       <Filter>Object\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Object\Effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

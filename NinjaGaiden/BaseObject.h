@@ -51,6 +51,7 @@ protected:
 	int Health;
 	int id;
 	eType type;
+	bool dropItem;
 
 public:
 	Texture *GTObject;
@@ -128,4 +129,6 @@ public:
 	void SetId(int ID);
 	int GetId();
 	eType GetType();
+	bool getDropItem();
+	void setDropItem(bool dropItem);
 };
