@@ -31,23 +31,23 @@ void Eagle::Update(int t)
 	if (GSObject == NULL || !Health)
 		return;
 
-	if (x < ninja->x - 80 && y < ninja->y + 20) {
+	if (x < ninja->x - 20 && y < ninja->y + 20) {
 		Vx = 0;
 		Vy = SPEED_Y;
 		
 	}
-	else if (x < ninja->x - 80 && y > ninja->y + 20) {
+	else if (x < ninja->x - 20 && y > ninja->y + 20) {
 		Vx = SPEED_X;
 		Trend = 1;
 		Vy = -SPEED_Y;
 
 	}
-	else if (x >= ninja->x + 80 && y > ninja->y + 20) {
+	else if (x >= ninja->x + 20 && y > ninja->y + 20) {
 		Vx = -SPEED_X;
 		Trend = -1;
 		Vy = -SPEED_Y;
 	}
-	else if (x >= ninja->x + 80 && y < ninja->y + 20) {
+	else if (x >= ninja->x + 0 && y < ninja->y + 20) {
 		Vx = 0;
 		Vy = SPEED_Y;
 	}

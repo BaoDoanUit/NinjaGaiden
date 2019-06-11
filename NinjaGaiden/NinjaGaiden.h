@@ -80,4 +80,5 @@ public:
 
 	void Hurt(int HTrend);
 	void setNinjaGaidenDie(bool isdie) { isNinjaGaidenDie = isdie; };
+	D3DXVECTOR2* getPos();
 };

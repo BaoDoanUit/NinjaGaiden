@@ -292,6 +292,10 @@ void NinjaGaiden::Hurt(int HTrend)
 	}
 }
 
+D3DXVECTOR2 * NinjaGaiden::getPos()
+{
+	return new D3DXVECTOR2(this->x, this->y);;
+}
 
 void NinjaGaiden::Attack() {
 	//if (IsAttacking == 1) return;

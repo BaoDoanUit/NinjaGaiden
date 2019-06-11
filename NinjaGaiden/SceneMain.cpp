@@ -42,6 +42,7 @@ void SceneMain::RenderStage(LPDIRECT3DDEVICE9 d3ddv, int t) {
 			listGround.push_back(listObj[i]);
 			break;
 		default:
+			listObj[i]->setPositionNinja(ninjaGaiden->getPos());
 			listEnemy.push_back(listObj[i]);
 			break;
 		}
