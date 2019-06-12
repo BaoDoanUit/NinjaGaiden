@@ -20,9 +20,19 @@ protected:
 	bool isFinish; // đã kết thúc chưa?
 
 public:
-	Item();
-	~Item();
+	//virtual void Update(int t);
+	void setFireDie(int a);
+	void setXFire(int a);
+	void setYFire(int a);
 
+	Item();
+
+	int			getIsDie();
+	void		setIsDie(bool a);
+	void		setX(int a);
+	void        setY(int a);
+	void setCountTime();
+	~Item();
 };
 
 

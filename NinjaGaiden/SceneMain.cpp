@@ -94,7 +94,6 @@ void SceneMain::LoadMap1() {
 	SAFE_DELETE(pMap);
 
 	pMap = new Map("./Resources/maps/3-1.json");
-	
 
 
 
@@ -157,7 +156,7 @@ void SceneMain::ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int Delta) {
 		if (IsKeyDown(DIK_T)) {
 			if (ninjaGaiden->getAttacking() == 0) {
 				//ninjaGaiden->Attack(weapons.at(0));
-				ninjaGaiden->Attack();
+				ninjaGaiden->Attack(NULL);
 
 				//ninjaGaiden->PlaySoundChoose(18);
 			}
@@ -238,12 +237,15 @@ void SceneMain::CheckCollisionGround() {
 			float k = listGround[indexGround]->gety() + listGround[indexGround]->geth() / 2 + ninjaGaiden->getHeight() / 2 + 5;
 			ninjaGaiden->StopFall(k);	
 		}
+		else
+		{
+			ninjaGaiden->Fall();
+		}
 #pragma endregion
 #pragma region Check Ground with Enemy
 		for (UINT indexEnemy = 0; indexEnemy < listEnemy.size(); indexEnemy++) {
-			BaseObject* enemy = dynamic_cast<BaseObject*> (listEnemy[indexEnemy]);
 			
-			IsCollision = Collide(enemy->GetBox(cam), listGround[indexGround]->GetBox(cam), CollisionTime, nx, ny);
+			IsCollision = Collide(listEnemy[indexEnemy]->GetBox(cam), listGround[indexGround]->GetBox(cam), CollisionTime, nx, ny);
 			float k = listGround[indexGround]->gety() + listGround[indexGround]->geth() / 2 + listEnemy[indexEnemy]->getHeight() / 2 + 5;
 			if (IsCollision == 5)
 			{

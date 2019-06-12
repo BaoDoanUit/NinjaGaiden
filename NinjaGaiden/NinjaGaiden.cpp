@@ -120,10 +120,8 @@ void NinjaGaiden::Update(Camera *camera, int t)
 			else Vx = Vx_Hurt*HTrend*(Prevent == 0);
 			y += Vy;
 			x += Vx * t;
-			Vy = Vy - NINJAGAIDEN_GRAVITY;
-			GSObject->SelectIndex(NINJAGAIDEN_START_JUMP);
-			GSObject->_index = 8;
-			GSObject->_end = 11;
+			Vy = Vy - NINJAGAIDEN_GRAVITY;		
+			GSObject->_end = NINJAGAIDEN_END_JUMP;
 			GSObject->Update(t);
 			if (!EndHurt) GSObject->SelectIndex(NINJAGAIDEN_HURT_IMAGE);
 			if (Vy == 0)
@@ -137,13 +135,12 @@ void NinjaGaiden::Update(Camera *camera, int t)
 			x += Vx * t;
 			y += Vy;
 			Vy = Vy - NINJAGAIDEN_GRAVITY;
-			GSObject->SelectIndex(NINJAGAIDEN_STOP_IMAGE);
 		}
 		else if (IsGoing == 1)
 		{
 			x += Vx * t;
-			GSObject->_index = 21;
-			GSObject->_end = 23;
+			GSObject->SelectIndex(NINJAGAIDEN_START_GO);
+			GSObject->_end = NINJAGAIDEN_END_GO;
 			GSObject->Update(t);
 			//if (IsFalling == 0 && IsJumping == 0) 
 				//GSObject->_index = GSObject->_index % 4;
@@ -217,28 +214,29 @@ void NinjaGaiden::Jump()
 		if (IsJumping == 0)
 		{
 			Vy = NINJAGAIDEN_VJUMP;
-			GSObject->SelectIndex(NINJAGAIDEN_SIT_IMAGE);
-			/*if (EndHurt == 0)
+			GSObject->SelectIndex(NINJAGAIDEN_START_JUMP);
+			if (EndHurt == 0)
 			{
-			GSObject->SelectIndex(SIMON_HURT_IMAGE);
+			GSObject->SelectIndex(NINJAGAIDEN_HURT_IMAGE);
 			Vx = Vx*HTrend;
-			}*/
+			}
 			BaseObject::Jump();
 		}
 	}
 }
 void NinjaGaiden::Fall()
 {
-	if (IsAttacking == 0 && IsJumping == 1 && IsFalling == 0)
-	{
-		if (IsFalling == 0)
-		{
-			Vy = -NINJAGAIDEN_VJUMP;
-			//waterDie++;
-			GSObject->SelectIndex(NINJAGAIDEN_STOP_IMAGE);
-			BaseObject::Fall();
-		}
-	}
+	BaseObject::Fall();
+	//if (IsAttacking == 0 && IsJumping == 1 && IsFalling == 0)
+	//{
+	//	
+	//	if (IsFalling == 0)
+	//	{
+	//		//Vy = -NINJAGAIDEN_VJUMP;			
+	//		GSObject->SelectIndex(NINJAGAIDEN_STOP_IMAGE);		
+	//		
+	//	}
+	//}
 }
 
 void NinjaGaiden::Go()
@@ -248,6 +246,7 @@ void NinjaGaiden::Go()
 	{
 		Vx = NINJAGAIDEN_VX_STAIR*Trend;
 		Vy = -NINJAGAIDEN_VY_STAIR*Trend*stairTrend;
+		GSObject->SelectIndex(NINJAGAIDEN_START_GO);
 		BaseObject::Go();
 		return;
 	}
@@ -255,8 +254,10 @@ void NinjaGaiden::Go()
 	{
 		if (IsSitting == 1) this->StandUp();
 		this->Vx = NinjaGaiden_vx*Trend;
+		GSObject->SelectIndex(NINJAGAIDEN_START_GO);
 		BaseObject::Go();
 		Prevent = 0;
+		return;
 	}
 }
 
@@ -298,7 +299,7 @@ D3DXVECTOR2 * NinjaGaiden::getPos()
 	return new D3DXVECTOR2(this->x, this->y);;
 }
 
-void NinjaGaiden::Attack() {
+void NinjaGaiden::Attack(Weapon* weapon ) {
 	//if (IsAttacking == 1) return;
 	
 	if (IsFalling == 1) return;
@@ -309,8 +310,8 @@ void NinjaGaiden::Attack() {
 	}
 	else
 		GSObject->SelectIndex(NINJAGAIDEN_ATK_IMAGE);
-	//BaseObject::Attack(weapon);
-	IsAttacking = 1;
+	BaseObject::Attack(weapon);
+	//IsAttacking = 1;
 
 }
 

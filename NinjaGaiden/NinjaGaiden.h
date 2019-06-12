@@ -13,17 +13,20 @@
 #define NINJAGAIDEN_HURT_IMAGE 8
 #define NINJAGAIDEN_START_JUMP 8
 #define NINJAGAIDEN_END_JUMP 11
+#define NINJAGAIDEN_START_GO 21
+#define NINJAGAIDEN_END_GO 23
+
 
 
 #define NINJAGAIDEN_VX_STAIR 0.13
 #define NINJAGAIDEN_VY_STAIR 0.13
-#define NINJAGAIDEN_VJUMP 12
+#define NINJAGAIDEN_VJUMP 15
 #define NINJAGAIDEN_GRAVITY 1
 #define NINJAGAIDEN_FALL 180
 /////////////////////
 //Thay thế số 8 trong hàm StopFall( y = y -8)
 #define NINJAGAIDEN_Y_STOP_FALL 8
-#define NINJAGAIDEN_Y_SIT 15
+#define NINJAGAIDEN_Y_SIT 5
 #define NINJAGAIDEN_VX_GO 0.33
 
 class NinjaGaiden : public BaseObject
@@ -74,8 +77,8 @@ public:
 	virtual void Jump();
 	virtual void Go();
 	/////////////////(Tiền updated)
-	//void Attack(Weapon * weapon);
-	void Attack();
+	void Attack(Weapon * weapon = NULL);
+	//void Attack();
 
 	void CollisionWithBrick(const vector<LPGAMEOBJECT> *coObjects = NULL);
 

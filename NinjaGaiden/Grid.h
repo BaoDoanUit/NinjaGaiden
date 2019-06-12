@@ -14,6 +14,7 @@
 #include "SitGun.h"
 #include "StandSolider.h"
 #include "Ground.h"
+#include "Item.h"
 
 using namespace std;
 
@@ -46,10 +47,12 @@ public:
 	void ReloadGrid();
 
 
-	BaseObject * GetNewObject(int type, float x, float y, int w, int h, int Model, int borderLeft, int borderRight);
+	BaseObject * GetNewObject(int typeObject, float x, float y, int w, int h, int borderLeft, int borderRight);
+	Item* GetNewItem(int typeItem, int x, int y);
 	void Insert(int id, int type, int direction, float x, float y, int w, int h, int Model, int borderLeft, int borderRight); //Thêm object vào grid
 	void GetListObject(vector<BaseObject*>& ListObj, Camera * camera);
 
 };
+
 
 #endif
