@@ -43,13 +43,9 @@ void SceneMain::RenderStage(LPDIRECT3DDEVICE9 d3ddv, int t) {
 			listEnemy.push_back(listObj[i]);
 			break;
 		}
-
 		listObj[i]->Draw(cam);
 	}
-
-
 	ninjaGaiden->Draw(cam);
-	ninjaGaiden->GSObject->SetARGB();
 	G_SpriteHandler->End();
 }
 void SceneMain::LoadComponent()
