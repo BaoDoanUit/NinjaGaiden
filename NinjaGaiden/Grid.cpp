@@ -59,7 +59,7 @@ BaseObject * Grid::GetNewObject(int type, float x, float y, int w, int h, int Mo
 		return new Eagle(x, y, w, h);
 		break;
 	case eType::ENEMY1:
-		return new Enemy1(x, y, w, h);
+		return new Enemy1(x, y, w, h,borderLeft,borderRight);
 		break;
 	case eType::ENEMY2:
 		return new Enemy2(x, y, w, h);

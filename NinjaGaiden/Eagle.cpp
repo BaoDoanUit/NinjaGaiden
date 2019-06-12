@@ -2,8 +2,6 @@
 
 
 
-
-
 Eagle::Eagle(int x1, int y1, int w1, int h1)
 {
 	x = x1;
@@ -15,7 +13,6 @@ Eagle::Eagle(int x1, int y1, int w1, int h1)
 	/*IsFalling = 1;*/
 	Trend = -1;
 
-	this->yBackup = y;
 	Vx = SPEED_X;
 	Vy = SPEED_Y;
 	ax = ACCELERATION_X;
@@ -31,27 +28,26 @@ void Eagle::Update(int t)
 	if (GSObject == NULL || !Health)
 		return;
 
-	if (x < ninja->x - 20 && y < ninja->y + 20) {
+	if (x < ninja->x - 30 && y < ninja->y + 40) {
 		Vx = 0;
 		Vy = SPEED_Y;
-		
+
 	}
-	else if (x < ninja->x - 20 && y > ninja->y + 20) {
+	else if (x < ninja->x - 30 && y > ninja->y + 40) {
 		Vx = SPEED_X;
-		Trend = 1;
 		Vy = -SPEED_Y;
+		Trend = 1;
 
 	}
-	else if (x >= ninja->x + 20 && y > ninja->y + 20) {
+	else if (x >= ninja->x + 30 && y > ninja->y + 40) {
 		Vx = -SPEED_X;
-		Trend = -1;
 		Vy = -SPEED_Y;
+		Trend = -1;
 	}
-	else if (x >= ninja->x + 0 && y < ninja->y + 20) {
+	else if (x >= ninja->x + 30 && y < ninja->y + 40) {
 		Vx = 0;
 		Vy = SPEED_Y;
 	}
-
 
 	x += Vx * t + 1 / 2 * ax*t*t;
 	y += Vy * t;

@@ -36,6 +36,8 @@ protected:
 	float y;
 	int w;
 	int h;
+	int borderLeft;
+	int borderRight;
 	int IsGoing;		// Đang di chuyển = 1; Đứng yên = 0;
 	int IsAttacking;
 	int IsStopping;

@@ -2,19 +2,22 @@
 
 
 
-
-Enemy1::Enemy1(int x1, int y1, int w1, int h1)
+#define THIEF_SPEED_X 0.07f
+Enemy1::Enemy1(int x1, int y1, int w1, int h1, int borderLeft1, int borderRight1)
 {
 	x = x1;
 	y = y1;
 	h = h1;
 	w = w1;
+	borderLeft = borderLeft1;
+	borderRight = borderRight1;
 	Health = 1;
 	GTObject = TextureManager::GetInstance()->GetTexture(eType::ENEMY1);
 	GSObject = new Sprite(GTObject, 120);
 	/*IsFalling = 1;*/
 	Trend = -1;
 	type = eType::ENEMY1;
+	Vx = THIEF_SPEED_X;
 }
 
 Box Enemy1::GetBox(Camera * camera)
@@ -27,18 +30,15 @@ void Enemy1::Update(int t)
 {
 	if (Health == 1)
 	{
-		BaseObject::Update(t);
-		this->Vx = 0.18 * Trend;
+		this->Vx = THIEF_SPEED_X * Trend;
 		x += Vx * t;
-		if (x < 0 || x > 3072 && x < 4112)
-			Trend = 1;
-		else if (x > 900 && x <1000)
-			Trend = -1;
+		if (x <= borderLeft || x >= borderRight)
+		{
+			Trend *= -1;
+		}
+		BaseObject::Update(t);
 	}
-	else
-	{
-		
-	}
+	
 }
 
 void Enemy1::Draw(Camera * cam)

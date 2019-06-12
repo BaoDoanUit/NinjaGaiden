@@ -4,7 +4,7 @@
 class Enemy1 :public BaseObject
 {
 public:
-	Enemy1(int x1, int y1, int w1, int h1);
+	Enemy1(int x1, int y1, int w1, int h1, int borderLeft, int borderRight);
 	virtual Box GetBox(Camera *camera);
 	virtual void Update(int t);
 	virtual void Draw(Camera * cam);
