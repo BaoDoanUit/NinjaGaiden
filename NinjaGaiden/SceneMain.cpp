@@ -89,7 +89,7 @@ void SceneMain::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 void SceneMain::LoadMap1() {
 	AutoFit = 0; // Sử dụng biến này khi viewport.y của màn 2 khác với width của
 				 // màn hình nên tọa độ item cộng thêm AutoFit
-	ninjaGaiden = new NinjaGaiden(300, 120, 1);
+	ninjaGaiden = new NinjaGaiden(120, 120, 1);
 	cam = new Camera(ninjaGaiden->getx(), 1);
 	cam->SetSizeMap(0, 4096);
 	ninjaGaiden->Go();

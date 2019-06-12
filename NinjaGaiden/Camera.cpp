@@ -62,7 +62,7 @@ void Camera::SetVCam(float vcamX, float vcamY) {
 	_VCameraX = vcamX;
 }
 void Camera::UpdateCamera() {
-	if ((_FolowPosX >= G_ScreenWidth / 2 + viewport.x && _VCameraX>0) || (_FolowPosX <= viewport.x + G_ScreenWidth / 2 && _VCameraX<0))
+	if ((_FolowPosX >= G_ScreenWidth / 2 + viewport.x && _VCameraX > 0) || (_FolowPosX <= viewport.x + G_ScreenWidth / 2 && _VCameraX < 0))
 	{
 		viewport.x += _VCameraX;
 	}
@@ -91,3 +91,10 @@ D3DXVECTOR2 Camera::TransformObject(int xWorld, int yWorld)
 {
 	return D3DXVECTOR2(xWorld - viewport.x, yWorld - 0);
 }
+
+
+
+//D3DXVECTOR2 Camera::Transform(int xWorld, int yWorld)
+//{
+//	return D3DXVECTOR2(xWorld - viewport.x, yWorld - 0);
+//}

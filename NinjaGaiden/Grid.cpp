@@ -43,7 +43,7 @@ void Grid::ReloadGrid()
 }
 
 BaseObject * Grid::GetNewObject(int type, float x, float y, int w, int h, int Model, int borderLeft, int borderRight)
-{
+{     
 	switch (type)
 	{
 	case eType::BEE:
@@ -102,7 +102,7 @@ void Grid::GetListObject(vector<BaseObject*>& ListObj, Camera * camera)
 				}
 				else
 				{
-						cells[i][j].erase(cells[i][j].begin() + k); // xóa luôn
+						//cells[i][j].erase(cells[i][j].begin() + k); // xóa luôn
 				}
 
 			}

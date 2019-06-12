@@ -53,8 +53,8 @@ Box BaseObject::GetBox(Camera *camera)
 	D3DXVECTOR2 pos;
 	switch (type)
 	{
-	case eType ::GROUND:
-		pos = camera->Transform(getx() - getw() / 2, gety() + geth() / 2);
+	case eType::GROUND:
+		pos = camera->Transform(getx(), gety());
 		return Box(pos.x, pos.y, getw(), geth(), Vx, -Vy);
 		break;
 	default:
