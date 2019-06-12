@@ -9,6 +9,7 @@
 #include "Grid.h"
 class SceneMain : public Game {
 public:
+  int IsCollision;
   NinjaGaiden *ninjaGaiden;
   Camera *cam, *camDog;
   Eagle *eagle;
@@ -53,7 +54,7 @@ protected:
 
   virtual void OnKeyDown(int KeyCode);
   virtual void ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int Delta);
-  void ResetResource();
+  void ClearListObject();
   void LoadComponent();
   void CheckCollision();
   void CheckCollisionEnemy();

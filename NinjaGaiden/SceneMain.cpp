@@ -27,10 +27,7 @@ void SceneMain::RenderStage(LPDIRECT3DDEVICE9 d3ddv, int t) {
 	if (pMap) {
 		pMap->Render2(cam);
 	}
-	listObj.clear();
-	listEnemy.clear();
-	listGround.clear();
-	listItem.clear();
+	ClearListObject();
 
 	gridGame->GetListObject(listObj, cam);
 	//TODO Draw ListObj GridGame
@@ -60,6 +57,13 @@ void SceneMain::LoadComponent()
 	gridGame = new Grid();
 }
 
+void SceneMain::ClearListObject()
+{
+	listObj.clear();
+	listEnemy.clear();
+	listGround.clear();
+	listItem.clear();
+}
 
 void SceneMain::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	LoadComponent();
@@ -90,10 +94,12 @@ void SceneMain::LoadMap1() {
 	cam->SetSizeMap(0, 4096);
 	ninjaGaiden->Go();
 	gridGame->SetFile("./Resources/maps/map2.txt");
+	gridGame->ReloadGrid();
 	SAFE_DELETE(pMap);
 
 	pMap = new Map("./Resources/maps/3-1.json");
-	ResetResource();
+	
+
 
 
 }
@@ -196,9 +202,6 @@ void SceneMain::UpdateObject(Camera *cam, int t) {
 	CheckCollision();
 }
 
-void SceneMain::ResetResource() {
-	gridGame->ReloadGrid();
-}
 
 void SceneMain::CheckCollision() {
 	CheckCollisionGround();
@@ -208,16 +211,33 @@ void SceneMain::CheckCollision() {
 
 void SceneMain::CheckCollisionEnemy() {
 	
+	float CollisionTime, nx, ny;
+	for (UINT indexEnemy = 0; indexEnemy < listEnemy.size(); indexEnemy++)
+	{
+		IsCollision = Collide(ninjaGaiden->GetBox(cam), listEnemy[indexEnemy]->GetBox(cam), CollisionTime, nx, ny);
+		if (IsCollision !=0)
+		{
+			switch (listEnemy[indexEnemy]->GetType())
+			{
+			case eType::EAGLE:
+				listEnemy[indexEnemy]->SetHealth(0);
+				break;
+			default:
+				break;
+			}
+		}
+		
+	}
 
 }
 void SceneMain::CheckCollisionGround() {
-	int IsCollisionNinja, IsCollisionEnemy, IsCollisionItem;
+	int IsCollision;
 	float CollisionTime, nx, ny;
 	for (UINT indexGround = 0; indexGround < listGround.size(); indexGround++)
 	{
 #pragma region Check Ground with Ninja
-		IsCollisionNinja = Collide(ninjaGaiden->GetBox(cam), listGround[indexGround]->GetBox(cam), CollisionTime, nx, ny);
-		if (IsCollisionNinja == 5)
+		IsCollision = Collide(ninjaGaiden->GetBox(cam), listGround[indexGround]->GetBox(cam), CollisionTime, nx, ny);
+		if (IsCollision == 5)
 		{
 			float k = listGround[indexGround]->gety() + listGround[indexGround]->geth() / 2 + ninjaGaiden->getHeight() / 2 + 5;
 			ninjaGaiden->StopFall(k);	
@@ -226,10 +246,10 @@ void SceneMain::CheckCollisionGround() {
 #pragma region Check Ground with Enemy
 		for (UINT indexEnemy = 0; indexEnemy < listEnemy.size(); indexEnemy++) {
 			BaseObject* enemy = dynamic_cast<BaseObject*> (listEnemy[indexEnemy]);
-			IsCollisionEnemy = 1;
-			IsCollisionEnemy = Collide(enemy->GetBox(cam), listGround[indexGround]->GetBox(cam), CollisionTime, nx, ny);
+			
+			IsCollision = Collide(enemy->GetBox(cam), listGround[indexGround]->GetBox(cam), CollisionTime, nx, ny);
 			float k = listGround[indexGround]->gety() + listGround[indexGround]->geth() / 2 + listEnemy[indexEnemy]->getHeight() / 2 + 5;
-			if (IsCollisionEnemy == 5)
+			if (IsCollision == 5)
 			{
 				listEnemy[indexEnemy]->Stop();
 			}
@@ -240,8 +260,8 @@ void SceneMain::CheckCollisionGround() {
 		for (UINT indexItem = 0; indexItem < listItem.size(); indexItem++)
 		{
 
-			IsCollisionItem = Collide(listItem[indexItem]->GetBox(cam), listGround[indexGround]->GetBox(cam), CollisionTime, nx, ny);
-			if (IsCollisionItem == 5)
+			IsCollision = Collide(listItem[indexItem]->GetBox(cam), listGround[indexGround]->GetBox(cam), CollisionTime, nx, ny);
+			if (IsCollision == 5)
 			{
 				float k = listGround[indexGround]->gety() + listGround[indexGround]->geth() / 2 + listItem[indexItem]->getHeight() / 2 + 5;
 				listItem[indexItem]->Stop();

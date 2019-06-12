@@ -27,7 +27,7 @@ void Grid::ReloadGrid()
 		}
 
 
-	int id, type, direction, w, h, model, n;
+	int id, type, direction, w, h, model, n, borderLeft, borderRight;
 	float x, y;
 
 
@@ -36,13 +36,13 @@ void Grid::ReloadGrid()
 	file >> n;
 	for (int i = 0; i < n; i++)
 	{
-		file >> id >> type >> direction >> x >> y >> w >> h >> model;
-		Insert(id, type, direction, x, y, w, h, model);
+		file >> id >> type >> direction >> x >> y >> w >> h >> model >> borderLeft >> borderRight;
+		Insert(id, type, direction, x, y, w, h, model, borderLeft, borderRight);
 	}
 	file.close();
 }
 
-BaseObject * Grid::GetNewObject(int type, float x, float y, int w, int h, int Model)
+BaseObject * Grid::GetNewObject(int type, float x, float y, int w, int h, int Model, int borderLeft, int borderRight)
 {
 	switch (type)
 	{
@@ -102,7 +102,7 @@ void Grid::GetListObject(vector<BaseObject*>& ListObj, Camera * camera)
 				}
 				else
 				{
-						//cells[i][j].erase(cells[i][j].begin() + k); // xóa luôn
+						cells[i][j].erase(cells[i][j].begin() + k); // xóa luôn
 				}
 
 			}
@@ -113,14 +113,14 @@ void Grid::GetListObject(vector<BaseObject*>& ListObj, Camera * camera)
 	}
 }
 
-void Grid::Insert(int id, int type, int direction, float x, float y, int w, int h, int Model)
+void Grid::Insert(int id, int type, int direction, float x, float y, int w, int h, int Model, int borderLeft, int borderRight)
 {
 	int top = (int)(y / GRID_CELL_HEIGHT);
 	int bottom = (int)((y + h) / GRID_CELL_HEIGHT);
 	int left = (int)(x / GRID_CELL_WIDTH);
 	int right = (int)((x + w) / GRID_CELL_WIDTH);
 
-	BaseObject * obj = GetNewObject(type, x, y, w, h, Model);
+	BaseObject * obj = GetNewObject(type, x, y, w, h, Model, borderLeft, borderRight);
 	if (obj == NULL)
 		return;
 

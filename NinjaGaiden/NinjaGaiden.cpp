@@ -14,6 +14,7 @@ NinjaGaiden::NinjaGaiden(float x1, float y1, int trend)
 	GSObject2 = new Sprite(GTObject2, NINJAGAIDEN_FRAME);
 	EndHurt = 1;
 	IsFalling = 1;
+	Blood = 10;
 }
 
 NinjaGaiden::~NinjaGaiden()
@@ -252,10 +253,10 @@ void NinjaGaiden::Go()
 	}
 	if (IsAttacking == 0)
 	{
-		//if (IsSitting == 1) this->StandUp();
+		if (IsSitting == 1) this->StandUp();
 		this->Vx = NinjaGaiden_vx*Trend;
 		BaseObject::Go();
-		//Prevent = 0;
+		Prevent = 0;
 	}
 }
 

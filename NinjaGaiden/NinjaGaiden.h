@@ -36,6 +36,7 @@ private:
 	bool isNinjaGaidenDie = false;
 	int trend = -1;
 	int flag = 0;
+	int Blood;
 	//float Vx, Vy;
 public:
 	//Stair

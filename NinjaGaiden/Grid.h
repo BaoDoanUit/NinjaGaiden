@@ -19,7 +19,7 @@ using namespace std;
 
 
 
-#define GRID_CELL_WIDTH (GAME_WIDTH/16.0f)
+#define GRID_CELL_WIDTH (GAME_WIDTH/8.0f)
 #define GRID_CELL_HEIGHT (GAME_HEIGHT/4.0f)
 
 #define GRID_INSERT_OBJECT__DIXUONGHONUOC_LEFT 41, eType::OBJECT_HIDDEN, -1, 3190 ,423, 40, 10, 0 // object ẩn đụng vào sẽ đi xuống hồ nước, phía trái
@@ -46,8 +46,8 @@ public:
 	void ReloadGrid();
 
 
-	BaseObject * GetNewObject(int type, float x, float y, int w, int h, int Model);
-	void Insert(int id, int type, int direction, float x, float y, int w, int h, int Model); //Thêm object vào grid
+	BaseObject * GetNewObject(int type, float x, float y, int w, int h, int Model, int borderLeft, int borderRight);
+	void Insert(int id, int type, int direction, float x, float y, int w, int h, int Model, int borderLeft, int borderRight); //Thêm object vào grid
 	void GetListObject(vector<BaseObject*>& ListObj, Camera * camera);
 
 };

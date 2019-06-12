@@ -55,14 +55,14 @@
     <Filter Include="Object\Item">
       <UniqueIdentifier>{b8ea8887-c34b-4bb1-9b7a-9920f57abca0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Core\Collision">
-      <UniqueIdentifier>{cf614ec9-1998-42e9-b77d-ba72e7059848}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\Ground">
       <UniqueIdentifier>{52b6c46d-f20f-4454-9c15-44e160f1272c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object\Effect">
       <UniqueIdentifier>{18268929-f06a-4a51-8a52-fb047eed4584}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Collision">
+      <UniqueIdentifier>{cf614ec9-1998-42e9-b77d-ba72e7059848}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -88,7 +88,7 @@
       <Filter>Framework\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Sweet_AABB.cpp">
-      <Filter>Framework\Core\Collision</Filter>
+      <Filter>Framework\Collision</Filter>
     </ClCompile>
     <ClCompile Include="NinjaGaiden.cpp">
       <Filter>Object\NinjaGaiden</Filter>
@@ -174,7 +174,7 @@
       <Filter>Framework\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Sweet_AABB.h">
-      <Filter>Framework\Core\Collision</Filter>
+      <Filter>Framework\Collision</Filter>
     </ClInclude>
     <ClInclude Include="NinjaGaiden.h">
       <Filter>Object\NinjaGaiden</Filter>
