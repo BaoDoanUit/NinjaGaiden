@@ -23,7 +23,7 @@ public:
   vector<Weapon*> weapons;
   int PreUpStair;
   int PreDownStair;
-
+  bool onGround;
   bool lockKeyboard = 0;
   bool isPlay_Exit = true;
 

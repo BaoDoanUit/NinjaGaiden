@@ -6,8 +6,10 @@
 // returns true if the boxes are colliding (velocities are not used)
 bool AABBCheck(Box b1, Box b2)
 {
-	return !(b1.x + b1.w < b2.x || b1.x > b2.x + b2.w || b1.y + b1.h < b2.y || b1.y > b2.y + b2.h);
+	bool flag = !(b1.x + b1.w < b2.x || b1.x > b2.x + b2.w || b1.y + b1.h < b2.y || b1.y > b2.y + b2.h);
+	return flag;
 }
+	 
 // returns true if the boxes are colliding (velocities are not used)
 // moveX and moveY will return the movement the b1 must move to avoid the collision
 bool AABB(Box b1, Box b2, float& moveX, float& moveY)
@@ -155,6 +157,7 @@ int Collide(Box &box, Box &block, float &collisiontime, float &x, float &y)
 {
 	// box is the moving box
 	// block is the static box
+	if (AABBCheck(box, block)) return 5;
 	if (AABBCheck(GetSweptBroadphaseBox(box), block))
 	{
 		float normalx, normaly;
@@ -168,8 +171,6 @@ int Collide(Box &box, Box &block, float &collisiontime, float &x, float &y)
 			if (normalx == 1) return 1;
 			if (normaly == -1) return 4;// 4 hướng theo va chạm, ngược chiều kim đồng hồ.
 		}
-		else
-			if (AABBCheck(box, block)) return 5;
 	}
 	return 0;
 }

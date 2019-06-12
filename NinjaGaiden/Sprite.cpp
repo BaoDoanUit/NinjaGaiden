@@ -85,7 +85,6 @@ void Sprite::SelectIndex(int index)
 {
 	_index = index;
 }
-
 void Sprite::Update(int ellapseTime)
 {
 	_timeLocal += ellapseTime;

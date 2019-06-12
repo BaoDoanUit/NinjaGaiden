@@ -89,7 +89,7 @@ float Camera::GetYCam()
 
 D3DXVECTOR2 Camera::TransformObject(int xWorld, int yWorld)
 {
-	return D3DXVECTOR2(xWorld - viewport.x, yWorld - 0);
+	return D3DXVECTOR2(xWorld - viewport.x,  viewport.y - yWorld);
 }
 
 

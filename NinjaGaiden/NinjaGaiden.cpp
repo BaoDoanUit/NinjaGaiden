@@ -116,12 +116,12 @@ void NinjaGaiden::Update(Camera *camera, int t)
 	else {
 		if (IsJumping == 1)
 		{
-			if (EndHurt) Vx *= IsGoing; 
+			if (EndHurt) Vx *= IsGoing;
 			else Vx = Vx_Hurt*HTrend*(Prevent == 0);
 			y += Vy;
 			x += Vx * t;
-			Vy = Vy - NINJAGAIDEN_GRAVITY;		
-			GSObject->_end = NINJAGAIDEN_END_JUMP;
+			Vy = Vy - NINJAGAIDEN_GRAVITY;
+			GSObject->_end = NINJAGAIDEN_END_JUMP;	
 			GSObject->Update(t);
 			if (!EndHurt) GSObject->SelectIndex(NINJAGAIDEN_HURT_IMAGE);
 			if (Vy == 0)
@@ -131,7 +131,8 @@ void NinjaGaiden::Update(Camera *camera, int t)
 		}
 		else if (IsFalling == 1)
 		{
-			if (EndHurt) Vx *= IsGoing; else Vx = Vx_Hurt*HTrend*(Prevent == 0);
+			if (EndHurt) Vx *= IsGoing; 
+			else Vx = Vx_Hurt*HTrend*(Prevent == 0);
 			x += Vx * t;
 			y += Vy;
 			Vy = Vy - NINJAGAIDEN_GRAVITY;
@@ -139,11 +140,8 @@ void NinjaGaiden::Update(Camera *camera, int t)
 		else if (IsGoing == 1)
 		{
 			x += Vx * t;
-			GSObject->SelectIndex(NINJAGAIDEN_START_GO);
 			GSObject->_end = NINJAGAIDEN_END_GO;
-			GSObject->Update(t);
-			//if (IsFalling == 0 && IsJumping == 0) 
-				//GSObject->_index = GSObject->_index % 4;
+			GSObject->Update(t);			
 		}
 		else if (IsSitting == 1)
 		{
@@ -217,8 +215,8 @@ void NinjaGaiden::Jump()
 			GSObject->SelectIndex(NINJAGAIDEN_START_JUMP);
 			if (EndHurt == 0)
 			{
-			GSObject->SelectIndex(NINJAGAIDEN_HURT_IMAGE);
-			Vx = Vx*HTrend;
+				GSObject->SelectIndex(NINJAGAIDEN_HURT_IMAGE);
+				Vx = Vx*HTrend;
 			}
 			BaseObject::Jump();
 		}
@@ -226,17 +224,18 @@ void NinjaGaiden::Jump()
 }
 void NinjaGaiden::Fall()
 {
-	BaseObject::Fall();
-	//if (IsAttacking == 0 && IsJumping == 1 && IsFalling == 0)
-	//{
-	//	
-	//	if (IsFalling == 0)
-	//	{
-	//		//Vy = -NINJAGAIDEN_VJUMP;			
-	//		GSObject->SelectIndex(NINJAGAIDEN_STOP_IMAGE);		
-	//		
-	//	}
-	//}
+
+	if (IsAttacking == 0 && IsJumping == 1 && IsFalling == 0)
+	{
+		
+		if (IsFalling == 0)
+		{
+			
+			Vy = -NINJAGAIDEN_VJUMP;			
+			GSObject->SelectIndex(NINJAGAIDEN_STOP_IMAGE);		
+			BaseObject::Fall();
+		}
+	}
 }
 
 void NinjaGaiden::Go()
@@ -299,9 +298,9 @@ D3DXVECTOR2 * NinjaGaiden::getPos()
 	return new D3DXVECTOR2(this->x, this->y);;
 }
 
-void NinjaGaiden::Attack(Weapon* weapon ) {
+void NinjaGaiden::Attack(Weapon* weapon) {
 	//if (IsAttacking == 1) return;
-	
+
 	if (IsFalling == 1) return;
 
 	if (IsSitting == 1)

@@ -85,7 +85,7 @@ void SceneMain::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 void SceneMain::LoadMap1() {
 	AutoFit = 0; // Sử dụng biến này khi viewport.y của màn 2 khác với width của
 				 // màn hình nên tọa độ item cộng thêm AutoFit
-	ninjaGaiden = new NinjaGaiden(120, 120, 1);
+	ninjaGaiden = new NinjaGaiden(100, 120, 1);
 	cam = new Camera(ninjaGaiden->getx(), 1);
 	cam->SetSizeMap(0, 4096);
 	ninjaGaiden->Go();
@@ -148,6 +148,7 @@ void SceneMain::ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int Delta) {
 		}
 		if (IsKeyDown(DIK_SPACE) && !IsKeyDown(DIK_DOWN)) {
 			ninjaGaiden->Jump();
+
 		}
 		if (!IsKeyDown(DIK_SPACE) && IsKeyDown(DIK_DOWN)) {
 			ninjaGaiden->Sit();
@@ -185,12 +186,12 @@ void SceneMain::UpdateObject(Camera *cam, int t) {
 			{
 			case eType::GROUND:
 				break;
-			
+
 			default:
 				listObj[i]->Update(t);
 				break;
 			}
-			
+
 		}
 
 	}
@@ -205,12 +206,12 @@ void SceneMain::CheckCollision() {
 }
 
 void SceneMain::CheckCollisionEnemy() {
-	
+
 	float CollisionTime, nx, ny;
 	for (UINT indexEnemy = 0; indexEnemy < listEnemy.size(); indexEnemy++)
 	{
 		IsCollision = Collide(ninjaGaiden->GetBox(cam), listEnemy[indexEnemy]->GetBox(cam), CollisionTime, nx, ny);
-		if (IsCollision !=0)
+		if (IsCollision != 0)
 		{
 			switch (listEnemy[indexEnemy]->GetType())
 			{
@@ -221,30 +222,35 @@ void SceneMain::CheckCollisionEnemy() {
 				break;
 			}
 		}
-		
+
 	}
 
 }
 void SceneMain::CheckCollisionGround() {
 	int IsCollision;
 	float CollisionTime, nx, ny;
+
 	for (UINT indexGround = 0; indexGround < listGround.size(); indexGround++)
 	{
 #pragma region Check Ground with Ninja
-		IsCollision = Collide(ninjaGaiden->GetBox(cam), listGround[indexGround]->GetBox(cam), CollisionTime, nx, ny);
-		if (IsCollision == 5)
+		BaseObject* ground = dynamic_cast<BaseObject*>(listGround[indexGround]);
+		IsCollision = Collide(ninjaGaiden->GetBox(cam), ground->GetBox(cam), CollisionTime, nx, ny);
+		if (IsCollision)
 		{
 			float k = listGround[indexGround]->gety() + listGround[indexGround]->geth() / 2 + ninjaGaiden->getHeight() / 2 + 5;
-			ninjaGaiden->StopFall(k);	
+			ninjaGaiden->StopFall(k);
 		}
-		else
-		{
-			ninjaGaiden->Fall();
+		else {
+			if (ninjaGaiden->getIsJumping() == 0 && ninjaGaiden->getIsFalling() == 0)
+			{
+				ninjaGaiden->Jump();
+				ninjaGaiden->Fall();
+			}
 		}
 #pragma endregion
 #pragma region Check Ground with Enemy
 		for (UINT indexEnemy = 0; indexEnemy < listEnemy.size(); indexEnemy++) {
-			
+
 			IsCollision = Collide(listEnemy[indexEnemy]->GetBox(cam), listGround[indexGround]->GetBox(cam), CollisionTime, nx, ny);
 			float k = listGround[indexGround]->gety() + listGround[indexGround]->geth() / 2 + listEnemy[indexEnemy]->getHeight() / 2 + 5;
 			if (IsCollision == 5)
@@ -267,6 +273,7 @@ void SceneMain::CheckCollisionGround() {
 		}
 #pragma region 
 	}
+
 
 
 }

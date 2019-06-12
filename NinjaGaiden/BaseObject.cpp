@@ -54,8 +54,8 @@ Box BaseObject::GetBox(Camera *camera)
 	switch (type)
 	{
 	case eType::GROUND:
-		pos = camera->Transform(getx(), gety());
-		return Box(pos.x, pos.y, getw(), geth(), Vx, -Vy);
+		pos = camera->Transform(getx() - getw() / 2, gety() + geth() / 2);
+		return Box(pos.x, pos.y, getw(), geth(), 0, 0);
 		break;
 	default:
 		pos = camera->Transform(x - GTObject->FrameWidth / 2, y + GTObject->FrameHeight / 2);
@@ -219,4 +219,27 @@ void BaseObject::SetTrend(int Trend)
 {
 
 	this->Trend = Trend;
+}
+
+void BaseObject::RenderBoundingBox(Camera* camera)
+{
+	float l, t, r, b;
+	GetBoundingBox(l, t, r, b);
+	RECT rect;
+	rect.left = 0;
+	rect.top = 0;
+	rect.right = (LONG)r - (LONG)l;
+	rect.bottom = (LONG)b - (LONG)t;
+
+	D3DXVECTOR2 pos = camera->Transform(l, t);
+	GSObject->DrawRect(pos.x,pos.y,rect);
+	
+}
+
+void BaseObject::GetBoundingBox(float & left, float & top, float & right, float & bottom)
+{
+	left = x;
+	top = y;
+	right = left + getw();
+	bottom = top + geth();
 }

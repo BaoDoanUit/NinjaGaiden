@@ -109,7 +109,7 @@ public:
 	BaseObject(float x, float y, int w, int h);
 	~BaseObject();
 	virtual Box GetBox(Camera *camera);
-
+	virtual void RenderBoundingBox(Camera* camera);
 	virtual void StopFall(float y);
 	virtual void Stop();
 	virtual void Sit();
@@ -136,4 +136,5 @@ public:
 	bool getDropItem();
 	void setDropItem(bool dropItem);
 	virtual void setPositionNinja(D3DXVECTOR2* pos);
+	void GetBoundingBox(float & left, float & top, float & right, float & bottom);
 };

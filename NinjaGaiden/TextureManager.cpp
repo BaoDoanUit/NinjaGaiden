@@ -41,7 +41,7 @@ void TextureManager::LoadResource()
 	//MAP
 	AddTexture(eType::MAP3, new Texture("Resources/maps/3-1.png", 5,16, 80));
 	//AddTexture(eType::MAP4, new Texture("Resources/maps/tileset_map2.png", 22, 4, 88));
-
+	AddTexture(eType::RENDERBBOX, new Texture("Resources/bbox.png")); // dùng để vẽ BBOX
 	/*
 	//gameobject ground
 	AddTexture(eType::TEX_BRICK_MODEL_1, new Texture("Resources/ground/2.png")); // loại dành cho state 1
