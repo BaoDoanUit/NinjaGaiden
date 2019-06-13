@@ -39,9 +39,9 @@ void TextureManager::LoadResource()
 	AddTexture(eType::RENDERBBOX, new Texture("Resources/bbox.png")); // dùng để vẽ BBOX
 	*/
 	//MAP
-	AddTexture(eType::MAP3, new Texture("Resources/maps/3-1.png", 5,16, 80));
+	AddTexture(eType::MAP3, new Texture("Resources/maps/3-1.png", 5, 16, 80));
 	//AddTexture(eType::MAP4, new Texture("Resources/maps/tileset_map2.png", 22, 4, 88));
-	AddTexture(eType::RENDERBBOX, new Texture("Resources/bbox.png")); // dùng để vẽ BBOX
+	//AddTexture(eType::RENDERBBOX, new Texture("Resources/bbox.png")); // dùng để vẽ BBOX
 	/*
 	//gameobject ground
 	AddTexture(eType::TEX_BRICK_MODEL_1, new Texture("Resources/ground/2.png")); // loại dành cho state 1
@@ -60,34 +60,21 @@ void TextureManager::LoadResource()
 
 	AddTexture(eType::TORCH, new Texture("Resources/ground/0.png", 2, 1, 2));
 	AddTexture(eType::CANDLE, new Texture("Resources/ground/1.png", 2, 1, 2));
+	*/
 
 	//item
-	AddTexture(eType::ITEMDAGGER, new Texture("Resources/item/4.png"));
-	AddTexture(eType::LARGEHEART, new Texture("Resources/item/1.png"));
-	AddTexture(eType::UPGRADEMORNINGSTAR, new Texture("Resources/item/3.png"));
-	AddTexture(eType::BONUS, new Texture("Resources/item/2.png", 3, 1, 3));
-	AddTexture(eType::SMALLHEART, new Texture("Resources/item/0.png"));
-	AddTexture(eType::ITEMHOLYWATER, new Texture("Resources/item/9.png"));
-	AddTexture(eType::POTROAST, new Texture("Resources/item/10.png"));
-	AddTexture(eType::CRYSTALBALL, new Texture("Resources/item/13.png", 2, 1, 2));
-	AddTexture(eType::ITEMTHROWINGAXE, new Texture("Resources/item/7.png"));
-	AddTexture(eType::INVISIBILITYPOTION, new Texture("Resources/item/14.png"));
-	AddTexture(eType::CROSS, new Texture("Resources/item/6.png"));
-	AddTexture(eType::ITEMBOOMERANG, new Texture("Resources/item/8.png"));
-	AddTexture(eType::ITEMDOUBLESHOT, new Texture("Resources/item/11.png"));
+	AddTexture(eType::TIMEFREEZE, new Texture("Resources/item/timefrezee.png", 1, 1, 1));
+	AddTexture(eType::BLUEMONEY, new Texture("Resources/item/BlueMoney.png",1,1,1));
+	AddTexture(eType::REDMONEY, new Texture("Resources/item/RedMoney.png",1,1,1));
+	AddTexture(eType::SPIRITUAL1, new Texture("Resources/item/Spiritual1.png",1,1,1));
+	AddTexture(eType::SPIRITUAL2, new Texture("Resources/item/Spiritual2.png",1,1,1));
 
 
 
 
 	// Weapon
-	AddTexture(eType::DAGGER, new Texture("Resources/weapon/1.png"));
-	AddTexture(eType::MORNINGSTAR, new Texture("Resources/weapon/morningstar.png", 4, 3, 12));
-	AddTexture(eType::HOLYWATER, new Texture("Resources/weapon/2.png", 4, 1, 4));
-	AddTexture(eType::STOPWATCH, new Texture("Resources/item/5.png"));
-	AddTexture(eType::FIREBALL, new Texture("Resources/weapon/fireball.png"));
-	AddTexture(eType::THROWINGAXE, new Texture("Resources/weapon/3.png", 4, 1, 4));
-	AddTexture(eType::BOOMERANG, new Texture("Resources/weapon/4.png", 3, 1, 3));
-	*/
+
+
 
 	//player
 	AddTexture(eType::NINJAGAIDEN, new Texture("Resources/ninjaGaiden.png", 8, 3, 24, 255, 163, 177));
@@ -121,7 +108,7 @@ void TextureManager::LoadResource()
 	//boss
 	/*AddTexture(eType::PHANTOMBAT, new Texture("Resources/boss/0.png", 3, 1, 3));*/
 
-	
+
 
 }
 

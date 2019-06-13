@@ -128,7 +128,11 @@ enum eType
 
 
 	// item
-	
+	TIMEFREEZE = 70,
+	BLUEMONEY = 71,
+	REDMONEY = 72,
+	SPIRITUAL1 = 73,
+	SPIRITUAL2 = 74,
 
 	// other
 	FONT = 101,

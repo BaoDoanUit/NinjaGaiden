@@ -30,12 +30,13 @@ void Enemy1::Update(int t)
 {
 	if (Health == 1)
 	{
-		this->Vx = THIEF_SPEED_X * Trend;
-		x += Vx * t;
+		
 		if (x <= borderLeft || x >= borderRight)
 		{
 			Trend *= -1;
 		}
+		this->Vx = THIEF_SPEED_X * Trend;
+		x += Vx * t;
 		BaseObject::Update(t);
 	}
 	

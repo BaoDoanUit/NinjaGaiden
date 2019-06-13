@@ -156,6 +156,21 @@
     <ClCompile Include="Effect.cpp">
       <Filter>Object\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="Timefreeze.cpp">
+      <Filter>Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="BlueMoney.cpp">
+      <Filter>Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="RedMoney.cpp">
+      <Filter>Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Spiritual1.cpp">
+      <Filter>Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Spiritual2.cpp">
+      <Filter>Object\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SceneMain.h">
@@ -352,6 +367,21 @@
     </ClInclude>
     <ClInclude Include="Effect.h">
       <Filter>Object\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Timefreeze.h">
+      <Filter>Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="BlueMoney.h">
+      <Filter>Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="RedMoney.h">
+      <Filter>Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Spiritual1.h">
+      <Filter>Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Spiritual2.h">
+      <Filter>Object\Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
