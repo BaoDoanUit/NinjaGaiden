@@ -6,49 +6,27 @@
 #include "TextureManager.h"
 #pragma once
 
-class BaseObject;
-typedef BaseObject * LPGAMEOBJECT;
-struct CollisionEvent;
-typedef CollisionEvent * LPCOLLISIONEVENT;
 
-struct CollisionEvent
-{
-	LPGAMEOBJECT obj;
-	float t, nx, ny;
-	CollisionEvent(float t, float nx, float ny, LPGAMEOBJECT obj = NULL)
-	{
-		this->t = t;
-		this->nx = nx;
-		this->ny = ny;
-		this->obj = obj;
-	}
-
-	static bool compare(const LPCOLLISIONEVENT &a, LPCOLLISIONEVENT &b)
-	{
-		return a->t < b->t;
-	}
-};
 class BaseObject
 {
 protected:
-
 	float x;			 //Vị trí obj
 	float y;
 	int w;
 	int h;
 	int borderLeft;
 	int borderRight;
-	int IsGoing;		// Đang di chuyển = 1; Đứng yên = 0;
-	int IsAttacking;
-	int IsStopping;
-	int IsJumping;
-	int IsSitting;
-	int IsFalling;
+	bool IsGoing;		// Đang di chuyển = true; Đứng yên = false;
+	bool IsAttacking;
+	bool IsStopping;		
+	bool IsJumping;
+	bool IsSitting;
+	bool IsFalling;
 	int DefaultTrend;
 	int Trend;		// Phương hướng, trái = -1, phải = 1;
 	int PreAtk;
 	int IsHurting;
-	int EndHurt; //  0 bị thương, 1 kết thúc bị thương
+	bool EndHurt; //  false bị thương, true kết thúc bị thương
 	bool IsDie = 0; 
 	int Health;
 	int id;
@@ -94,12 +72,12 @@ public:
 
 	int			getIsDie() { return this->IsDie; }
 	void		setIsDie(bool a) { IsDie = a; }
-	int			getAttacking() { return this->IsAttacking; }
-	int getIsJumping() { return IsJumping; };
-	int getIsFalling() { return IsFalling; };
+	bool			getAttacking() { return this->IsAttacking; }
+	bool getIsJumping() { return IsJumping; };
+	bool getIsFalling() { return IsFalling; };
 
 
-	int getIsGoing() { return IsGoing; };
+	bool getIsGoing() { return IsGoing; };
 
 	virtual void Update(int t);
 	virtual void UpdateFollowNinja(int t, D3DXVECTOR2 * ryupos);

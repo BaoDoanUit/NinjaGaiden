@@ -83,20 +83,14 @@ void SceneMain::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 }
 
 void SceneMain::LoadMap1() {
-	AutoFit = 0; // Sử dụng biến này khi viewport.y của màn 2 khác với width của
-				 // màn hình nên tọa độ item cộng thêm AutoFit
-	ninjaGaiden = new NinjaGaiden(100, 120, 1);
-	cam = new Camera(ninjaGaiden->getx(), 1);
+	ninjaGaiden = new NinjaGaiden(100, 300, 1);
+	cam = new Camera(0, 352);
 	cam->SetSizeMap(0, 4096);
 	ninjaGaiden->Go();
 	gridGame->SetFile("./Resources/maps/map2.txt");
 	gridGame->ReloadGrid();
 	SAFE_DELETE(pMap);
-
 	pMap = new Map("./Resources/maps/3-1.json");
-
-
-
 }
 
 void SceneMain::LoadMap2() {}
@@ -229,23 +223,16 @@ void SceneMain::CheckCollisionEnemy() {
 void SceneMain::CheckCollisionGround() {
 	int IsCollision;
 	float CollisionTime, nx, ny;
-
+	int indexGroundCollision;
+	onGround = false;
+	int evtColisionCount = 0;
 	for (UINT indexGround = 0; indexGround < listGround.size(); indexGround++)
 	{
 #pragma region Check Ground with Ninja
-		BaseObject* ground = dynamic_cast<BaseObject*>(listGround[indexGround]);
-		IsCollision = Collide(ninjaGaiden->GetBox(cam), ground->GetBox(cam), CollisionTime, nx, ny);
-		if (IsCollision)
-		{
-			float k = listGround[indexGround]->gety() + listGround[indexGround]->geth() / 2 + ninjaGaiden->getHeight() / 2 + 5;
-			ninjaGaiden->StopFall(k);
-		}
-		else {
-			if (ninjaGaiden->getIsJumping() == 0 && ninjaGaiden->getIsFalling() == 0)
-			{
-				ninjaGaiden->Jump();
-				ninjaGaiden->Fall();
-			}
+		IsCollision = Collide(ninjaGaiden->GetBox(cam), listGround[indexGround]->GetBox(cam), CollisionTime, nx, ny);
+		if (IsCollision != 0) {
+			indexGroundCollision = indexGround;
+			evtColisionCount += 1;
 		}
 #pragma endregion
 #pragma region Check Ground with Enemy
@@ -263,7 +250,6 @@ void SceneMain::CheckCollisionGround() {
 #pragma region Check Ground with Item
 		for (UINT indexItem = 0; indexItem < listItem.size(); indexItem++)
 		{
-
 			IsCollision = Collide(listItem[indexItem]->GetBox(cam), listGround[indexGround]->GetBox(cam), CollisionTime, nx, ny);
 			if (IsCollision == 5)
 			{
@@ -274,7 +260,22 @@ void SceneMain::CheckCollisionGround() {
 #pragma region 
 	}
 
+	if (evtColisionCount != 0)
+	{
+		float k = listGround[indexGroundCollision]->gety() + listGround[indexGroundCollision]->geth() / 2 + ninjaGaiden->getHeight() / 2 + 5;
+		
+		ninjaGaiden->StopFall(k);
+		onGround = true;	
+	}
 
+	if (onGround == false)
+	{
+		if (!ninjaGaiden->getIsFalling() && !ninjaGaiden->getIsJumping())
+		{
+			ninjaGaiden->Jump(); // Jump cho ĐÚNG QUY TRÌNH :v
+			ninjaGaiden->Fall();
+		}
+	} 
 
 }
 

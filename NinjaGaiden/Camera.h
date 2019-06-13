@@ -22,7 +22,7 @@ public:
 	void SetVCam(float vcamX, float vcamY);
 	void SetFolowPos(float x, float y);
 	//////////////////////////////////////////////////(Tiền updated)
-	Camera(int x, int State);
+	Camera(int x, int y);
 	D3DXVECTOR3 CenterSprite(int x, int y);	//Tìm tọa độ center của sprite
 	void UpdateCamerax(int x);
 	void UpdateCameray(int x);

@@ -123,7 +123,7 @@ void Grid::Insert(int id, int typeObject, int direction, float x, float y, int w
 	Item* item = GetNewItem(typeItem, x, y);
 	if (obj == NULL)
 		return;
-
+	
 	obj->SetId(id);
 	
 	
@@ -135,6 +135,7 @@ void Grid::Insert(int id, int typeObject, int direction, float x, float y, int w
 			
 			cells[i][j].push_back(obj);
 			if (item != NULL) {
+				item->SetId(id);
 				cells[i][i].push_back(item);
 				item->SetId(id);
 			}

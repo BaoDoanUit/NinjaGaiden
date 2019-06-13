@@ -36,9 +36,10 @@ void TextureManager::LoadResource()
 	AddTexture(eType::BOARD_TRANS, new Texture("Resources/blackboard.png", 1, 1, 1, 0, 0, 0));
 
 	AddTexture(eType::BOARDHEALTH, new Texture("Resources/heal.png", 3, 1, 3));
-	AddTexture(eType::RENDERBBOX, new Texture("Resources/bbox.png")); // dùng để vẽ BBOX
+	
 	*/
 	//MAP
+	AddTexture(eType::RENDERBBOX, new Texture("Resources/bbox.png")); // dùng để vẽ BBOX
 	AddTexture(eType::MAP3, new Texture("Resources/maps/3-1.png", 5, 16, 80));
 	//AddTexture(eType::MAP4, new Texture("Resources/maps/tileset_map2.png", 22, 4, 88));
 	//AddTexture(eType::RENDERBBOX, new Texture("Resources/bbox.png")); // dùng để vẽ BBOX
@@ -77,9 +78,9 @@ void TextureManager::LoadResource()
 
 
 	//player
-	AddTexture(eType::NINJAGAIDEN, new Texture("Resources/ninjaGaiden.png", 8, 3, 24, 255, 163, 177));
+	AddTexture(eType::NINJAGAIDEN, new Texture("Resources/NinjaGaiden.png", 8, 4, 32));
 	//AddTexture(eType::SIMON_TRANS, new Texture("Resources/simon_trans.png", 8, 3, 24));
-	AddTexture(eType::NINJAGAIDEN_DEADTH, new Texture("Resources/simondeath.png"));
+	AddTexture(eType::NINJAGAIDEN_DEADTH, new Texture("Resources/simondeath.png",1,1,1));
 
 	/*
 	//effect

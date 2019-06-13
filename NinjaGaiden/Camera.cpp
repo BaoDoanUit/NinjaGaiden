@@ -1,15 +1,9 @@
 ﻿#include "Camera.h"
 
-Camera::Camera(int x, int State)
+Camera::Camera(int x, int y)
 {
 	viewport.x = x;
-	if (State == 2)
-		viewport.y = G_ScreenHeight + 416;
-	else
-		if (State == 3)
-			viewport.y = G_ScreenHeight + 1152;
-		else
-			viewport.y = G_ScreenHeight;
+	viewport.y = y;
 }
 void Camera::SetSizeMap(int _min, int _max)
 {
@@ -89,7 +83,7 @@ float Camera::GetYCam()
 
 D3DXVECTOR2 Camera::TransformObject(int xWorld, int yWorld)
 {
-	return D3DXVECTOR2(xWorld - viewport.x,  viewport.y - yWorld);
+	return D3DXVECTOR2(xWorld - viewport.x, viewport.y - yWorld);
 }
 
 

@@ -10,8 +10,8 @@ Ground::Ground(int x, int y, int width, int height)
 	this->h = height;
 	Health = 1;
 	type = eType::GROUND;
-	//GTObject = TextureManager::GetInstance()->GetTexture(eType::RENDERBBOX);
-	//GSObject = new Sprite(GTObject);
+	GTObject = TextureManager::GetInstance()->GetTexture(eType::RENDERBBOX);
+	GSObject = new Sprite(GTObject);
 }
 
 
@@ -21,6 +21,6 @@ Ground::~Ground()
 
 void Ground::Draw(Camera* cam)
 {
-	//RenderBoundingBox(cam);
+	RenderBoundingBox(cam);
 	return;
 }

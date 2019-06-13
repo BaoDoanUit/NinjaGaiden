@@ -105,7 +105,7 @@ void Sprite::DrawFromCenter(int X, int Y)
 	srect.right = srect.left + _texture->FrameWidth;
 	srect.bottom = srect.top + _texture->FrameHeight;// + 1;
 
-													 //D3DXVECTOR3 position((float)X, (float)Y, 0);
+	//D3DXVECTOR3 position((float)X, (float)Y, 0);
 	D3DXVECTOR3 position(0, 0, 0);
 	D3DXVECTOR3 center(0, 0, 0);
 	position.x = X - _texture->FrameWidth / 2;

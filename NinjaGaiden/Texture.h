@@ -27,7 +27,7 @@ public:
 	int GetColumn();
 	int GetRow();
 protected:
-	void Load(int R = 255, int B = 163, int G = 177);
+	void Load(int R = 255, int B = 255, int G = 255);
 };
 
 #endif

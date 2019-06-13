@@ -4,6 +4,12 @@
 #include "TextureManager.h"
 #pragma once
 
+#define NINJAGAIDEN_BOX_WIDTH 50
+#define NINJAGAIDEN_BOX_HEIGHT 74
+#define NINJAGAIDEN_BOX_SITTING_HEIGHT 74
+#define NINJAGAIDEN_BOX_JUMPING_HEIGHT 74
+
+
 #define NINJAGAIDEN_TREND 1
 #define NINJAGAIDEN_FRAME 60
 #define NINJAGAIDEN_STOP_IMAGE 7
@@ -24,8 +30,7 @@
 #define NINJAGAIDEN_GRAVITY 1
 #define NINJAGAIDEN_FALL 180
 /////////////////////
-//Thay thế số 8 trong hàm StopFall( y = y -8)
-#define NINJAGAIDEN_Y_STOP_FALL 8
+#define NINJAGAIDEN_Y_STOP_FALL 12
 #define NINJAGAIDEN_Y_SIT 5
 #define NINJAGAIDEN_VX_GO 0.33
 
@@ -42,20 +47,11 @@ private:
 	int Blood;
 	//float Vx, Vy;
 public:
-	//Stair
-	int IsOnStair;
+	//Climb
+	bool IsClimbing;
 	int Auto;
-	int stairTrend;
-	int yStairUp;
-	int yStairDown;
-	int isUpStair;
-	int isDownStair;
-	void UpStair();
-	int GetOnStair();
-	void DownStair();
 
 
-	//stair
 	//Tiền updated
 	float Vx_Hurt;
 	int Prevent;
@@ -80,7 +76,6 @@ public:
 	void Attack(Weapon * weapon = NULL);
 	//void Attack();
 
-	void CollisionWithBrick(const vector<LPGAMEOBJECT> *coObjects = NULL);
 
 	void Hurt(int HTrend);
 	void setNinjaGaidenDie(bool isdie) { isNinjaGaidenDie = isdie; };
