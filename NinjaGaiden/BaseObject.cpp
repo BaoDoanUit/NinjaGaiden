@@ -18,20 +18,14 @@ BaseObject::~BaseObject()
 
 void BaseObject::Draw(Camera * camera)
 {
-	//D3DXVECTOR2 pos = cam->Transform(x, y);
-	//GSObject->DrawFromCenter(pos.x, pos.y);
-
-	//if (Health <= 0)
-	//	return;
-
-	D3DXVECTOR2 pos = camera->Transform(x, y);
+	D3DXVECTOR2 pos = camera->TransformObject(x, y);
 	if (Trend == -1)
 		GSObject->DrawFlipX(pos.x, pos.y);
 	else
 		GSObject->DrawFromCenter(pos.x, pos.y);
 
 	//if (IS_DEBUG_RENDER_BBOX)
-	//	RenderBoundingBox(camera);
+	RenderBoundingBox(camera);
 }
 
 
@@ -46,7 +40,7 @@ void BaseObject::UpdateFollowNinja(int t, D3DXVECTOR2 * ryupos) {
 }
 void BaseObject::StopFall(float y)
 {
-	IsFalling = 0;
+	IsFalling = false;
 }
 Box BaseObject::GetBox(Camera *camera)
 {
@@ -54,11 +48,11 @@ Box BaseObject::GetBox(Camera *camera)
 	switch (type)
 	{
 	case eType::GROUND:
-		pos = camera->Transform(getx() - getw() / 2, gety() + geth() / 2);
+		pos = camera->Transform(getx(), gety());
 		return Box(pos.x, pos.y, getw(), geth(), 0, 0);
 		break;
 	default:
-		pos = camera->Transform(x - GTObject->FrameWidth / 2, y + GTObject->FrameHeight / 2);
+		pos = camera->Transform(x, y);
 		return Box(pos.x, pos.y, GTObject->FrameWidth, GTObject->FrameHeight, Vx, -Vy);
 	}
 	
@@ -68,71 +62,71 @@ Box BaseObject::GetBox(Camera *camera)
 void BaseObject::MoveLeft()
 {
 	if (IsFalling || IsJumping) return;
-	if (IsAttacking == 1) return;
+	if (IsAttacking) return;
 	Trend = -1;
 }
 
 void BaseObject::MoveRight()
 {
 	if (IsFalling || IsJumping) return;
-	if (IsAttacking == 1) return;
+	if (IsAttacking) return;
 	Trend = 1;
 }
 
 void BaseObject::Stop()
 {
-	IsGoing = 0;
+	IsGoing = false;
 	Vx = 0;
 }
 
 void BaseObject::Sit()
 {
-	IsSitting = 1;
-	IsFalling = 0;
-	IsJumping = 0;
-	IsGoing = 0;
+	IsSitting = true;
+	IsFalling = false;
+	IsJumping = false;
+	IsGoing = false;
 }
 
 void BaseObject::StandUp()
 {
-	IsSitting = 0;
-	IsFalling = 0;
-	IsJumping = 0;
-	IsGoing = 0;
+	IsSitting = false;
+	IsFalling = false;
+	IsJumping = false;
+	IsGoing = false;
 }
 
 void BaseObject::Fall()
 {
-	IsFalling = 1;
-	IsJumping = 0;
-	IsSitting = 0;
-	EndHurt = 1;
+	IsFalling = true;
+	IsJumping = false;
+	IsSitting = false;
+	EndHurt = true;
 }
 void BaseObject::Jump()
 {
-	IsJumping = 1;
-	IsFalling = 0;
-	IsSitting = 0;
+	IsJumping = true;
+	IsFalling = false;
+	IsSitting = false;
 }
 void BaseObject::Go()
 {
-	IsSitting = 0;
-	IsFalling = 0;
-	IsJumping = 0;
-	IsGoing = 1;
+	IsSitting = false;
+	IsFalling = false;
+	IsJumping = false;
+	IsGoing = true;
 }
 
 float BaseObject::GetVx()
 {
-	if (IsAttacking == 1) return 0;
-	if (IsGoing == 1) return Vx;
+	if (IsAttacking) return 0;
+	if (IsGoing) return Vx;
 	return 0;
 }
 
 float BaseObject::GetVy()
 {
-	if (IsAttacking == 1) return 0;
-	if (IsFalling == 1 || IsJumping == 1) return Vy;
+	if (IsAttacking) return 0;
+	if (IsFalling|| IsJumping) return Vy;
 	return 0;
 }
 //////////////////////////////////
@@ -168,7 +162,7 @@ void BaseObject::GetSMPositionForBoss(float x, float y, int Trend)
 
 void BaseObject::Attack(Weapon *weapon)
 {
-	IsAttacking = 1;
+	IsAttacking = true;
 	//if (weapon) weapon->Create(x, y, Trend);
 }
 
@@ -224,6 +218,7 @@ void BaseObject::SetTrend(int Trend)
 void BaseObject::RenderBoundingBox(Camera* camera)
 {
 	float l, t, r, b;
+
 	GetBoundingBox(l, t, r, b);
 	RECT rect;
 	rect.left = 0;
@@ -231,15 +226,14 @@ void BaseObject::RenderBoundingBox(Camera* camera)
 	rect.right = (LONG)r - (LONG)l;
 	rect.bottom = (LONG)b - (LONG)t;
 
-	D3DXVECTOR2 pos = camera->Transform(l, t);
-	GSObject->DrawRect(pos.x,pos.y,rect);
-	
+	D3DXVECTOR2 pos = camera->TransformObject(l, t);
+	GSObject->DrawRect(pos.x,pos.y, rect);	
 }
 
 void BaseObject::GetBoundingBox(float & left, float & top, float & right, float & bottom)
-{
-	left = x;
-	top = y;
-	right = left + getw();
-	bottom = top + geth();
+{	
+		left = x;
+		top = y;
+		right = left + getw();
+		bottom = top + geth();
 }
