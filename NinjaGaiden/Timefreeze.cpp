@@ -9,7 +9,7 @@ Timefreeze::Timefreeze(float X, float Y)
 
 	this->x = X;
 	this->y = Y;
-
+	Health = 1;
 	Vx = 0;
 
 	Vy = TIMEFREEZE_GRAVITY;

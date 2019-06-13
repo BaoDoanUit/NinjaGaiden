@@ -63,11 +63,11 @@ void TextureManager::LoadResource()
 	*/
 
 	//item
-	AddTexture(eType::TIMEFREEZE, new Texture("Resources/item/timefrezee.png", 1, 1, 1));
-	AddTexture(eType::BLUEMONEY, new Texture("Resources/item/BlueMoney.png",1,1,1));
-	AddTexture(eType::REDMONEY, new Texture("Resources/item/RedMoney.png",1,1,1));
-	AddTexture(eType::SPIRITUAL1, new Texture("Resources/item/Spiritual1.png",1,1,1));
-	AddTexture(eType::SPIRITUAL2, new Texture("Resources/item/Spiritual2.png",1,1,1));
+	AddTexture(eType::TIMEFREEZE, new Texture("Resources/item/timefrezee.png", 1, 1, 1, 0, 128, 128));
+	AddTexture(eType::BLUEMONEY, new Texture("Resources/item/BlueMoney.png",1,1,1, 0, 128, 128));
+	AddTexture(eType::REDMONEY, new Texture("Resources/item/RedMoney.png",1,1,1, 0, 128, 128));
+	AddTexture(eType::SPIRITUAL1, new Texture("Resources/item/Spiritual1.png",1,1,1, 0, 128, 128));
+	AddTexture(eType::SPIRITUAL2, new Texture("Resources/item/Spiritual2.png",1,1,1, 0, 128, 128));
 
 
 

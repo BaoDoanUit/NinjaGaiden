@@ -9,9 +9,7 @@ BlueMoney::BlueMoney(float X, float Y)
 
 	this->x = X;
 	this->y = Y;
-
-	Vx = 0;
-
+	Health = 1;
 	Vy = BLUEMONEY_GRAVITY;
 	TimeDisplayMax = BLUEMONEY_TIMEDISPLAYMAX; // set time hiển thị tối đa
 	TimeDisplayed = 0;

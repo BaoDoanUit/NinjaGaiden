@@ -32,6 +32,7 @@ public:
 	void		setX(int a);
 	void        setY(int a);
 	void setCountTime();
+	virtual void Update(int t);
 	~Item();
 };
 

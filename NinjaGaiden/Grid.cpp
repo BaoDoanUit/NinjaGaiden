@@ -125,7 +125,8 @@ void Grid::Insert(int id, int typeObject, int direction, float x, float y, int w
 		return;
 
 	obj->SetId(id);
-	item->SetId(id);
+	
+	
 	obj->SetTrend(direction);
 
 	for (int i = top; i <= bottom; i++)
@@ -135,6 +136,7 @@ void Grid::Insert(int id, int typeObject, int direction, float x, float y, int w
 			cells[i][j].push_back(obj);
 			if (item != NULL) {
 				cells[i][i].push_back(item);
+				item->SetId(id);
 			}
 			
 

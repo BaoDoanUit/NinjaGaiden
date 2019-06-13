@@ -12,6 +12,13 @@ Item::Item()
 }
 
 
+void Item::Update(int t)
+{
+	y -= Vy * t;
+	if (y <= 80)
+		Vy = 0;
+}
+
 Item::~Item()
 {
 }
