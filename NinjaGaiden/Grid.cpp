@@ -125,6 +125,7 @@ void Grid::Insert(int id, int typeObject, int direction, float x, float y, int w
 		return;
 
 	obj->SetId(id);
+	item->SetId(id);
 	obj->SetTrend(direction);
 
 	for (int i = top; i <= bottom; i++)
@@ -146,7 +147,21 @@ Item* Grid::GetNewItem(int typeItem, int x, int y)
 {
 	switch (typeItem)
 	{
-
+	case eType::BLUEMONEY :
+		return new BlueMoney(x, y);
+		break;
+	case eType::REDMONEY:
+		return new RedMoney(x, y);
+		break;
+	case eType::SPIRITUAL1:
+		return new Spiritual1(x, y);
+		break;
+	case eType::SPIRITUAL2:
+		return new Spiritual2(x, y);
+		break;
+	case eType::TIMEFREEZE:
+		return new Timefreeze(x, y);
+		break;
 	}
 	return NULL;
 }

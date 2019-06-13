@@ -15,6 +15,11 @@
 #include "StandSolider.h"
 #include "Ground.h"
 #include "Item.h"
+#include "BlueMoney.h"
+#include "RedMoney.h"
+#include "Spiritual1.h"
+#include "Spiritual2.h"
+#include "Timefreeze.h"
 
 using namespace std;
 
