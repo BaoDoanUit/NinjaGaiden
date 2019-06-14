@@ -36,7 +36,7 @@ void TextureManager::LoadResource()
 	AddTexture(eType::BOARD_TRANS, new Texture("Resources/blackboard.png", 1, 1, 1, 0, 0, 0));
 
 	AddTexture(eType::BOARDHEALTH, new Texture("Resources/heal.png", 3, 1, 3));
-	
+
 	*/
 	//MAP
 	AddTexture(eType::RENDERBBOX, new Texture("Resources/bbox.png")); // dùng để vẽ BBOX
@@ -65,10 +65,10 @@ void TextureManager::LoadResource()
 
 	//item
 	AddTexture(eType::TIMEFREEZE, new Texture("Resources/item/timefrezee.png", 1, 1, 1, 0, 128, 128));
-	AddTexture(eType::BLUEMONEY, new Texture("Resources/item/BlueMoney.png",1,1,1, 0, 128, 128));
-	AddTexture(eType::REDMONEY, new Texture("Resources/item/RedMoney.png",1,1,1, 0, 128, 128));
-	AddTexture(eType::SPIRITUAL1, new Texture("Resources/item/Spiritual1.png",1,1,1, 0, 128, 128));
-	AddTexture(eType::SPIRITUAL2, new Texture("Resources/item/Spiritual2.png",1,1,1, 0, 128, 128));
+	AddTexture(eType::BLUEMONEY, new Texture("Resources/item/BlueMoney.png", 1, 1, 1, 0, 128, 128));
+	AddTexture(eType::REDMONEY, new Texture("Resources/item/RedMoney.png", 1, 1, 1, 0, 128, 128));
+	AddTexture(eType::SPIRITUAL1, new Texture("Resources/item/Spiritual1.png", 1, 1, 1, 0, 128, 128));
+	AddTexture(eType::SPIRITUAL2, new Texture("Resources/item/Spiritual2.png", 1, 1, 1, 0, 128, 128));
 
 
 
@@ -78,9 +78,9 @@ void TextureManager::LoadResource()
 
 
 	//player
-	AddTexture(eType::NINJAGAIDEN, new Texture("Resources/NinjaGaiden.png", 8, 4, 32));
+	AddTexture(eType::NINJAGAIDEN, new Texture("Resources/NinjaGaiden.png", 8, 4, 32, 255, 255, 255));
 	//AddTexture(eType::SIMON_TRANS, new Texture("Resources/simon_trans.png", 8, 3, 24));
-	AddTexture(eType::NINJAGAIDEN_DEADTH, new Texture("Resources/simondeath.png",1,1,1));
+	AddTexture(eType::NINJAGAIDEN_DEADTH, new Texture("Resources/simondeath.png", 1, 1, 1, 255, 255, 255));
 
 	/*
 	//effect
