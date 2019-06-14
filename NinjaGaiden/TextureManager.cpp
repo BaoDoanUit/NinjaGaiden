@@ -74,13 +74,13 @@ void TextureManager::LoadResource()
 
 
 	// Weapon
-	AddTexture(eType::KATANA1, new Texture("Resources/Weapon/katana1.png", 4, 1, 4, 112, 146, 190));
+	AddTexture(eType::KATANA1, new Texture("Resources/Weapon/katana1.png", 4, 1, 4, 0, 146, 190));
 	AddTexture(eType::KATANA2, new Texture("Resources/weapon/katana2.png", 4, 1, 4));
 
 
 
 	//player
-	AddTexture(eType::NINJAGAIDEN, new Texture("Resources/NinjaGaiden.png", 8, 4, 32, 255, 255, 255));
+	AddTexture(eType::NINJAGAIDEN, new Texture("Resources/NinjaGaiden.png", 8, 4, 32, 0, 255, 255));
 	//AddTexture(eType::SIMON_TRANS, new Texture("Resources/simon_trans.png", 8, 3, 24));
 	AddTexture(eType::NINJAGAIDEN_DEADTH, new Texture("Resources/simondeath.png", 1, 1, 1, 255, 255, 255));
 
