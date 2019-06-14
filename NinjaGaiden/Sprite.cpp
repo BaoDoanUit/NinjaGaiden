@@ -195,7 +195,6 @@ int Sprite::GetIndex()
 	return _index;
 }
 
-
 void Sprite::DrawFromTL(int X, int Y)
 {
 	RECT srect;

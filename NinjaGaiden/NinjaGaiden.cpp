@@ -12,8 +12,8 @@ NinjaGaiden::NinjaGaiden(float x1, float y1, int trend)
 	GSObject = new Sprite(GTObject, NINJAGAIDEN_FRAME);
 	GTObject2 = TextureManager::GetInstance()->GetTexture(eType::NINJAGAIDEN_DEADTH);
 	GSObject2 = new Sprite(GTObject2, NINJAGAIDEN_FRAME);
-	EndHurt = 1;
-	IsFalling = 1;
+	EndHurt = true;
+	IsFalling = true;
 	Blood = 10;
 }
 
@@ -42,13 +42,13 @@ void NinjaGaiden::Draw(Camera * cam)
 		}
 	}
 	else EndHurt = 1;
-	if (Trend == -1)
+	if (Trend == 1)
 	{
-		if (isNinjaGaidenDie == true)GSObject->DrawFromCenter(pos.x, pos.y);
+		if (isNinjaGaidenDie)GSObject2->DrawFromCenter(pos.x, pos.y);
 		else GSObject->DrawFromCenter(pos.x, pos.y);
 	}
 	else {
-		if (isNinjaGaidenDie == true)GSObject->DrawFlipX(pos.x, pos.y);
+		if (isNinjaGaidenDie)GSObject2->DrawFlipX(pos.x, pos.y);
 		else GSObject->DrawFlipX(pos.x, pos.y);
 	}
 	//RenderBoundingBox(cam);
@@ -65,7 +65,7 @@ void NinjaGaiden::Update(Camera *camera, int t)
 		GSObject->Update(t);
 		if (IsSitting)					//Tấn công khi đang ngồi
 		{
-			if (GSObject->_index > 14)
+			if (GSObject->_index > NINJAGAIDEN_START_SIT_ATK_IMAGE)
 			{
 				IsAttacking = 0;
 				this->Sit();
@@ -77,14 +77,14 @@ void NinjaGaiden::Update(Camera *camera, int t)
 			x += Vx * t;
 			y += Vy;
 			Vy = Vy - NINJAGAIDEN_GRAVITY;
-			if (GSObject->_index > 6)
+			if (GSObject->_index > NINJAGAIDEN_END_ATK_IMAGE)
 			{
 				IsAttacking = 0;
 				this->Fall();
 			}
 		}
 		else
-			if (GSObject->_index > 6)
+			if (GSObject->_index > NINJAGAIDEN_END_ATK_IMAGE)
 			{
 				GSObject->SelectIndex(NINJAGAIDEN_STOP_IMAGE);
 				IsAttacking = 0;
@@ -142,7 +142,7 @@ void NinjaGaiden::Update(Camera *camera, int t)
 
 
 void NinjaGaiden::setIndexNinjaGaiden() {
-	GSObject->SelectIndex(0);
+	GSObject->SelectIndex(1);
 }
 
 Box NinjaGaiden::GetBox(Camera *camera)
@@ -170,7 +170,7 @@ void NinjaGaiden::Sit()
 	if (IsAttacking == 0)
 	{
 		GSObject->SelectIndex(NINJAGAIDEN_SIT_IMAGE);
-		if (IsSitting == 0) y = y - NINJAGAIDEN_Y_SIT;
+		if (!IsSitting) y = y - NINJAGAIDEN_Y_SIT;
 		GSObject->SelectIndex(NINJAGAIDEN_SIT_IMAGE);
 		BaseObject::Sit();
 	}
@@ -178,7 +178,7 @@ void NinjaGaiden::Sit()
 
 void NinjaGaiden::StandUp()
 {
-	if (IsSitting == 1) y = y + NINJAGAIDEN_Y_SIT;
+	if (IsSitting) y = y + NINJAGAIDEN_Y_SIT;
 	GSObject->SelectIndex(NINJAGAIDEN_STOP_IMAGE);
 	BaseObject::StandUp();
 }
@@ -216,14 +216,6 @@ void NinjaGaiden::Fall()
 void NinjaGaiden::Go()
 {
 	if (IsJumping|| IsFalling) return;
-	if (IsClimbing && !IsAttacking)
-	{
-		Vx = NINJAGAIDEN_VX_STAIR*Trend;
-		//Vy = -NINJAGAIDEN_VY_STAIR*Trend*stairTrend;
-		GSObject->SelectIndex(NINJAGAIDEN_START_GO);
-		BaseObject::Go();
-		return;
-	}
 	if (!IsAttacking)
 	{
 		if (IsSitting) this->StandUp();
@@ -258,10 +250,10 @@ void NinjaGaiden::Hurt(int HTrend)
 	{
 		this->HTrend = HTrend > 0 ? 1 : -1;
 		IsHurting = 30;
-		EndHurt = 0;
+		EndHurt = false;
 		NinjaGaidenFall = 0;
 		Vx_Hurt = NinjaGaiden_vx;
-		if (IsClimbing == 0)
+		if (!IsClimbing)
 			this->Jump();
 	}
 }
@@ -277,11 +269,9 @@ void NinjaGaiden::Attack(Weapon* weapon) {
 	if (IsFalling) return;
 
 	if (IsSitting)
-	{
-		GSObject->SelectIndex(NINJAGAIDEN_SITATK_IMAGE);
-	}
+		GSObject->SelectIndex(NINJAGAIDEN_START_SIT_ATK_IMAGE);
 	else
-		GSObject->SelectIndex(NINJAGAIDEN_ATK_IMAGE);
+		GSObject->SelectIndex(NINJAGAIDEN_START_ATK_IMAGE);
 	BaseObject::Attack(weapon);
 
 }
