@@ -147,7 +147,7 @@ void NinjaGaiden::setIndexNinjaGaiden() {
 
 Box NinjaGaiden::GetBox(Camera *camera)
 { 
-	D3DXVECTOR2 pos = camera->Transform(x - 15, y + GTObject->FrameHeight / 2);
+	D3DXVECTOR2 pos = camera->Transform(x - GTObject->FrameWidth/2 , y + GTObject->FrameHeight / 2);
 	return Box(pos.x, pos.y, GTObject->FrameWidth - 28, GTObject->FrameHeight, Vx, -Vy);
 }
 

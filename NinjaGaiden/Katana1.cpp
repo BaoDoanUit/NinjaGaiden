@@ -29,6 +29,6 @@ void Katana1::Update(Camera *camera, int t)
 
 void Katana1::Create(float ninjaGaiden_x, float ninjaGaiden_y, int sm_trend)
 {
-	Weapon::Create(ninjaGaiden_x - 5, ninjaGaiden_y + 45, sm_trend);
+	Weapon::Create(ninjaGaiden_x, ninjaGaiden_y + 45, sm_trend);
 	Vx = KATANA_VX*Trend;
 }

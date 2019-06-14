@@ -6,9 +6,10 @@ Bee::Bee(int x1, int y1, int h1, int w1)
 	y = y1;
 	h = h1;
 	w = w1;
+	Vy = 0;
 	dropItem = false;
 	GTObject = TextureManager::GetInstance()->GetTexture(eType::BEE);
-	GSObject = new Sprite(GTObject, 100);
+	GSObject = new Sprite(GTObject, 120);
 	Health = 1;
 	type = eType::BEE;
 }

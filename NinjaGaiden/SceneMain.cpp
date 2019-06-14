@@ -50,8 +50,13 @@ void SceneMain::RenderStage(LPDIRECT3DDEVICE9 d3ddv, int t) {
 	for (int i = 0; i < weapons.size(); i++)
 	{
 		if (weapons.at(i)->GetFinish() == 0) {
-			if (weapons.at(i)->getType() == 1) {
-				weapons.at(i)->SetXY(ninjaGaiden->getx(), ninjaGaiden->gety());
+			if (weapons.at(i)->getType() == eType::KATANA1) {
+				if (ninjaGaiden->getTrend() == 1)
+				{
+					weapons.at(i)->SetXY(ninjaGaiden->getx(), ninjaGaiden->gety() + 35);
+				}
+				else if (ninjaGaiden->getTrend() == -1)
+					weapons.at(i)->SetXY(ninjaGaiden->getx() - 30, ninjaGaiden->gety() + 35);
 			}
 			weapons.at(i)->Draw(cam);
 		}
@@ -229,8 +234,31 @@ void SceneMain::CheckCollisionEnemy() {
 			case eType::EAGLE:
 				listEnemy[indexEnemy]->SetHealth(0);
 				break;
+			case eType::ENEMY1:
+				/*ninjaGaiden->SetHurt(0);*/
+				ninjaGaiden->Hurt(ninjaGaiden->getTrend());
+				break;
 			default:
 				break;
+			}
+		}
+		for (UINT i = 0; i < weapons.size(); i++)
+		{
+			IsCollision = Collide(weapons.at(i)->GetBox(cam), listEnemy[indexEnemy]->GetBox(cam), CollisionTime, nx, ny);
+			if (IsCollision != 0)
+			{
+				switch (listEnemy[indexEnemy]->GetType())
+				{
+				case eType::ENEMY1:
+					listEnemy[indexEnemy]->SetHealth(0);
+					break;
+				case eType::BEE:
+					listEnemy[indexEnemy]->SetHealth(0);
+					listEnemy[indexEnemy]->setDropItem(true);
+					break;
+				default:
+					break;
+				}
 			}
 		}
 
