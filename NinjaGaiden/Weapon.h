@@ -4,7 +4,7 @@
 #include "Sprite.h"
 #include "Camera.h"
 #include "Sweet_AABB.h"
-
+#include "TextureManager.h"
 class Weapon
 {
 protected:

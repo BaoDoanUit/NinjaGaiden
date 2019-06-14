@@ -14,11 +14,11 @@ Weapon::~Weapon()
 void Weapon::Update(Camera * camera, int t) {
 
 }
-void Weapon::Create(float sm_x, float sm_y, int sm_trend)
+void Weapon::Create(float ninjaGaiden_x, float ninjaGaiden_y, int ninjaGaiden_trend)
 {
-	this->x = sm_x;
-	this->y = sm_y;
-	Trend = sm_trend;
+	this->x = ninjaGaiden_x;
+	this->y = ninjaGaiden_y;
+	Trend = ninjaGaiden_trend;
 	IsFinish = 0;
 	GSObject->Reset();
 }

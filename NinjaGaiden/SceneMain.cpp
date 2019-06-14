@@ -38,7 +38,7 @@ void SceneMain::RenderStage(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		case eType::GROUND:
 			listGround.push_back(listObj[i]);
 			break;
-		case eType::TIMEFREEZE :
+		case eType::TIMEFREEZE:
 		case eType::REDMONEY:
 		case eType::BLUEMONEY:
 		case eType::SPIRITUAL1:
@@ -56,14 +56,12 @@ void SceneMain::RenderStage(LPDIRECT3DDEVICE9 d3ddv, int t) {
 	for (int i = 0; i < weapons.size(); i++)
 	{
 		if (weapons.at(i)->GetFinish() == 0) {
-			if (weapons.at(i)->getType() == eType::KATANA1) {
-				if (ninjaGaiden->getTrend() == 1)
-				{
-					weapons.at(i)->SetXY(ninjaGaiden->getx(), ninjaGaiden->gety() + 35);
-				}
-				else if (ninjaGaiden->getTrend() == -1)
-					weapons.at(i)->SetXY(ninjaGaiden->getx() - 30, ninjaGaiden->gety() + 35);
+			if (ninjaGaiden->getTrend() == 1)
+			{
+				weapons.at(i)->SetXY(ninjaGaiden->getx(), ninjaGaiden->gety() + 35);
 			}
+			else if (ninjaGaiden->getTrend() == -1)
+				weapons.at(i)->SetXY(ninjaGaiden->getx() - 30, ninjaGaiden->gety() + 35);
 			weapons.at(i)->Draw(cam);
 		}
 		if (weapons.at(i)->getcurentFrame() == 2) {
@@ -84,7 +82,7 @@ void SceneMain::ClearListObject()
 	listEnemy.clear();
 	listGround.clear();
 	listItem.clear();
-	
+
 }
 
 void SceneMain::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
@@ -114,7 +112,7 @@ void SceneMain::LoadMap1() {
 	cam->SetSizeMap(0, 4096);
 	ninjaGaiden->Go();
 	gridGame->SetFile("./Resources/maps/map2.txt");
-	gridGame->ReloadGrid(); 
+	gridGame->ReloadGrid();
 	weapons.clear();
 	weapons.push_back(new Katana1());
 	SAFE_DELETE(pMap);
@@ -243,7 +241,7 @@ void SceneMain::CheckCollisionEnemy() {
 				listEnemy[indexEnemy]->SetHealth(0);
 				break;
 			case eType::ENEMY1:
-				/*ninjaGaiden->SetHurt(0);*/
+				/*ninjaGaiden->SetHurt(0);*/			
 				ninjaGaiden->Hurt(ninjaGaiden->getTrend());
 				break;
 			default:
@@ -252,22 +250,27 @@ void SceneMain::CheckCollisionEnemy() {
 		}
 		for (UINT i = 0; i < weapons.size(); i++)
 		{
-			IsCollision = Collide(weapons.at(i)->GetBox(cam), listEnemy[indexEnemy]->GetBox(cam), CollisionTime, nx, ny);
-			if (IsCollision != 0)
+			if (weapons.at(i)->GetFinish() == 0)
 			{
-				switch (listEnemy[indexEnemy]->GetType())
+				IsCollision = Collide(weapons.at(i)->GetBox(cam), listEnemy[indexEnemy]->GetBox(cam), CollisionTime, nx, ny);
+				if (IsCollision != 0)
 				{
-				case eType::ENEMY1:
-					listEnemy[indexEnemy]->SetHealth(0);
-					break;
-				case eType::BEE:
-					listEnemy[indexEnemy]->SetHealth(0);
-					listEnemy[indexEnemy]->setDropItem(true);
-					break;
-				default:
-					break;
+
+					switch (listEnemy[indexEnemy]->GetType())
+					{
+					case eType::ENEMY1:
+						listEnemy[indexEnemy]->SetHealth(0);
+						break;
+					case eType::BEE:
+						listEnemy[indexEnemy]->SetHealth(0);
+						listEnemy[indexEnemy]->setDropItem(true);
+						break;
+					default:
+						break;
+					}
 				}
 			}
+			
 		}
 
 	}

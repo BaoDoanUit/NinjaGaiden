@@ -98,6 +98,7 @@ void NinjaGaiden::Update(Camera *camera, int t)
 			y += Vy;
 			x += Vx * t;
 			Vy = Vy - NINJAGAIDEN_GRAVITY;
+
 			GSObject->_end = NINJAGAIDEN_END_JUMP;	
 			GSObject->Update(t);
 			if (!EndHurt) GSObject->SelectIndex(NINJAGAIDEN_HURT_IMAGE);
@@ -246,16 +247,14 @@ void NinjaGaiden::Stop()
 
 void NinjaGaiden::Hurt(int HTrend)
 {
-	if (IsHurting == 0)
-	{
+	
 		this->HTrend = HTrend > 0 ? 1 : -1;
-		IsHurting = 30;
 		EndHurt = false;
 		NinjaGaidenFall = 0;
 		Vx_Hurt = NinjaGaiden_vx;
 		if (!IsClimbing)
 			this->Jump();
-	}
+	
 }
 
 D3DXVECTOR2 * NinjaGaiden::getPos()
