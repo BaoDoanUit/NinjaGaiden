@@ -163,7 +163,7 @@ void BaseObject::GetSMPositionForBoss(float x, float y, int Trend)
 void BaseObject::Attack(Weapon *weapon)
 {
 	IsAttacking = true;
-	//if (weapon) weapon->Create(x, y, Trend);
+	if (weapon) weapon->Create(x, y, Trend);
 }
 
 int BaseObject::GetHealth()

@@ -7,6 +7,7 @@
 #include "NinjaGaiden.h"
 #include "Objects/Map/Map.h"
 #include "Grid.h"
+#include "Katana1.h"
 class SceneMain : public Game {
 public:
   int IsCollision;

@@ -124,8 +124,8 @@ enum eType
 
 
 	// weapon
-	
-
+	KATANA1 = 60,
+	KATANA2 = 61,
 
 	// item
 	TIMEFREEZE = 70,

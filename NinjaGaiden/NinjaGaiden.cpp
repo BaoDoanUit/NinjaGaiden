@@ -13,7 +13,7 @@ NinjaGaiden::NinjaGaiden(float x1, float y1, int trend)
 	GTObject2 = TextureManager::GetInstance()->GetTexture(eType::NINJAGAIDEN_DEADTH);
 	GSObject2 = new Sprite(GTObject2, NINJAGAIDEN_FRAME);
 	EndHurt = true;
-	IsFalling = true;
+	//IsFalling = true;
 	Blood = 10;
 }
 
@@ -65,7 +65,7 @@ void NinjaGaiden::Update(Camera *camera, int t)
 		GSObject->Update(t);
 		if (IsSitting)					//Tấn công khi đang ngồi
 		{
-			if (GSObject->_index > NINJAGAIDEN_START_SIT_ATK_IMAGE)
+			if (GSObject->_index > NINJAGAIDEN_END_SIT_ATK_IMAGE)
 			{
 				IsAttacking = 0;
 				this->Sit();

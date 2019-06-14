@@ -12,7 +12,7 @@ protected:
 	float Vy;	// Vận tốc theo trục Y
 	int Trend;		// Phương hướng, trái = -1, phải = 1;
 	int IsFinish;
-	int TypeWeapon;
+	eType TypeWeapon;
 
 public:
 	float x;	// Vị trí theo trục X
@@ -22,6 +22,18 @@ public:
 
 	Texture *GTObject;
 	Sprite *GSObject;
+
+	int GetTrend();
+	void SetTrend(int a);
+
+	virtual void Create(float sm_x, float sm_y, int sm_trend);
+	virtual void Update(Camera*camera, int t);
+	virtual Box GetBox(Camera *camera);
+	virtual void Draw(Camera *camera);
+	virtual void SetXY(float x, float y);
+	virtual int GetFinish();
+	virtual int getcurentFrame();
+	eType getType();
 };
 
 #endif

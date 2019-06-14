@@ -74,6 +74,8 @@ void TextureManager::LoadResource()
 
 
 	// Weapon
+	AddTexture(eType::KATANA1, new Texture("Resources/Weapon/katana1.png", 4, 1, 4));
+	AddTexture(eType::KATANA2, new Texture("Resources/weapon/katana2.png", 4, 1, 4));
 
 
 

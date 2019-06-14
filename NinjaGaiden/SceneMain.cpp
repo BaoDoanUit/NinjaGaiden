@@ -45,6 +45,20 @@ void SceneMain::RenderStage(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		}
 		listObj[i]->Draw(cam);
 	}
+
+
+	for (int i = 0; i < weapons.size(); i++)
+	{
+		if (weapons.at(i)->GetFinish() == 0) {
+			if (weapons.at(i)->getType() == 1) {
+				weapons.at(i)->SetXY(ninjaGaiden->getx(), ninjaGaiden->gety());
+			}
+			weapons.at(i)->Draw(cam);
+		}
+		if (weapons.at(i)->getcurentFrame() == 2) {
+			int a = 0;
+		}
+	}
 	ninjaGaiden->Draw(cam);
 	G_SpriteHandler->End();
 }
@@ -89,6 +103,7 @@ void SceneMain::LoadMap1() {
 	ninjaGaiden->Go();
 	gridGame->SetFile("./Resources/maps/map2.txt");
 	gridGame->ReloadGrid();
+	weapons.push_back(new Katana1());
 	SAFE_DELETE(pMap);
 	pMap = new Map("./Resources/maps/3-1.json");
 }
@@ -150,8 +165,7 @@ void SceneMain::ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int Delta) {
 
 		if (IsKeyDown(DIK_T)) {
 			if (ninjaGaiden->getAttacking() == 0) {
-				//ninjaGaiden->Attack(weapons.at(0));
-				ninjaGaiden->Attack(NULL);
+				ninjaGaiden->Attack(weapons.at(0));
 
 				//ninjaGaiden->PlaySoundChoose(18);
 			}
@@ -162,18 +176,21 @@ void SceneMain::ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int Delta) {
 void SceneMain::UpdateObject(Camera *cam, int t) {
 	if (State != 0 && !isOpenTheGate) {
 		cam->SetFolowPos(ninjaGaiden->getx(), ninjaGaiden->gety());
-		if (PreUpStair)
-			cam->SetVCam(ninjaGaiden->getTrend() * 0.13 * t,
-				ninjaGaiden->GetVy()); // Xét khi mà va chạm cầu thang để
-									   // chuẩn bị lên cầu thang
-		else {
-			cam->SetVCam(ninjaGaiden->getVx() * t, ninjaGaiden->GetVy());
-		}
+		cam->SetVCam(ninjaGaiden->getVx() * t, ninjaGaiden->GetVy());
 		cam->UpdateCamera();
 
 		// Updated weapons of ninjaGaiden
-
+		for (int i = 0; i < weapons.size(); i++) {
+			if (weapons.at(i)->GetFinish() == 0) {
+				weapons.at(i)->Update(cam, t);
+			}
+			if (weapons.at(i)->getcurentFrame() == 2) {
+				int a = 0;
+			}
+		}
 		// Updated weaponsEnemy
+
+		// Update Enemy action
 		for (UINT i = 0; i < listObj.size(); i++)
 		{
 			switch (listObj[i]->GetType())
@@ -263,9 +280,9 @@ void SceneMain::CheckCollisionGround() {
 	if (evtColisionCount != 0)
 	{
 		float k = listGround[indexGroundCollision]->gety() + listGround[indexGroundCollision]->geth() / 2 + ninjaGaiden->getHeight() / 2 + 5;
-		
+
 		ninjaGaiden->StopFall(k);
-		onGround = true;	
+		onGround = true;
 	}
 
 	if (onGround == false)
@@ -275,7 +292,7 @@ void SceneMain::CheckCollisionGround() {
 			ninjaGaiden->Jump(); // Jump cho ĐÚNG QUY TRÌNH :v
 			ninjaGaiden->Fall();
 		}
-	} 
+	}
 
 }
 

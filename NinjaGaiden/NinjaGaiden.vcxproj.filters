@@ -171,6 +171,9 @@
     <ClCompile Include="Timefreeze.cpp">
       <Filter>Object\Item</Filter>
     </ClCompile>
+    <ClCompile Include="Katana1.cpp">
+      <Filter>Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SceneMain.h">
@@ -382,6 +385,9 @@
     </ClInclude>
     <ClInclude Include="Timefreeze.h">
       <Filter>Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Katana1.h">
+      <Filter>Weapon</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
