@@ -61,6 +61,9 @@ public:
 	float		getVx() { return this->Vx; }
 	void		setVX(int x1) { this->Vx = x1; }
 
+	float		getVy() { return this->Vy; }
+	void		setVy(int y1) { this->Vy = y1; }
+
 	int			getIsHurrting() { return this->IsHurting; }
 	int GetHealth();
 	void SetHealth(int h);

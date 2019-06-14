@@ -14,9 +14,8 @@ Item::Item()
 
 void Item::Update(int t)
 {
+
 	y -= Vy * t;
-	if (y <= 80)
-		Vy = 0;
 }
 
 Item::~Item()
@@ -24,3 +23,7 @@ Item::~Item()
 }
 
 
+void Item::StopFall(int k)
+{
+	
+}

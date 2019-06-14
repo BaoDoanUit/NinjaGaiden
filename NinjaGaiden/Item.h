@@ -33,6 +33,7 @@ public:
 	void        setY(int a);
 	void setCountTime();
 	virtual void Update(int t);
+	virtual void StopFall(int k);
 	~Item();
 };
 

@@ -38,6 +38,12 @@ void SceneMain::RenderStage(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		case eType::GROUND:
 			listGround.push_back(listObj[i]);
 			break;
+		case eType::TIMEFREEZE :
+		case eType::REDMONEY:
+		case eType::BLUEMONEY:
+		case eType::SPIRITUAL1:
+		case eType::SPIRITUAL2:
+			listItem.push_back(listObj[i]);
 		default:
 			listObj[i]->setPositionNinja(ninjaGaiden->getPos());
 			listEnemy.push_back(listObj[i]);
@@ -78,6 +84,7 @@ void SceneMain::ClearListObject()
 	listEnemy.clear();
 	listGround.clear();
 	listItem.clear();
+	
 }
 
 void SceneMain::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
@@ -107,7 +114,8 @@ void SceneMain::LoadMap1() {
 	cam->SetSizeMap(0, 4096);
 	ninjaGaiden->Go();
 	gridGame->SetFile("./Resources/maps/map2.txt");
-	gridGame->ReloadGrid();
+	gridGame->ReloadGrid(); 
+	weapons.clear();
 	weapons.push_back(new Katana1());
 	SAFE_DELETE(pMap);
 	pMap = new Map("./Resources/maps/3-1.json");
@@ -296,10 +304,10 @@ void SceneMain::CheckCollisionGround() {
 		for (UINT indexItem = 0; indexItem < listItem.size(); indexItem++)
 		{
 			IsCollision = Collide(listItem[indexItem]->GetBox(cam), listGround[indexGround]->GetBox(cam), CollisionTime, nx, ny);
-			if (IsCollision == 5)
+			if (IsCollision != 0)
 			{
 				float k = listGround[indexGround]->gety() + listGround[indexGround]->geth() / 2 + listItem[indexItem]->getHeight() / 2 + 5;
-				listItem[indexItem]->Stop();
+				listItem[indexItem]->setVy(0);
 			}
 		}
 #pragma region 
@@ -325,6 +333,16 @@ void SceneMain::CheckCollisionGround() {
 }
 
 void SceneMain::CheckCollisionItem() {
-
+	int IsCollision;
+	float CollisionTime, nx, ny;
+	int indexGroundCollision;
+	for (UINT indexItem = 0; indexItem < listItem.size(); indexItem++)
+	{
+		IsCollision = Collide(listItem[indexItem]->GetBox(cam), ninjaGaiden->GetBox(cam), CollisionTime, nx, ny);
+		if (IsCollision != 0)
+		{
+			listItem[indexItem]->SetHealth(0);
+		}
+	}
 }
 
