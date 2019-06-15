@@ -8,6 +8,9 @@
 #include "Objects/Map/Map.h"
 #include "Grid.h"
 #include "Katana1.h"
+#include "WindmillStar.h"
+#include "Sword.h"
+
 class SceneMain : public Game {
 public:
   int IsCollision;
@@ -22,6 +25,7 @@ public:
   vector<BaseObject*> listItem;
   int CollectMorningStar = 0;
   vector<Weapon*> weapons;
+  vector<Weapon*> weaponsEnemy;
   int PreUpStair;
   int PreDownStair;
   bool onGround;

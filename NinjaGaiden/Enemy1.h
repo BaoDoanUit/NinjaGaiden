@@ -10,6 +10,7 @@ public:
 	virtual void Draw(Camera * cam);
 	virtual void StopFall(float y);
 	virtual void Go();
+	virtual void Attack(Weapon* weapon);
 	~Enemy1();
 };
 

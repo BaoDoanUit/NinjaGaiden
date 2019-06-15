@@ -153,7 +153,15 @@ void BaseObject::SetHurt(int i)
 	IsHurting = i;
 }
 int BaseObject::CreateWeapon() {
-	return 0;
+	if (type == eType::ENEMY1)
+	{
+		if (IsCreateBullet > 0)
+		{
+			IsCreateBullet = 0;
+			return 1;
+		}
+		return 0;
+	}	
 }
 void BaseObject::GetSMPositionForBoss(float x, float y, int Trend)
 {

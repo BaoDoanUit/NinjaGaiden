@@ -13,6 +13,7 @@ protected:
 	int Trend;		// Phương hướng, trái = -1, phải = 1;
 	int IsFinish;
 	eType TypeWeapon;
+	int dx;
 
 public:
 	float x;	// Vị trí theo trục X
@@ -26,7 +27,7 @@ public:
 	int GetTrend();
 	void SetTrend(int a);
 
-	virtual void Create(float sm_x, float sm_y, int sm_trend);
+	virtual void Create(float ninjaGaiden_x, float ninjaGaiden_y, int ninjaGaidenTrend);
 	virtual void Update(Camera*camera, int t);
 	virtual Box GetBox(Camera *camera);
 	virtual void Draw(Camera *camera);

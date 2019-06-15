@@ -18,6 +18,7 @@ Enemy1::Enemy1(int x1, int y1, int w1, int h1, int borderLeft1, int borderRight1
 	Trend = -1;
 	type = eType::ENEMY1;
 	Vx = THIEF_SPEED_X;
+	IsCreateBullet = 0;
 }
 
 Box Enemy1::GetBox(Camera * camera)
@@ -30,7 +31,6 @@ void Enemy1::Update(int t)
 {
 	if (Health == 1)
 	{
-		
 		if (x <= borderLeft || x >= borderRight)
 		{
 			Trend *= -1;
@@ -40,6 +40,15 @@ void Enemy1::Update(int t)
 		BaseObject::Update(t);
 	}
 	
+}
+
+void Enemy1::Attack(Weapon *weapon)
+{
+	IsCreateBullet = 1;
+	if (weapon)
+	{
+		weapon->Create(x, y, Trend);
+	}
 }
 
 void Enemy1::Draw(Camera * cam)

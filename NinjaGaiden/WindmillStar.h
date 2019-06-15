@@ -11,7 +11,6 @@
 class WindmillStar : public Weapon
 {
 private:
-	Sprite *GSObject;
 	static WindmillStar *Instance;
 	//int xNinja, yNinja;
 	float v = 0;

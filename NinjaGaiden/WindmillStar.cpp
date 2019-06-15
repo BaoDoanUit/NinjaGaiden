@@ -24,8 +24,6 @@ void WindmillStar::Update(Camera* camera, int t)
 	//}
 	if (IsFinish)
 		return;
-
-	delta = abs(xNinja - xStart) + 200;
 	//DebugOut(L"STAR backupX =%f\t backupY = %f\n", BackupX, backupY);
 	if (abs(x - xNinja) >= DELTAX && abs(x - xNinja) < DELTAX + 15)
 	{
@@ -76,13 +74,14 @@ void WindmillStar::Update(Camera* camera, int t)
 	x += Vx;
 	y += Vy;
 	int StartFrame = 0; 
-	int EndFrame = 5;
+	int EndFrame = 2;
 
 	if (StartFrame <= GSObject->GetIndex() && GSObject->GetIndex() < EndFrame)
 		GSObject->Update(t);
 	else
 	{
 		GSObject->SelectIndex(StartFrame);
+
 	}
 
 
@@ -93,7 +92,7 @@ void WindmillStar::Create(float ninjaGaiden_x, float ninjaGaiden_y, int sm_trend
 	Weapon::Create(ninjaGaiden_x, ninjaGaiden_y + 45, sm_trend);
 	xNinja = ninjaGaiden_x;
 	yNinja = ninjaGaiden_y;
-	//Vx = WPWINDMILLSTAR_GRAVITY*Trend;
+	Vx = WPWINDMILLSTAR_GRAVITY*Trend;
 }
 
 

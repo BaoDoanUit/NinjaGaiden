@@ -32,7 +32,7 @@ protected:
 	int id;
 	eType type;
 	bool dropItem;
-
+	int IsCreateBullet;
 public:
 	Texture *GTObject;
 	Sprite *GSObject;

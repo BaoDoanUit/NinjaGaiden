@@ -41,27 +41,7 @@ void TextureManager::LoadResource()
 	//MAP
 	AddTexture(eType::RENDERBBOX, new Texture("Resources/bbox.png")); // dùng để vẽ BBOX
 	AddTexture(eType::MAP3, new Texture("Resources/maps/3-1.png", 5, 16, 80));
-	//AddTexture(eType::MAP4, new Texture("Resources/maps/tileset_map2.png", 22, 4, 88));
-	//AddTexture(eType::RENDERBBOX, new Texture("Resources/bbox.png")); // dùng để vẽ BBOX
-	/*
-	//gameobject ground
-	AddTexture(eType::TEX_BRICK_MODEL_1, new Texture("Resources/ground/2.png")); // loại dành cho state 1
-	AddTexture(eType::TEX_BRICK_MODEL_2, new Texture("Resources/ground/2-2.png")); // dành cho state 2
-	AddTexture(eType::TEX_BRICK_MODEL_3, new Texture("Resources/ground/8.png")); // loại nhỏ
-	AddTexture(eType::TEX_BRICK_TRANSPARENT, new Texture("Resources/ground/brick_transparent.png")); // loại trong suốt
 
-	AddTexture(eType::TEX_BRICK_MODEL_3_3_32, new Texture("Resources/ground/8-2.png")); // loại nhỏ 4 ô
-	AddTexture(eType::TEX_BRICK_MODEL_3_4_32, new Texture("Resources/ground/8-1.png")); // loại nhỏ 4 ô
-
-
-
-
-
-	AddTexture(eType::GATE, new Texture("Resources/ground/Gate1.png", 4, 1, 4));
-
-	AddTexture(eType::TORCH, new Texture("Resources/ground/0.png", 2, 1, 2));
-	AddTexture(eType::CANDLE, new Texture("Resources/ground/1.png", 2, 1, 2));
-	*/
 
 	//item
 	AddTexture(eType::TIMEFREEZE, new Texture("Resources/item/timefrezee.png", 1, 1, 1, 0, 128, 128));
@@ -76,24 +56,18 @@ void TextureManager::LoadResource()
 	// Weapon
 	AddTexture(eType::KATANA1, new Texture("Resources/Weapon/katana1.png", 4, 1, 4, 0, 146, 190));
 	AddTexture(eType::KATANA2, new Texture("Resources/weapon/katana2.png", 4, 1, 4));
+	AddTexture(eType::WINDMILLSTAR, new Texture("Resources/weapon/windmillstar.png", 2, 1, 2));
 
 
-
+	//weapon Enemy
+	AddTexture(eType::SWORD, new Texture("Resources/weapon/sword.png", 4, 1, 4));
+	
 	//player
-	AddTexture(eType::NINJAGAIDEN, new Texture("Resources/NinjaGaiden.png", 8, 4, 32, 0, 255, 255));
-	//AddTexture(eType::SIMON_TRANS, new Texture("Resources/simon_trans.png", 8, 3, 24));
+	AddTexture(eType::NINJAGAIDEN, new Texture("Resources/NinjaGaiden.png", 8, 4, 32, 255, 255, 255));
 	AddTexture(eType::NINJAGAIDEN_DEADTH, new Texture("Resources/simondeath.png", 1, 1, 1, 255, 255, 255));
 
 	/*
 	//effect
-	AddTexture(eType::FIRE, new Texture("Resources/other/1.png", 4, 1, 4));
-	AddTexture(eType::HIT, new Texture("Resources/other/0.png", 2, 1, 2));
-	AddTexture(eType::BROKENBRICK, new Texture("Resources/other/BrokenBrick.png", 2, 1, 2));//, 4,4,16));
-	AddTexture(eType::STEAM, new Texture("Resources/other/2.png"));
-	AddTexture(eType::EFFECT_MONEY_700, new Texture("Resources/other/effect700.png", 2, 1, 2));
-	AddTexture(eType::EFFECT_MONEY_100, new Texture("Resources/other/effect100.png", 2, 1, 2));
-	AddTexture(eType::EFFECT_MONEY_1000, new Texture("Resources/other/effect1000.png", 2, 1, 2));
-	AddTexture(eType::EFFECT_MONEY_400, new Texture("Resources/other/effect400.png", 2, 1, 2));
 	*/
 
 
@@ -109,7 +83,6 @@ void TextureManager::LoadResource()
 
 
 	//boss
-	/*AddTexture(eType::PHANTOMBAT, new Texture("Resources/boss/0.png", 3, 1, 3));*/
 
 
 

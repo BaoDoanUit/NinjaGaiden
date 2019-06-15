@@ -127,6 +127,9 @@ enum eType
 	KATANA1 = 60,
 	KATANA2 = 61,
 	WINDMILLSTAR = 62,
+	SWORD = 63,
+
+
 	// item
 	TIMEFREEZE = 70,
 	BLUEMONEY = 71,

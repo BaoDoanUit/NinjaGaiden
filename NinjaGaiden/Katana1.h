@@ -9,7 +9,6 @@ class Katana1 : public Weapon
 public:
 	Katana1();
 	~Katana1();
-	int dx;//Khoảng cách để kết thúc dao không cho vẽ
 	virtual void Update(Camera *camera, int t);
 	virtual void Create(float ninjaGaiden_x, float ninjaGaiden_y, int ninjaGaiden_trend);
 };

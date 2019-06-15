@@ -13,9 +13,7 @@ Katana1::~Katana1()
 }
 
 void Katana1::Update(Camera *camera, int t)
-{
-	Weapon::Update(camera, t);
-	
+{	
 	IsFinish = GSObject->GetIndex() == 3;
 	int StartFrame = 0;  
 	int EndFrame = 3;

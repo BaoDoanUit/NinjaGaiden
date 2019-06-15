@@ -64,8 +64,12 @@ void SceneMain::RenderStage(LPDIRECT3DDEVICE9 d3ddv, int t) {
 				weapons.at(i)->SetXY(ninjaGaiden->getx() - 30, ninjaGaiden->gety() + 35);
 			weapons.at(i)->Draw(cam);
 		}
-		if (weapons.at(i)->getcurentFrame() == 2) {
-			int a = 0;
+	}
+	for (int i = 0; i < weaponsEnemy.size(); i++)
+	{
+		if (weapons.at(i)->GetFinish() == 0)
+		{
+			weapons.at(i)->Draw(cam);
 		}
 	}
 	ninjaGaiden->Draw(cam);
@@ -177,7 +181,6 @@ void SceneMain::ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int Delta) {
 		if (IsKeyDown(DIK_T)) {
 			if (ninjaGaiden->getAttacking() == 0) {
 				ninjaGaiden->Attack(weapons.at(0));
-
 				//ninjaGaiden->PlaySoundChoose(18);
 			}
 		}
@@ -190,16 +193,23 @@ void SceneMain::UpdateObject(Camera *cam, int t) {
 		cam->SetVCam(ninjaGaiden->getVx() * t, ninjaGaiden->GetVy());
 		cam->UpdateCamera();
 
+
+
+
 		// Updated weapons of ninjaGaiden
 		for (int i = 0; i < weapons.size(); i++) {
 			if (weapons.at(i)->GetFinish() == 0) {
 				weapons.at(i)->Update(cam, t);
 			}
-			if (weapons.at(i)->getcurentFrame() == 2) {
-				int a = 0;
-			}
 		}
 		// Updated weaponsEnemy
+		for (int i = 0; i < weaponsEnemy.size(); i++)
+		{
+			if (weapons.at(i)->GetFinish() == 0)
+			{
+				weapons.at(i)->Update(cam, t);
+			}
+		}
 
 		// Update Enemy action
 		for (UINT i = 0; i < listObj.size(); i++)
@@ -208,6 +218,16 @@ void SceneMain::UpdateObject(Camera *cam, int t) {
 			{
 			case eType::GROUND:
 				break;
+			case eType::ENEMY1:
+			{
+				listObj[i]->Update(t);
+				if (listObj[i]->CreateWeapon())
+				{
+					weaponsEnemy.push_back(new Sword());
+					listObj[i]->Attack(weaponsEnemy.back());
+				}		
+				break;
+			}
 
 			default:
 				listObj[i]->Update(t);
@@ -215,7 +235,6 @@ void SceneMain::UpdateObject(Camera *cam, int t) {
 			}
 
 		}
-
 	}
 	CheckCollision();
 }
@@ -241,8 +260,8 @@ void SceneMain::CheckCollisionEnemy() {
 				listEnemy[indexEnemy]->SetHealth(0);
 				break;
 			case eType::ENEMY1:
-				/*ninjaGaiden->SetHurt(0);*/			
-				ninjaGaiden->Hurt(ninjaGaiden->getTrend());
+				/*ninjaGaiden->SetHurt(0);*/
+				ninjaGaiden->Hurt(-ninjaGaiden->getTrend());
 				break;
 			default:
 				break;
@@ -255,22 +274,19 @@ void SceneMain::CheckCollisionEnemy() {
 				IsCollision = Collide(weapons.at(i)->GetBox(cam), listEnemy[indexEnemy]->GetBox(cam), CollisionTime, nx, ny);
 				if (IsCollision != 0)
 				{
-
 					switch (listEnemy[indexEnemy]->GetType())
 					{
-					case eType::ENEMY1:
-						listEnemy[indexEnemy]->SetHealth(0);
-						break;
 					case eType::BEE:
 						listEnemy[indexEnemy]->SetHealth(0);
 						listEnemy[indexEnemy]->setDropItem(true);
 						break;
 					default:
+						listEnemy[indexEnemy]->SetHealth(0);
 						break;
 					}
 				}
 			}
-			
+
 		}
 
 	}

@@ -174,7 +174,12 @@
     <ClCompile Include="Katana1.cpp">
       <Filter>Weapon</Filter>
     </ClCompile>
-    <ClCompile Include="WindmillStar.cpp" />
+    <ClCompile Include="WindmillStar.cpp">
+      <Filter>Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Sword.cpp">
+      <Filter>Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SceneMain.h">
@@ -390,6 +395,11 @@
     <ClInclude Include="Katana1.h">
       <Filter>Weapon</Filter>
     </ClInclude>
-    <ClInclude Include="WindmillStar.h" />
+    <ClInclude Include="WindmillStar.h">
+      <Filter>Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Sword.h">
+      <Filter>Weapon</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

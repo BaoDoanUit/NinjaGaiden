@@ -21,6 +21,6 @@ Ground::~Ground()
 
 void Ground::Draw(Camera* cam)
 {
-	RenderBoundingBox(cam);
+	//RenderBoundingBox(cam);
 	return;
 }
